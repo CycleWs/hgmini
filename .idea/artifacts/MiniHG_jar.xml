@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="MiniHG:jar">
-    <output-path>$PROJECT_DIR$/../servidor/plugins</output-path>
-    <root id="archive" name="MiniHG.jar">
-      <element id="module-output" name="MiniHG" />
-    </root>
-  </artifact>
-</component>

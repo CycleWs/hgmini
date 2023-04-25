@@ -4,6 +4,7 @@ import me.minihg.events.InGameEvents;
 import me.minihg.events.PlayerEvents;
 import me.minihg.events.PreGameEvents;
 import me.minihg.events.ServerEvents;
+import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
 import org.bukkit.Bukkit;
@@ -15,6 +16,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -25,6 +27,8 @@ import java.util.UUID;
 public class Main extends JavaPlugin{
 
     public static Main plugin;
+    public static Plugin instance;
+
     public static Main getInstance(){
         return getPlugin(Main.class);
     }
@@ -33,21 +37,24 @@ public class Main extends JavaPlugin{
 
     //----------PreGameInfos--------------------
     public static boolean PreGame = true;
-    public static Integer StartTime = 15;
-    public static Integer MinPlayers = 1 ;
+    public static Integer StartTime = 30;
+    public static Integer MinPlayers = 5 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean Invincibility = false;
-    public static Integer InvincibilityTime = 20;
+    public static Integer InvincibilityTime = 120;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
-    public static List<UUID> playersOnline = new ArrayList<>();
+    public static Integer InGameTime = 0;
+    public static boolean Ending = false;
+    public static List<String> playersOnline = new ArrayList<>();
     //----------GameInfos-----------------------
     public static ArrayList<String> Watch = new ArrayList<>();
 
         @Override
         public void onEnable(){
+            instance = this;
             Bukkit.getWorld("world").setSpawnLocation(0,100,0);
             registerEvents();
             new PreGame();
@@ -84,6 +91,8 @@ public class Main extends JavaPlugin{
     public static void finishInvencibility(){
             Main.Invincibility = false;
             InvincibilityStage.cancel();
+            Main.inGame = true;
+            InGameStage.Start(0);
     }
 
 

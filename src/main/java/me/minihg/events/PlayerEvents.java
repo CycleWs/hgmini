@@ -27,6 +27,8 @@ import static me.minihg.Main.playersOnline;
 
 public class PlayerEvents implements Listener {
 
+    public static UUID uuid;
+
     //public static List<UUID> playersOnline = new ArrayList<>();
     @EventHandler
     public void onCompass(PlayerInteractEvent event) {
@@ -104,9 +106,9 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
-        UUID uuid = p.getUniqueId();
-        playersOnline.add(uuid);
-        Bukkit.broadcastMessage(String.valueOf(uuid));
+        uuid = p.getUniqueId();
+        playersOnline.add(String.valueOf(p));
+        Bukkit.broadcastMessage(String.valueOf(p));
     }
 
     @EventHandler
