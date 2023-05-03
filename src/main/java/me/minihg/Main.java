@@ -4,16 +4,12 @@ import me.minihg.events.InGameEvents;
 import me.minihg.events.PlayerEvents;
 import me.minihg.events.PreGameEvents;
 import me.minihg.events.ServerEvents;
+import me.minihg.kits.Achilles;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.Plugin;
@@ -22,7 +18,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Main extends JavaPlugin{
 
@@ -38,11 +33,11 @@ public class Main extends JavaPlugin{
     //----------PreGameInfos--------------------
     public static boolean PreGame = true;
     public static Integer StartTime = 30;
-    public static Integer MinPlayers = 5 ;
+    public static Integer MinPlayers = 2 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean Invincibility = false;
-    public static Integer InvincibilityTime = 120;
+    public static Integer InvincibilityTime = 20;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
@@ -79,6 +74,7 @@ public class Main extends JavaPlugin{
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
         Bukkit.getPluginManager().registerEvents(new PreGameEvents(), this);
         Bukkit.getPluginManager().registerEvents(new InGameEvents(), this);
+       // Bukkit.getPluginManager().registerEvents(new Achilles(), this);
     }
 
     public static void startMatch(){
