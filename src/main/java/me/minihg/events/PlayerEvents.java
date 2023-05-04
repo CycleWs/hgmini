@@ -124,9 +124,12 @@ public class PlayerEvents implements Listener {
         Player p = e.getPlayer();
         Block b = e.getBlock();
         if(b.getType() == Material.GRASS){
-            Bukkit.broadcastMessage("§cinvencibilidade = " + Main.Invincibility);
-            Bukkit.broadcastMessage("§epregame = "+Main.PreGame);
-            Bukkit.broadcastMessage("§cEm jogo? = " + Main.inGame);
+            //Bukkit.broadcastMessage("§cinvencibilidade = " + Main.Invincibility);
+            //Bukkit.broadcastMessage("§epregame = "+Main.PreGame);
+            //Bukkit.broadcastMessage("§cEm jogo? = " + Main.inGame);
+            achillesList.add(p);
+            int teste = achillesList.size();
+            Bukkit.broadcastMessage("§5PlayerEvents: "+p);
         }
     }
 }

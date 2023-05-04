@@ -5,6 +5,7 @@ import me.minihg.events.PlayerEvents;
 import me.minihg.events.PreGameEvents;
 import me.minihg.events.ServerEvents;
 import me.minihg.kits.Achilles;
+import me.minihg.kits.Switcher;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
@@ -32,12 +33,12 @@ public class Main extends JavaPlugin{
 
     //----------PreGameInfos--------------------
     public static boolean PreGame = true;
-    public static Integer StartTime = 30;
+    public static Integer StartTime = 15;
     public static Integer MinPlayers = 2 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean Invincibility = false;
-    public static Integer InvincibilityTime = 20;
+    public static Integer InvincibilityTime = 10;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
@@ -52,6 +53,7 @@ public class Main extends JavaPlugin{
             instance = this;
             Bukkit.getWorld("world").setSpawnLocation(0,100,0);
             registerEvents();
+            registerKitEvents();
             new PreGame();
 
             ShapelessRecipe cocoaSoup = (new ShapelessRecipe(new ItemStack(Material.MUSHROOM_SOUP, 1)))
@@ -70,11 +72,14 @@ public class Main extends JavaPlugin{
     }
 
     public void registerEvents(){
-        Bukkit.getPluginManager().registerEvents(new ServerEvents(),this);
-        Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
-        Bukkit.getPluginManager().registerEvents(new PreGameEvents(), this);
-        Bukkit.getPluginManager().registerEvents(new InGameEvents(), this);
-       // Bukkit.getPluginManager().registerEvents(new Achilles(), this);
+            Bukkit.getPluginManager().registerEvents(new ServerEvents(),this);
+            Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
+            Bukkit.getPluginManager().registerEvents(new PreGameEvents(), this);
+            Bukkit.getPluginManager().registerEvents(new InGameEvents(), this);
+    }
+    public void registerKitEvents(){
+            Bukkit.getPluginManager().registerEvents(new Achilles(), this);
+            Bukkit.getPluginManager().registerEvents(new Switcher(), this);
     }
 
     public static void startMatch(){
