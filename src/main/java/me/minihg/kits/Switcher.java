@@ -5,26 +5,24 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 public class Switcher implements Listener {
-
+    private static Integer shed_id = null;
     public static ArrayList<Player> switcherList = new ArrayList<>();
 
     @EventHandler
     public void switcherEvent(EntityDamageByEntityEvent e){
-        Entity thrownEntity = e.getEntity();
+        /*Entity thrownEntity = e.getEntity();
         Bukkit.broadcastMessage("FORA DOS DOIS IFS");
         Cooldown.setupCooldown();
         if (e.getDamager() instanceof Snowball) {
@@ -37,20 +35,32 @@ public class Switcher implements Listener {
                 Bukkit.broadcastMessage("DENTRO DO IF instanceof Player");
                 Location shooterLoc = shooter.getLocation();
                 Location hitPlayerLoc = hitPlayer.getLocation();
-                if(Cooldown.checkCooldown(shooter)){
+                if(!switcherList.contains(shooter)){
                     Bukkit.broadcastMessage("§aTEM QUE APARECER ISSO");
-                    Bukkit.broadcastMessage(String.valueOf(shooter.getUniqueId()));
+                    Bukkit.broadcastMessage(String.valueOf(switcherList.size()));
                     shooter.teleport(hitPlayerLoc);
                     hitPlayer.teleport(shooterLoc);
-                    e.setCancelled(true);
                     shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
-                    Cooldown.setCooldown(hitPlayer,20);
+                    switcherList.add(shooter);
                 }else{
-                    Bukkit.broadcastMessage("teste");
+                    Bukkit.broadcastMessage("YES GAMERS");
+                    shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
+                    switcherList.remove(shooter);
+                    e.setCancelled(true);
 
             }
             }
         }
+    }
+
+    @EventHandler
+    public void switcherCooldownVerify(PlayerInteractEvent e){
+        Player p = e.getPlayer();
+        ItemStack item = p.getInventory().getItemInHand();
+        if((e.getAction() == Action.RIGHT_CLICK_AIR) && (item.getType() == Material.SNOW_BALL) && (switcherList.contains(p))){
+            e.setCancelled(true);
+            Bukkit.broadcastMessage("UEU");
+        }*/
 
     }
 }

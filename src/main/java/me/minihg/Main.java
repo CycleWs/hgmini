@@ -5,6 +5,7 @@ import me.minihg.events.PlayerEvents;
 import me.minihg.events.PreGameEvents;
 import me.minihg.events.ServerEvents;
 import me.minihg.kits.Achilles;
+import me.minihg.kits.Scout;
 import me.minihg.kits.Switcher;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
@@ -35,7 +36,7 @@ public class Main extends JavaPlugin{
     //----------PreGameInfos--------------------
     public static boolean PreGame = true;
     public static Integer StartTime = 15;
-    public static Integer MinPlayers = 2 ;
+    public static Integer MinPlayers = 1 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean Invincibility = false;
@@ -81,7 +82,7 @@ public class Main extends JavaPlugin{
     }
     public void registerKitEvents(){
             Bukkit.getPluginManager().registerEvents(new Achilles(), this);
-            Bukkit.getPluginManager().registerEvents(new Switcher(), this);
+            Bukkit.getPluginManager().registerEvents(new Scout(), this);
     }
 
     public static void startMatch(){
