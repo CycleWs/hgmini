@@ -25,8 +25,8 @@ public class InGameStage {
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () ->{
             ++Main.InGameTime;
             verifyWinner();
-            Bukkit.broadcastMessage(String.valueOf(Main.InGameTime));
-            Bukkit.broadcastMessage("§AJogadores Online: "+(Main.playersOnline.size()));
+            //Bukkit.broadcastMessage(String.valueOf(Main.InGameTime));
+            //Bukkit.broadcastMessage("§AJogadores Online: "+(Main.playersOnline.size()));
 
         },0L,20L);
     }

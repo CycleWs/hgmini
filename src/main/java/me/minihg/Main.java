@@ -11,6 +11,7 @@ import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.Plugin;
@@ -47,6 +48,7 @@ public class Main extends JavaPlugin{
     public static List<String> playersOnline = new ArrayList<>();
     //----------GameInfos-----------------------
     public static ArrayList<String> Watch = new ArrayList<>();
+    public static List<Player> Cooldown = new ArrayList<>();
 
         @Override
         public void onEnable(){

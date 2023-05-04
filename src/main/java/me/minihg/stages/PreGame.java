@@ -48,7 +48,7 @@ public class PreGame {
                             Bukkit.broadcastMessage("§cA partida vai iniciar em: 00:10");
                             Location spawn = new Location(Bukkit.getWorld("world"), 0, 80, 0,0,0);
                         }
-                        if(Main.PreGame && Main.StartTime <= 10 && Main.StartTime > 0){
+                        if(Main.PreGame && Main.StartTime < 10 && Main.StartTime > 0){
                             Bukkit.broadcastMessage("§cA partida vai iniciar em: 00:0"+ Main.StartTime);
                             int f = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
                             for(int i = 0; i < f; ++i) {
