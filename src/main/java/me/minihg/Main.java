@@ -5,6 +5,7 @@ import me.minihg.events.PlayerEvents;
 import me.minihg.events.PreGameEvents;
 import me.minihg.events.ServerEvents;
 import me.minihg.kits.Achilles;
+import me.minihg.kits.Ninja;
 import me.minihg.kits.Switcher;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
@@ -82,6 +83,7 @@ public class Main extends JavaPlugin{
     public void registerKitEvents(){
             Bukkit.getPluginManager().registerEvents(new Achilles(), this);
             Bukkit.getPluginManager().registerEvents(new Switcher(), this);
+            Bukkit.getPluginManager().registerEvents(new Ninja(), this);
     }
 
     public static void startMatch(){
