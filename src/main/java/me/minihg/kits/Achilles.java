@@ -23,9 +23,6 @@ public class Achilles implements Listener {
             double woodSword = 6.0D;
             Player p = (Player) e.getEntity();
             Player damager = (Player) e.getDamager();
-            Bukkit.broadcastMessage("§3Achilles p: " + p);
-            Bukkit.broadcastMessage("§3Achilles damager: " + damager);
-
 
             if(achillesList.contains(p) && Main.inGame){
                 if(damager.getInventory().getItemInHand().getType() == Material.WOOD_SWORD||
