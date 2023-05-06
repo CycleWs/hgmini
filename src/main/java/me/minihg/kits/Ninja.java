@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class Ninja implements Listener {
 
-    public static HashMap<Player, Player> ninjaListTeleport = new HashMap<>();
+    /*public static HashMap<Player, Player> ninjaListTeleport = new HashMap<>();
     public static Player ninja;
     public static Player hitedPlayer;
     @EventHandler
@@ -33,6 +33,7 @@ public class Ninja implements Listener {
     public void ninjaSneak(PlayerToggleSneakEvent e){
         Player PlayerSneaked = e.getPlayer();
         Cooldown.setupCooldown();
+
         if((ninjaListTeleport.containsKey(hitedPlayer) && ninjaListTeleport.containsValue(ninja) && PlayerSneaked == ninja)){
             if(Cooldown.cooldowns.size() == 0){
                 Location LocPlayerTP = hitedPlayer.getLocation();
@@ -50,5 +51,5 @@ public class Ninja implements Listener {
        // Bukkit.broadcastMessage("-----------------------------------------");
         //Bukkit.broadcastMessage(ninjaListTeleport.keySet().toString());
        // Bukkit.broadcastMessage(ninjaListTeleport.entrySet().toString());
-    }
+    }*/
 }

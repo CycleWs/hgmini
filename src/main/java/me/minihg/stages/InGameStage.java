@@ -2,14 +2,19 @@ package me.minihg.stages;
 
 import me.minihg.Main;
 import me.minihg.events.InGameEvents;
+import me.minihg.feastminifeast.FeastManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
+
 import static me.minihg.events.InGameEvents.winCheck;
+import static me.minihg.feastminifeast.FeastManager.*;
 
 public class InGameStage {
     public static Player[] arrayOfPlayer;
     private static Integer shed_id = null;
+
 
     public InGameStage(){
     }
@@ -24,9 +29,18 @@ public class InGameStage {
         int p = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () ->{
             ++Main.InGameTime;
-            verifyWinner();
-            //Bukkit.broadcastMessage(String.valueOf(Main.InGameTime));
-            //Bukkit.broadcastMessage("§AJogadores Online: "+(Main.playersOnline.size()));
+            //verifyWinner();
+            if(Main.InGameTime == 10){
+                FeastManager.feastAnnouncement(0);
+                int X = (int) FeastManager.mainBlock.getLocation().getX();
+                int Y = (int) FeastManager.mainBlock.getLocation().getY();
+                int Z = (int) FeastManager.mainBlock.getLocation().getZ();
+                Bukkit.broadcastMessage("§bO Feast nasceu em X:§e " + X + " §bY:§e " + Y + " §bZ:§e " + Z);
+            }
+            if(Main.InGameTime == 20){
+                FeastManager.spawnFeast();
+            }
+            Bukkit.broadcastMessage(String.valueOf(Main.InGameTime));
 
         },0L,20L);
     }

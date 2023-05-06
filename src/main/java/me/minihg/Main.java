@@ -1,5 +1,6 @@
 package me.minihg;
 
+import me.minihg.api.Files;
 import me.minihg.events.InGameEvents;
 import me.minihg.events.PlayerEvents;
 import me.minihg.events.PreGameEvents;
@@ -12,7 +13,6 @@ import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.Plugin;
@@ -49,11 +49,15 @@ public class Main extends JavaPlugin{
     public static List<String> playersOnline = new ArrayList<>();
     //----------GameInfos-----------------------
     public static ArrayList<String> Watch = new ArrayList<>();
-    public static List<Player> Cooldown = new ArrayList<>();
-
+    //----------FeastInfos-----------------------
+    public static Boolean feastChests = true;
+    public static Boolean feastProtection = true;
+    public static Boolean Feast = true;
+    //----------FeastInfos-----------------------
         @Override
         public void onEnable(){
             instance = this;
+            this.Files();
             Bukkit.getWorld("world").setSpawnLocation(0,100,0);
             registerEvents();
             registerKitEvents();
@@ -111,6 +115,11 @@ public class Main extends JavaPlugin{
                 }
             }
             file.delete();
+    }
+
+    public void Files(){
+        instance = this;
+        new Files();
     }
 
 
