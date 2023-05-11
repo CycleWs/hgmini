@@ -3,6 +3,7 @@ package me.minihg.stages;
 import me.minihg.Main;
 import me.minihg.events.InGameEvents;
 import me.minihg.feastminifeast.FeastManager;
+import me.minihg.feastminifeast.MiniFeast;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -30,8 +31,9 @@ public class InGameStage {
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () ->{
             ++Main.InGameTime;
             //verifyWinner();
-            if(Main.InGameTime == 10){
+            if(Main.InGameTime == 3){
                 FeastManager.feastAnnouncement(0);
+                MiniFeast.miniFeastAnnouncemnt();
                 int X = (int) FeastManager.mainBlock.getLocation().getX();
                 int Y = (int) FeastManager.mainBlock.getLocation().getY();
                 int Z = (int) FeastManager.mainBlock.getLocation().getZ();

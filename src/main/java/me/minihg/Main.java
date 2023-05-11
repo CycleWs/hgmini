@@ -40,7 +40,7 @@ public class Main extends JavaPlugin{
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean Invincibility = false;
-    public static Integer InvincibilityTime = 10;
+    public static Integer InvincibilityTime = 3;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
