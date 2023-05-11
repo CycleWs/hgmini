@@ -18,7 +18,7 @@ public class ItensConfig {
     }
 
     public ItensConfig setName(String name){
-        itemmeta.setDisplayName(name.replace(""));
+        itemmeta.setDisplayName(name.replace("§","&"));
         itemstack.setItemMeta(itemmeta);
         return this;
     }
@@ -45,6 +45,10 @@ public class ItensConfig {
         itemmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         itemstack.setItemMeta(itemmeta);
         return this;
+    }
+
+    public ItemStack getItemStack(){
+        return itemstack;
     }
 
 }

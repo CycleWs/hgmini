@@ -40,7 +40,6 @@ public class InGameStage {
             if(Main.InGameTime == 20){
                 FeastManager.spawnFeast();
             }
-            Bukkit.broadcastMessage(String.valueOf(Main.InGameTime));
 
         },0L,20L);
     }

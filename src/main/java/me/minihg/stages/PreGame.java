@@ -58,7 +58,6 @@ public class PreGame {
                         }
                     }
                     Main.StartTime -= 1;
-                    Bukkit.broadcastMessage(String.valueOf(Main.StartTime));
                 }else if(Main.PreGame && Main.playersOnline.size() < Main.MinPlayers){
                     Bukkit.broadcastMessage("§cJogadores insuficientes!");
                     Main.StartTime = 300;

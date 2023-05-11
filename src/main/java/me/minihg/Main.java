@@ -90,7 +90,8 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
             //Bukkit.getPluginManager().registerEvents(new Camel(), this);
             //Bukkit.getPluginManager().registerEvents(new Grandpa(), this);
-            Bukkit.getPluginManager().registerEvents(new Miner(), this);
+            //Bukkit.getPluginManager().registerEvents(new Miner(), this);
+            Bukkit.getPluginManager().registerEvents(new Stomper(), this);
     }
 
     public static void startMatch(){
