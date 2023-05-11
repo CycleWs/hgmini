@@ -22,32 +22,23 @@ public class Switcher implements Listener {
 
     @EventHandler
     public void switcherEvent(EntityDamageByEntityEvent e){
-        /*Entity thrownEntity = e.getEntity();
         Bukkit.broadcastMessage("FORA DOS DOIS IFS");
-        Cooldown.setupCooldown();
         if (e.getDamager() instanceof Snowball) {
             Snowball snowball = (Snowball) e.getDamager();
             Player shooter = (Player) snowball.getShooter();
             Player hitPlayer = (Player) e.getEntity();
-            Bukkit.broadcastMessage("FORA DO IF");
-
             if (snowball.getShooter() instanceof Player) {
-                Bukkit.broadcastMessage("DENTRO DO IF instanceof Player");
                 Location shooterLoc = shooter.getLocation();
                 Location hitPlayerLoc = hitPlayer.getLocation();
-                if(!switcherList.contains(shooter)){
-                    Bukkit.broadcastMessage("§aTEM QUE APARECER ISSO");
-                    Bukkit.broadcastMessage(String.valueOf(switcherList.size()));
+                if(Cooldown.checkCooldown(shooter)){
                     shooter.teleport(hitPlayerLoc);
                     hitPlayer.teleport(shooterLoc);
                     shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
-                    switcherList.add(shooter);
+                    Cooldown.setCooldown(shooter, 5);
                 }else{
-                    Bukkit.broadcastMessage("YES GAMERS");
+                    shooter.sendMessage("§cVocê não pode utilizar o kit por: " + Cooldown.getCooldown(shooter) + " Segundos");
                     shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
-                    switcherList.remove(shooter);
                     e.setCancelled(true);
-
             }
             }
         }
@@ -60,7 +51,7 @@ public class Switcher implements Listener {
         if((e.getAction() == Action.RIGHT_CLICK_AIR) && (item.getType() == Material.SNOW_BALL) && (switcherList.contains(p))){
             e.setCancelled(true);
             Bukkit.broadcastMessage("UEU");
-        }*/
+        }
 
     }
 }

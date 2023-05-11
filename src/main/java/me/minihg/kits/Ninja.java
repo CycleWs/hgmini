@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class Ninja implements Listener {
 
-    /*public static HashMap<Player, Player> ninjaListTeleport = new HashMap<>();
+    public static HashMap<Player, Player> ninjaListTeleport = new HashMap<>();
     public static Player ninja;
     public static Player hitedPlayer;
     @EventHandler
@@ -32,24 +32,15 @@ public class Ninja implements Listener {
     @EventHandler
     public void ninjaSneak(PlayerToggleSneakEvent e){
         Player PlayerSneaked = e.getPlayer();
-        Cooldown.setupCooldown();
-
         if((ninjaListTeleport.containsKey(hitedPlayer) && ninjaListTeleport.containsValue(ninja) && PlayerSneaked == ninja)){
-            if(Cooldown.cooldowns.size() == 0){
+            if(Cooldown.checkCooldown(PlayerSneaked)){
                 Location LocPlayerTP = hitedPlayer.getLocation();
                 ninjaListTeleport.clear();
                 ninja.teleport(LocPlayerTP);
-                Bukkit.broadcastMessage(String.valueOf(Cooldown.cooldowns.size()));
                 Cooldown.setCooldown(ninja,3);
-                Bukkit.broadcastMessage(String.valueOf(Cooldown.cooldowns.size()));
             }else{
-                Bukkit.broadcastMessage("Cooldown: "+Cooldown.getCooldown(ninja));
+                ninja.sendMessage("§cVocê não pode utilizar o kit por: " + Cooldown.getCooldown(ninja) + " Segundos");
             }
-            //Bukkit.broadcastMessage(ninjaListTeleport.keySet().toString());
-            //Bukkit.broadcastMessage(ninjaListTeleport.entrySet().toString());
         }
-       // Bukkit.broadcastMessage("-----------------------------------------");
-        //Bukkit.broadcastMessage(ninjaListTeleport.keySet().toString());
-       // Bukkit.broadcastMessage(ninjaListTeleport.entrySet().toString());
-    }*/
+    }
 }
