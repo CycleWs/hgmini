@@ -27,7 +27,6 @@ public class MiniFeast {
     public static int presentEndingDataValue = 15;
     public static int presentStartingDataValue = 0;
     public static String presentName;
-    public static Player p;
     public static Player[] arrayOfPlayer;
 
     static {
@@ -78,21 +77,21 @@ public class MiniFeast {
 
     public static void miniFeastSpawn() {
         DecimalFormat df = new DecimalFormat("##");
-        if(Explorer.explorerList.contains(p)){
-
-          p.sendMessage(("§cO Mini Feast spawnou exatamente em: §fX: (" + (mainBlock.getLocation().getX()) + " ‚§7e ‚§f"
-                  + df.format(mainBlock.getLocation().getZ()) + ")"));
-        }else{
             int g = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
             for(int i = 0; i < g; ++i){
                 Player pe = arrayOfPlayer[i];
-                pe.sendMessage("§cUm mini feast nasceu entre: §fX: (" + df.format(mainBlock.getLocation()
-                        .getX() /*+ 50.0*/) + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getX() /*+ 50.0*/) +
-                        ") ‚§7e ‚§fZ: (" + df.format(mainBlock.getLocation().getZ() /*+ 50.0*/) + " ‚§7e‚§f "
-                        + df.format(mainBlock.getLocation().getZ() /*+ 50.0*/) + ")");
+                if(Explorer.explorerList.contains(pe)){
+                    pe.sendMessage(("§cO Mini Feast spawnou exatamente em: §fX: (" + (mainBlock.getLocation().getX()) + " ‚§7e ‚§f"
+                            + df.format(mainBlock.getLocation().getZ()) + ")"));
+                }else {
+                    pe.sendMessage("§cUm mini feast nasceu entre: §fX: (" + df.format(mainBlock.getLocation()
+                            .getX() /*+ 50.0*/) + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getX() /*+ 50.0*/) +
+                            ") ‚§7e ‚§fZ: (" + df.format(mainBlock.getLocation().getZ() /*+ 50.0*/) + " ‚§7e‚§f "
+                            + df.format(mainBlock.getLocation().getZ() /*+ 50.0*/) + ")");
+                }
             }
 
-        }
+
         spawnChests();
         List<String> items = Files.MiniFeast.getStringList("ITEMSMF");
         Iterator var3 = items.iterator();

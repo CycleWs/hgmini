@@ -6,6 +6,7 @@ import me.minihg.events.PlayerEvents;
 import me.minihg.events.PreGameEvents;
 import me.minihg.events.ServerEvents;
 import me.minihg.kits.Achilles;
+import me.minihg.kits.Cooldown;
 import me.minihg.kits.Ninja;
 import me.minihg.kits.Switcher;
 import me.minihg.stages.InGameStage;
@@ -61,6 +62,7 @@ public class Main extends JavaPlugin{
             Bukkit.getWorld("world").setSpawnLocation(0,100,0);
             registerEvents();
             registerKitEvents();
+            Cooldown.setupCooldown();
             new PreGame();
 
             ShapelessRecipe cocoaSoup = (new ShapelessRecipe(new ItemStack(Material.MUSHROOM_SOUP, 1)))
