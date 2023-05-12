@@ -97,7 +97,7 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Fisherman(), this);
             //FZR Bukkit.getPluginManager().registerEvents(new Reaper(), this);
             //FZR Bukkit.getPluginManager().registerEvents(new Viper(), this);
-            //FZR BUkkit.getPluginManager().registerEvents(new Boxer(), this);
+            //FZR Bukkit.getPluginManager().registerEvents(new Boxer(), this);
     }
 
     public static void startMatch(){
