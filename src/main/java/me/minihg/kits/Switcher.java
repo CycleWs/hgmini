@@ -5,12 +5,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,16 +32,24 @@ public class Switcher implements Listener {
             if (snowball.getShooter() instanceof Player) {
                 Location shooterLoc = shooter.getLocation();
                 Location hitPlayerLoc = hitPlayer.getLocation();
-                if(Cooldown.checkCooldown(shooter)){
-                    shooter.teleport(hitPlayerLoc);
-                    hitPlayer.teleport(shooterLoc);
-                    shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
-                    Cooldown.setCooldown(shooter, 5);
-                }else{
-                    shooter.sendMessage("§cVocê não pode utilizar o kit por: " + Cooldown.getCooldown(shooter) + " Segundos");
-                    shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
-                    e.setCancelled(true);
+                Cooldown.setCooldown(shooter, 5);
+                shooter.teleport(hitPlayerLoc);
+                hitPlayer.teleport(shooterLoc);
             }
+        }
+    }
+
+    @EventHandler
+    public void onProjectileLaunch(ProjectileLaunchEvent event) {
+        Player p = (Player) event.getEntity().getShooter();
+        if ((event.getEntityType() == EntityType.SNOWBALL) && ((event.getEntity().getShooter() instanceof Player))) {
+            if(Cooldown.checkCooldown(p)){
+                Cooldown.setCooldown(p, 5);
+                p.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
+            }else{
+                event.setCancelled(true);
+                p.sendMessage("§cVocê não pode utilizar o kit por: " + Cooldown.getCooldown(p) + " Segundos");
+                p.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
             }
         }
     }

@@ -8,23 +8,22 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Ninja implements Listener {
 
     public static HashMap<Player, Player> ninjaListTeleport = new HashMap<>();
+    public static ArrayList<Player> ninjaList = new ArrayList<>();
     public static Player ninja;
     public static Player hitedPlayer;
     @EventHandler
     public void ninjaEvent(EntityDamageByEntityEvent e){
         ninja = (Player) e.getDamager();
         hitedPlayer = (Player) e.getEntity();
-        if((e.getDamager() instanceof Player && e.getEntity() instanceof Player)){
+        if(ninjaList.contains(ninja) && (e.getDamager() instanceof Player && e.getEntity() instanceof Player)){
             ninjaListTeleport.remove(hitedPlayer,ninja);
             ninjaListTeleport.put(hitedPlayer, ninja);
-           // Bukkit.broadcastMessage(ninjaListTeleport.keySet().toString());
-           // Bukkit.broadcastMessage(ninjaListTeleport.entrySet().toString());
-           // Bukkit.broadcastMessage("-----------------------------------------");
         }
 
     }
