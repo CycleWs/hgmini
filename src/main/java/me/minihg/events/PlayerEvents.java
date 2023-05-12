@@ -25,6 +25,7 @@ import java.util.UUID;
 
 import static me.minihg.Main.playersOnline;
 import static me.minihg.kits.Achilles.achillesList;
+import static me.minihg.kits.Boxer.boxerList;
 import static me.minihg.kits.Explorer.explorerList;
 
 public class PlayerEvents implements Listener {
@@ -129,7 +130,7 @@ public class PlayerEvents implements Listener {
             //Bukkit.broadcastMessage("§epregame = "+Main.PreGame);
             //Bukkit.broadcastMessage("§cEm jogo? = " + Main.inGame);
             explorerList.add(p);
-            int teste = explorerList.size();
+            int teste = boxerList.size();
             Bukkit.broadcastMessage("§5PlayerEvents: "+p);
         }
     }

@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class MiniFeast {
 
     public static Block mainBlock = null;
-    private static Integer radius = 3;
+    private static Integer radius = 2;
     private static Logger log = Bukkit.getLogger();
     private static Boolean spawned = false;
     private static Chest[] chests = new Chest[4];

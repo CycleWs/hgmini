@@ -5,10 +5,7 @@ import me.minihg.events.InGameEvents;
 import me.minihg.events.PlayerEvents;
 import me.minihg.events.PreGameEvents;
 import me.minihg.events.ServerEvents;
-import me.minihg.kits.Achilles;
-import me.minihg.kits.Cooldown;
-import me.minihg.kits.Ninja;
-import me.minihg.kits.Switcher;
+import me.minihg.kits.*;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
@@ -87,9 +84,12 @@ public class Main extends JavaPlugin{
             Bukkit.getPluginManager().registerEvents(new InGameEvents(), this);
     }
     public void registerKitEvents(){
-            Bukkit.getPluginManager().registerEvents(new Achilles(), this);
-            Bukkit.getPluginManager().registerEvents(new Switcher(), this);
-            Bukkit.getPluginManager().registerEvents(new Ninja(), this);
+            //Bukkit.getPluginManager().registerEvents(new Achilles(), this);
+            //Bukkit.getPluginManager().registerEvents(new Switcher(), this);
+            //Bukkit.getPluginManager().registerEvents(new Ninja(), this);
+            //FZR Bukkit.getPluginManager().registerEvents(new Reaper(), this);
+            //FZR Bukkit.getPluginManager().registerEvents(new Viper(), this);
+            Bukkit.getPluginManager().registerEvents(new Boxer(), this);
     }
 
     public static void startMatch(){
