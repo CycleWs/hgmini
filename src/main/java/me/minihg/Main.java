@@ -87,9 +87,17 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Achilles(), this);
             //Bukkit.getPluginManager().registerEvents(new Switcher(), this);
             //Bukkit.getPluginManager().registerEvents(new Ninja(), this);
+            //Bukkit.getPluginManager().registerEvents(new Camel(), this);
+            //Bukkit.getPluginManager().registerEvents(new Explorer(), this);
+            //Bukkit.getPluginManager().registerEvents(new Fireman(), this);
+            //Bukkit.getPluginManager().registerEvents(new Grandpa(), this);
+            //Bukkit.getPluginManager().registerEvents(new Miner(), this);
+            //Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
+            //Bukkit.getPluginManager().registerEvents(new Stomper(), this);
+            //Bukkit.getPluginManager().registerEvents(new Fisherman(), this);
             //FZR Bukkit.getPluginManager().registerEvents(new Reaper(), this);
             //FZR Bukkit.getPluginManager().registerEvents(new Viper(), this);
-            Bukkit.getPluginManager().registerEvents(new Boxer(), this);
+            //FZR BUkkit.getPluginManager().registerEvents(new Boxer(), this);
     }
 
     public static void startMatch(){
