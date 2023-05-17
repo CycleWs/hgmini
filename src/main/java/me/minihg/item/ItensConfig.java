@@ -18,7 +18,7 @@ public class ItensConfig {
     }
 
     public ItensConfig setName(String name){
-        itemmeta.setDisplayName(name.replace(""));
+        itemmeta.setDisplayName(name.replace("§", "&"));
         itemstack.setItemMeta(itemmeta);
         return this;
     }
