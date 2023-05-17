@@ -47,4 +47,8 @@ public class ItensConfig {
         return this;
     }
 
+    public ItemStack getItemStack(){
+        return itemstack;
+    }
+
 }

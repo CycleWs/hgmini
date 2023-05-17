@@ -39,7 +39,6 @@ public class InvincibilityStage {
             }else{
                 Main.finishInvencibility();
             }
-            Bukkit.broadcastMessage(String.valueOf(Main.InvincibilityTime));
         },0L,20L);
     }
 

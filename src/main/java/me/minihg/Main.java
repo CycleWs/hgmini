@@ -38,7 +38,7 @@ public class Main extends JavaPlugin{
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean Invincibility = false;
-    public static Integer InvincibilityTime = 10;
+    public static Integer InvincibilityTime = 3;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
@@ -59,6 +59,7 @@ public class Main extends JavaPlugin{
             Bukkit.getWorld("world").setSpawnLocation(0,100,0);
             registerEvents();
             registerKitEvents();
+            Cooldown.setupCooldown();
             new PreGame();
 
             ShapelessRecipe cocoaSoup = (new ShapelessRecipe(new ItemStack(Material.MUSHROOM_SOUP, 1)))
@@ -84,13 +85,19 @@ public class Main extends JavaPlugin{
     }
     public void registerKitEvents(){
             //Bukkit.getPluginManager().registerEvents(new Achilles(), this);
-            //Bukkit.getPluginManager().registerEvents(new Switcher(), this);
+            //Bukkit.getPluginManager().registerEvents(new Switcher(), this); - DAR ITEM
             //Bukkit.getPluginManager().registerEvents(new Ninja(), this);
-            //Bukkit.getPluginManager().registerEvents(new Fireman(), this);
-            //Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
             //Bukkit.getPluginManager().registerEvents(new Camel(), this);
-            //Bukkit.getPluginManager().registerEvents(new Grandpa(), this);
-            Bukkit.getPluginManager().registerEvents(new Miner(), this);
+            //Bukkit.getPluginManager().registerEvents(new Explorer(), this);
+            //Bukkit.getPluginManager().registerEvents(new Fireman(), this); - DAR ITEM
+            //Bukkit.getPluginManager().registerEvents(new Grandpa(), this); - DAR ITEM E TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Miner(), this); - DAR ITEM E TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
+            //Bukkit.getPluginManager().registerEvents(new Stomper(), this);
+            //Bukkit.getPluginManager().registerEvents(new Fisherman(), this); - FZR
+            //Bukkit.getPluginManager().registerEvents(new Reaper(), this); - ARRUMAR
+            //Bukkit.getPluginManager().registerEvents(new Viper(), this); - ARRUMAR
+            //Bukkit.getPluginManager().registerEvents(new Boxer(), this); - ARRUMAR
     }
 
     public static void startMatch(){
