@@ -1,6 +1,6 @@
 package me.minihg.kits;
 
-import org.bukkit.Bukkit;
+import me.minihg.stages.InGameStage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,24 +11,22 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Reaper implements Listener {
+public class Cannibal implements Listener {
     protected static final Random r = new Random();
-    public static ArrayList<Player> reaperList = new ArrayList<>();
+    public static ArrayList<Player> cannibalList = new ArrayList<>();
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e){
         if (e.getEntity() instanceof Player && e.getDamager() instanceof Player){
             Player damager = (Player) e.getDamager();
             Player damage = (Player) e.getEntity();
-            if (damage.getLastDamageCause().getCause().equals(damager)) {
-                return;
-            }
-            if (r.nextInt(3) == 1){
-                if (damage.hasPotionEffect(PotionEffectType.WITHER))
-                        damage.removePotionEffect(PotionEffectType.WITHER);
-                damage.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 120, 0));
+            if(new Random().nextInt(3) == 1)
+                damage.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,120,0),true);
+            if(damager.getFoodLevel() < 20){
+                damager.setFoodLevel(damager.getFoodLevel() + 2);
+                if(damage.getFoodLevel() > 1)
+                    damage.setFoodLevel(damage.getFoodLevel() - 2);
             }
         }
     }
-
 }

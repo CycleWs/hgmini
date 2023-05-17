@@ -98,6 +98,15 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Reaper(), this); - ARRUMAR
             //Bukkit.getPluginManager().registerEvents(new Viper(), this); - ARRUMAR
             //Bukkit.getPluginManager().registerEvents(new Boxer(), this); - ARRUMAR
+            //Bukkit.getPluginManager().registerEvents(new Worm(), this); - TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Thor(), this); - TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Digger(), this); - TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Demoman(), this); - TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Cannibal(), this); - TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Cultivator(), this); - TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Snail(), this); - TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Monk(), this); - TESTAR
+            //Bukkit.getPluginManager().registerEvents(new IronMan(), this); - TESTAR E VERIFICAR SE O KILLER ESTA NA LIST IRONMAN
     }
 
     public static void startMatch(){
