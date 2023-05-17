@@ -20,7 +20,7 @@ import java.util.List;
 public class Demoman implements Listener {
     public static ArrayList<Player> demomanList = new ArrayList<>();
     private static List<Block> traps = new ArrayList<Block>();
-    @Override
+    //@Override
     public ItemStack[] getItems(){
         return new ItemStack[]{
                 new ItemStack(Material.GRAVEL,8), new ItemStack(Material.STONE_PLATE,8)

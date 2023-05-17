@@ -32,47 +32,54 @@ public class Thor implements Listener {
     }
 
     @EventHandler
-    public void onThor(PlayerInteractEvent e){
-        Player p = e.getPlayer();
-        Block b = e.getClickedBlock();
-        Location loc = b.getLocation();
-        Block hb = p.getWorld().getHighestBlockAt(loc);
-        if(e.getAction() == Action.RIGHT_CLICK_BLOCK && p.getItemInHand().getType() == Material.WOOD_AXE){
-            p.getWorld().strikeLightning(p.getWorld().getHighestBlockAt(e.getClickedBlock().getLocation()).getLocation());
-            for (Entity entity : Bukkit.getWorld("world").getEntities()){
-                if(entity.getLocation().distance(e.getClickedBlock().getLocation()) <= 3.0D){
-                    if ((entity instanceof LivingEntity) && (entity != p)){
-                        LivingEntity enti = (LivingEntity) entity;
-                        enti.damage(4,p);
+    public void onInteract(PlayerInteractEvent event) {
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            Player p = event.getPlayer();
+            if ((p.getItemInHand().getType() == Material.WOOD_AXE)) {
+                p.getWorld().strikeLightningEffect(p.getWorld().getHighestBlockAt(event.getClickedBlock().getLocation()).getLocation());
+                for (Entity entity : Bukkit.getWorld("world").getEntities()) {
+                    if (entity.getLocation().distance(event.getClickedBlock().getLocation()) <= 3.0D) {
+                        if (((entity instanceof LivingEntity)) && (entity != p)) {
+                            LivingEntity e = (LivingEntity) entity;
+                            e.damage(4, p);
+                        }
                     }
                 }
-            }
-            if((hb.getType() == Material.FIRE) && (hb.getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK)){
-                createExplosion(hb.getRelative(BlockFace.DOWN).getLocation());
-            }
-            else if (hb.getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK){
-                createExplosion(hb.getRelative(BlockFace.DOWN).getLocation());
-            }
-            else if (hb.getLocation().getY() >= 80.0D){
-                hb.setType(Material.NETHERRACK);
-                hb.getRelative(BlockFace.UP).setType(Material.FIRE);
+                Block b = event.getClickedBlock();
+                Location loc = b.getLocation();
+                Block hb = p.getWorld().getHighestBlockAt(loc);
+
+                if ((hb.getType() == Material.FIRE)
+                        && (hb.getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK)) {
+                    CreateExplosion(hb.getRelative(BlockFace.DOWN).getLocation());
+                } else if (hb.getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK) {
+                    CreateExplosion(hb.getRelative(BlockFace.DOWN).getLocation());
+                } else if (hb.getLocation().getY() >= 80.0D) {
+                    hb.setType(Material.NETHERRACK);
+                    hb.getRelative(BlockFace.UP).setType(Material.FIRE);
+                }
             }
         }
     }
 
     @EventHandler
-    public void onExplode(EntityExplodeEvent e){
-        List<Block> explodeblocks = e.blockList();
-        for(Block b : explodeblocks)
-            if(b.getType() == Material.NETHERRACK)
-                createExplosion(b.getLocation());
+    public void onExplode(EntityExplodeEvent event) {
+        List<Block> explodeblocks = event.blockList();
+        for (Block b : explodeblocks)
+            if (b.getType() == Material.NETHERRACK)
+                CreateSmallExplosion(b.getLocation());
     }
 
-    @EventHandler
-    public void createExplosion(Location loc){
+    public void CreateExplosion(Location loc) {
         TNTPrimed tnt = (TNTPrimed) loc.getWorld().spawn(loc, TNTPrimed.class);
         tnt.setFuseTicks(0);
         tnt.setYield(2.5F);
+    }
+
+    public void CreateSmallExplosion(Location loc) {
+        TNTPrimed tnt = (TNTPrimed) loc.getWorld().spawn(loc, TNTPrimed.class);
+        tnt.setFuseTicks(0);
+        tnt.setYield(2.0F);
     }
 
 }

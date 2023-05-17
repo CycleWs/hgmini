@@ -15,7 +15,7 @@ public class Worm implements Listener {
 @EventHandler
 public void onWorm(BlockBreakEvent e){
     Player p = e.getPlayer();
-    if(e.getBlock().getType() == Material.DIRT ){
+    if(e.getBlock().getType() == Material.DIRT){
         e.getBlock().breakNaturally();
         }
     }

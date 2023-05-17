@@ -33,7 +33,7 @@ public class InGameStage {
             //verifyWinner();
             if(Main.InGameTime == 3){
                 FeastManager.feastAnnouncement(0);
-                MiniFeast.miniFeastAnnouncemnt();
+                //MiniFeast.miniFeastAnnouncemnt();
                 int X = (int) FeastManager.mainBlock.getLocation().getX();
                 int Y = (int) FeastManager.mainBlock.getLocation().getY();
                 int Z = (int) FeastManager.mainBlock.getLocation().getZ();

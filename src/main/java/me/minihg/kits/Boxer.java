@@ -11,15 +11,16 @@ public class Boxer implements Listener {
     public static ArrayList<Player> boxerList = new ArrayList<>();
 
     @EventHandler
-    public void onDamage(EntityDamageByEntityEvent e){
-        if(e.getDamager() instanceof Player){
-            Player damager = (Player) e.getDamager();
-            if(damager.getItemInHand() == null)
-                e.setDamage(5);
+    public void onDamage(EntityDamageByEntityEvent event) {
+        if ((event.getDamager() instanceof Player)) {
+            Player p = (Player) event.getDamager();
+            if ((p.getItemInHand() == null))
+                event.setDamage(5);
         }
-        if(e.getEntity() instanceof Player){
-            if(e.getDamage() > 1)
-                e.setDamage(e.getDamage() - 1);
+        if ((event.getEntity() instanceof Player)) {
+            Player damaged = (Player) event.getEntity();
+            if ((event.getDamage() > 1))
+                event.setDamage(event.getDamage() - 1);
         }
     }
 }

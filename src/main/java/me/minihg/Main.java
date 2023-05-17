@@ -91,22 +91,24 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Explorer(), this);
             //Bukkit.getPluginManager().registerEvents(new Fireman(), this); - DAR ITEM
             //Bukkit.getPluginManager().registerEvents(new Grandpa(), this); - DAR ITEM E TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Miner(), this); - DAR ITEM E TESTAR
+            //Bukkit.getPluginManager().registerEvents(new Miner(), this); - FZR
+            //Bukkit.getPluginManager().registerEvents(new Lumberjack(), this); - AJEITAR MADEIRAS QUEBRADAS
             //Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
             //Bukkit.getPluginManager().registerEvents(new Stomper(), this);
             //Bukkit.getPluginManager().registerEvents(new Fisherman(), this); - FZR
-            //Bukkit.getPluginManager().registerEvents(new Reaper(), this); - ARRUMAR
-            //Bukkit.getPluginManager().registerEvents(new Viper(), this); - ARRUMAR
+            //Bukkit.getPluginManager().registerEvents(new Reaper(), this);
+            //Bukkit.getPluginManager().registerEvents(new Viper(), this);
             //Bukkit.getPluginManager().registerEvents(new Boxer(), this); - ARRUMAR
-            //Bukkit.getPluginManager().registerEvents(new Worm(), this); - TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Thor(), this); - TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Digger(), this); - TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Demoman(), this); - TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Cannibal(), this); - TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Cultivator(), this); - TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Snail(), this); - TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Monk(), this); - TESTAR
-            //Bukkit.getPluginManager().registerEvents(new IronMan(), this); - TESTAR E VERIFICAR SE O KILLER ESTA NA LIST IRONMAN
+            //Bukkit.getPluginManager().registerEvents(new Worm(), this); - FZR
+            //Bukkit.getPluginManager().registerEvents(new Thor(), this);
+            //Bukkit.getPluginManager().registerEvents(new Digger(), this); - FZR
+            //Bukkit.getPluginManager().registerEvents(new Demoman(), this);
+            //Bukkit.getPluginManager().registerEvents(new Cannibal(), this);
+            //Bukkit.getPluginManager().registerEvents(new Cultivator(), this);
+            //Bukkit.getPluginManager().registerEvents(new Snail(), this);
+            //Bukkit.getPluginManager().registerEvents(new Monk(), this);
+            //Bukkit.getPluginManager().registerEvents(new Turtle(), this);
+            //Bukkit.getPluginManager().registerEvents(new IronMan(), this); - ARRUMAR
     }
 
     public static void startMatch(){

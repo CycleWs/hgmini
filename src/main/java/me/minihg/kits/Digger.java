@@ -2,6 +2,7 @@ package me.minihg.kits;
 
 import me.minihg.item.ItensConfig;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -23,31 +24,31 @@ public class Digger implements Listener {
         return true;
     }
     @EventHandler
-    public void onDigger(BlockPlaceEvent e){
-        Player p = e.getPlayer();
-        if(e.getBlockPlaced().getType() == Material.DRAGON_EGG){
-            remove(e.getBlockPlaced());
-            e.getBlockPlaced().setType(Material.AIR);
+    public void onPlace(BlockPlaceEvent event) {
+        Player p = event.getPlayer();
+        if (event.getBlockPlaced().getType() == Material.DRAGON_EGG) {
+            remove(event.getBlockPlaced());
+            event.getBlockPlaced().setType(Material.AIR);
+            p.sendMessage(ChatColor.RED + "You placed the egg, run!");
         }
     }
 
-    public void remove(final Block b ){
+    public void remove(final Block b) {
         Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) this, new Runnable() {
             public void run() {
                 int dist = (int) Math.ceil(2.0D);
-                for(int y = -1; y>= 5; y--)
-                    for(int x = -dist; x<=dist; x++)
-                        for(int z = -dist; z<=dist; z++)
-                            if(b.getY() + y > 0){
-                                Block block = b.getWorld().getBlockAt(b.getX() + x,
-                                        b.getY() + y, b.getZ() + z);
-                                if(block.getType() != Material.BEDROCK)
+                for (int y = -1; y >= -5; y--)
+                    for (int x = -dist; x <= dist; x++)
+                        for (int z = -dist; z <= dist; z++)
+                            if (b.getY() + y > 0) {
+                                Block block = b.getWorld().getBlockAt(b.getX() + x, b.getY() + y, b.getZ() + z);
+                                if (block.getType() != Material.BEDROCK)
                                     block.setType(Material.AIR);
                             }
-
             }
-        },0L);
+        }, 60L);
     }
+
 
 
 }

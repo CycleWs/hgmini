@@ -17,18 +17,11 @@ public class Reaper implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e){
-        if (e.getEntity() instanceof Player && e.getDamager() instanceof Player){
-            Player damager = (Player) e.getDamager();
-            Player damage = (Player) e.getEntity();
-            if (damage.getLastDamageCause().getCause().equals(damager)) {
-                return;
-            }
-            if (r.nextInt(3) == 1){
-                if (damage.hasPotionEffect(PotionEffectType.WITHER))
-                        damage.removePotionEffect(PotionEffectType.WITHER);
-                damage.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 120, 0));
-            }
+        Player damager = (Player) e.getDamager();
+        Player damage = (Player) e.getEntity();
+        if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
+            if(new Random().nextInt(3) == 1)
+                damage.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,120,0),true);
         }
     }
-
-}
+    }
