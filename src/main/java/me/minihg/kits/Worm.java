@@ -36,10 +36,9 @@ public class Worm implements Listener {
 //        Player p = (Player) e.getEntity();
 ////        Block block = p.getLocation().getBlock();
 ////        Location loc =block.getLocation();
-//        if(e.getEntity() instanceof Player){
-//            if(e.getCause().equals(EntityDamageEvent.DamageCause.FALL) && p.getLocation().getBlock().getType() == Material.DIRT){
-//                e.setCancelled(true);
-//            }
+//        if(e.getCause().equals(EntityDamageEvent.DamageCause.FALL)
+//                && p.getLocation().getBlock().getType() == Material.DIRT){
+//            Bukkit.broadcastMessage(p.getLocation().getBlock().toString());
 //        }
 //
 //        }

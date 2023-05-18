@@ -1,6 +1,7 @@
 package me.minihg.events;
 
 import me.minihg.Main;
+import me.minihg.kits.Cooldown;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,7 +27,9 @@ import java.util.UUID;
 import static me.minihg.Main.playersOnline;
 import static me.minihg.kits.Achilles.achillesList;
 import static me.minihg.kits.Boxer.boxerList;
+import static me.minihg.kits.Cooldown.cooldowns;
 import static me.minihg.kits.Explorer.explorerList;
+import static me.minihg.kits.Titan.titanTimer;
 
 public class PlayerEvents implements Listener {
 
@@ -129,9 +132,7 @@ public class PlayerEvents implements Listener {
             //Bukkit.broadcastMessage("§cinvencibilidade = " + Main.Invincibility);
             //Bukkit.broadcastMessage("§epregame = "+Main.PreGame);
             //Bukkit.broadcastMessage("§cEm jogo? = " + Main.inGame);
-            explorerList.add(p);
-            int teste = boxerList.size();
-            Bukkit.broadcastMessage("§5PlayerEvents: "+p);
+            Bukkit.broadcastMessage(String.valueOf(cooldowns));
         }
     }
 }
