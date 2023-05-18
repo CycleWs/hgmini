@@ -63,7 +63,7 @@ public class MiniFeast {
         return block.getLocation();
     }
 
-    public static void miniFeastAnnouncemnt() {
+    public static void miniFeastAnnouncement() {
         if (mainBlock == null) {
             mainBlock = getRespawn().add(0.0, 2.0, 0.0).getBlock();
             mainBlock.setType(Material.GLASS);

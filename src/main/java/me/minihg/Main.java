@@ -85,7 +85,7 @@ public class Main extends JavaPlugin{
     }
     public void registerKitEvents(){
             //Bukkit.getPluginManager().registerEvents(new Achilles(), this);
-            //Bukkit.getPluginManager().registerEvents(new Switcher(), this); - DAR ITEM
+            //Bukkit.getPluginManager().registerEvents(new Switcher(), this); //- DAR ITEM
             //Bukkit.getPluginManager().registerEvents(new Ninja(), this);
             //Bukkit.getPluginManager().registerEvents(new Camel(), this);
             //Bukkit.getPluginManager().registerEvents(new Explorer(), this);
@@ -99,7 +99,7 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Reaper(), this);
             //Bukkit.getPluginManager().registerEvents(new Viper(), this);
             //Bukkit.getPluginManager().registerEvents(new Boxer(), this); - ARRUMAR
-            //Bukkit.getPluginManager().registerEvents(new Worm(), this); - FZR
+            Bukkit.getPluginManager().registerEvents(new Worm(), this);
             //Bukkit.getPluginManager().registerEvents(new Thor(), this);
             //Bukkit.getPluginManager().registerEvents(new Digger(), this); - FZR
             //Bukkit.getPluginManager().registerEvents(new Demoman(), this);

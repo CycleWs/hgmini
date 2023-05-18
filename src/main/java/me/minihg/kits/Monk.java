@@ -23,15 +23,22 @@ public class Monk implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEntityEvent e){
         Player p = e.getPlayer();
-        if(p.getItemInHand() == null || p.getItemInHand().getType() != Material.BLAZE_ROD
-                || !(e.getRightClicked() instanceof Player))
+        if(p.getItemInHand() == null || p.getItemInHand().getType() != Material.BLAZE_ROD|| !(e.getRightClicked() instanceof Player)){
             return;
-        Player vic = (Player) e.getRightClicked();
-        Inventory inv = vic.getInventory();
-        int slot = new Random().nextInt(36);
-        ItemStack slis = inv.getItem(slot), heldis = vic.getItemInHand();
-        vic.setItemInHand(slis);
-        inv.setItem(slot, heldis);
-        //cooldown
-    }
+        }else {
+            if(Cooldown.checkCooldown(p)){
+                Player vic = (Player) e.getRightClicked();
+                Inventory inv = vic.getInventory();
+                int slot = new Random().nextInt(36);
+                ItemStack slis = inv.getItem(slot), heldis = vic.getItemInHand();
+                vic.setItemInHand(slis);
+                inv.setItem(slot, heldis);
+                Cooldown.setCooldown(p,12);
+            }else{
+                p.sendMessage("§cCooldown por: "+Cooldown.getCooldown(p));
+            }
+         }
+        }
+
+
 }

@@ -7,11 +7,6 @@ import me.minihg.feastminifeast.MiniFeast;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.text.DecimalFormat;
-
-import static me.minihg.events.InGameEvents.winCheck;
-import static me.minihg.feastminifeast.FeastManager.*;
-
 public class InGameStage {
     public static Player[] arrayOfPlayer;
     private static Integer shed_id = null;
@@ -33,7 +28,7 @@ public class InGameStage {
             //verifyWinner();
             if(Main.InGameTime == 3){
                 FeastManager.feastAnnouncement(0);
-                //MiniFeast.miniFeastAnnouncemnt();
+                //MiniFeast.miniFeastAnnouncement();
                 int X = (int) FeastManager.mainBlock.getLocation().getX();
                 int Y = (int) FeastManager.mainBlock.getLocation().getY();
                 int Z = (int) FeastManager.mainBlock.getLocation().getZ();
