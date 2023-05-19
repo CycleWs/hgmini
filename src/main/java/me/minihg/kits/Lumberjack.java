@@ -18,7 +18,7 @@ public class Lumberjack implements Listener {
     public static ItemStack lumberjack;
 
     public static boolean Lumberjack(Player p){
-        lumberjack = new ItensConfig(Material.WOOD_AXE,1,(short) 0).setName("&2Miner").setUnbreakable()
+        lumberjack = new ItensConfig(Material.WOOD_AXE,1,(short) 0).setName("&3LumberJack").setUnbreakable()
                 .getItemStack();
         return true;
     }

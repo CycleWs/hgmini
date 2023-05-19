@@ -1,6 +1,7 @@
 package me.minihg.kits;
 
 import me.minihg.Main;
+import me.minihg.item.ItensConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,6 +20,20 @@ import java.util.ArrayList;
 public class Switcher implements Listener {
     private static Integer shed_id = null;
     public static ArrayList<Player> switcherList = new ArrayList<>();
+
+    public static ItemStack switcher;
+    public static boolean Switcher(Player p){
+        ItemStack Bussola = new ItemStack(Material.COMPASS);
+        switcher = new ItensConfig(Material.SNOW_BALL, 1, (short) 0)
+                .setName("§eSwitcher")
+                .setUnbreakable()
+                .getItemStack();
+
+        p.getInventory().clear();
+        p.getInventory().addItem(switcher);
+        p.getInventory().addItem(Bussola);
+        return true;
+    }
 
     @EventHandler
     public void switcherEvent(EntityDamageByEntityEvent e){

@@ -101,7 +101,7 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Viper(), this);
             //Bukkit.getPluginManager().registerEvents(new Boxer(), this); - ARRUMAR
             //Bukkit.getPluginManager().registerEvents(new Worm(), this);
-            Bukkit.getPluginManager().registerEvents(new Thor(), this);
+            //Bukkit.getPluginManager().registerEvents(new Thor(), this);
             //Bukkit.getPluginManager().registerEvents(new Digger(), this); - FZR
             //Bukkit.getPluginManager().registerEvents(new Demoman(), this);
             //Bukkit.getPluginManager().registerEvents(new Cannibal(), this);
