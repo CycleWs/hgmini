@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,24 +25,22 @@ public class Worm implements Listener {
     @EventHandler
     public void wormEvent(PlayerInteractEvent e ){
         Player p = e.getPlayer();
-        boolean act =e.getAction().equals(Action.LEFT_CLICK_BLOCK);
-        if(act && e.getClickedBlock().getType() == Material.DIRT ){
+        boolean act = e.getAction().equals(Action.LEFT_CLICK_BLOCK);
+        if((act && e.getClickedBlock().getType() == Material.DIRT) && wormList.contains(p)){
             e.getClickedBlock().breakNaturally();
             p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,  100,1));
         }
 
     }
-//    @EventHandler
-//    public void onFall(EntityDamageEvent e){
-//        Player p = (Player) e.getEntity();
-////        Block block = p.getLocation().getBlock();
-////        Location loc =block.getLocation();
-//        if(e.getEntity() instanceof Player){
-//            if(e.getCause().equals(EntityDamageEvent.DamageCause.FALL) && p.getLocation().getBlock().getType() == Material.DIRT){
-//                e.setCancelled(true);
-//            }
-//        }
-//
-//        }
+    @EventHandler
+    public void onFall(EntityDamageEvent e){
+        if(e.getEntity() instanceof Player){
+            Player p = (Player) e.getEntity();
+            Material blockFall = p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType();
+            if(e.getEntity() instanceof Player && (e.getCause().equals(EntityDamageEvent.DamageCause.FALL) && blockFall == Material.DIRT) && wormList.contains(p)){
+                e.setCancelled(true);
+                }
+            }
+        }
 
 }
