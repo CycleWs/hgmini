@@ -1,6 +1,7 @@
 package me.minihg.stages;
 
 import me.minihg.Main;
+import me.minihg.kits.Miner;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -12,7 +13,6 @@ public class InvincibilityStage {
     public InvincibilityStage(){
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), ()->{
             Player [] arrayOfPlayer;
-
             if(Main.InvincibilityTime > 0 && Main.Invincibility){
                 if(Main.InvincibilityTime == 60 && Main.Invincibility){
                     Bukkit.broadcastMessage("§cA invencibilidade acaba em 01:00");

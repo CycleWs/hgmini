@@ -2,6 +2,7 @@ package me.minihg.kits;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import me.minihg.Main;
+import me.minihg.events.UndroppableItens;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -31,9 +32,10 @@ public class Titan implements Listener {
     public static boolean Titan(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         titan = new ItensConfig(Material.BEDROCK, 1, (short) 0)
-                .setName("§eTitan")
+                .setName("§aTitan")
                 .setUnbreakable()
                 .getItemStack();
+        UndroppableItens.undroppableItens.add(titan);
 
         p.getInventory().clear();
         p.getInventory().addItem(titan);
@@ -43,8 +45,9 @@ public class Titan implements Listener {
     @EventHandler
     public void titanEvent(PlayerInteractEvent e){
         Player p =  e.getPlayer();
-        double delay = System.currentTimeMillis() + (10*1000);
-        if(e.getAction() == Action.RIGHT_CLICK_AIR && p.getItemInHand().getType() == Material.BEDROCK){
+        ItemStack itemKit = p.getInventory().getItemInHand();
+
+        if(e.getAction() == Action.RIGHT_CLICK_AIR && (itemKit.getItemMeta().getDisplayName().equalsIgnoreCase("§aTitan"))){
             Cooldown.setCooldown(p,5);
             }
         }

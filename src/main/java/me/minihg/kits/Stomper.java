@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -15,17 +16,20 @@ public class Stomper implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent event) {
-        if (!(event.getEntity() instanceof Player))
-            return;
         Player p = (Player) event.getEntity();
-        if (event.getCause() != EntityDamageEvent.DamageCause.FALL)
-            return;
-        for (Entity e : p.getNearbyEntities(3, 3, 3)) {
-            if (e instanceof LivingEntity)
-                ((LivingEntity) e).damage(e instanceof Player
-                        ? (((Player) e).isSneaking() ? (((Player) e).isBlocking() ? 6 : 12) : event.getDamage())
-                        : event.getDamage(), p);
-            event.setDamage(event.getDamage() > 4 ? 4 : event.getDamage());
+        if(stomperList.contains(p) && Main.inGame){
+            if (!(event.getEntity() instanceof Player))
+                return;
+            if (event.getCause() != EntityDamageEvent.DamageCause.FALL)
+                return;
+            for (Entity e : p.getNearbyEntities(3, 3, 3)) {
+                if (e instanceof LivingEntity)
+                    ((LivingEntity) e).damage(e instanceof Player
+                            ? (((Player) e).isSneaking() ? (((Player) e).isBlocking() ? 6 : 12) : event.getDamage())
+                            : event.getDamage(), p);
+                event.setDamage(event.getDamage() > 4 ? 4 : event.getDamage());
+            }
         }
+
     }
 }

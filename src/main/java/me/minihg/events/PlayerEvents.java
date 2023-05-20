@@ -1,7 +1,7 @@
 package me.minihg.events;
 
 import me.minihg.Main;
-import me.minihg.kits.Cooldown;
+import me.minihg.kits.Miner;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,28 +14,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import static me.minihg.Main.playersOnline;
-import static me.minihg.kits.Achilles.achillesList;
-import static me.minihg.kits.Boxer.boxerList;
-import static me.minihg.kits.Cooldown.cooldowns;
-import static me.minihg.kits.Explorer.explorerList;
-import static me.minihg.kits.Titan.titanTimer;
+import static me.minihg.kits.Miner.miner;
+import static me.minihg.kits.Miner.minerList;
 
 public class PlayerEvents implements Listener {
 
     public static UUID uuid;
 
     //public static List<UUID> playersOnline = new ArrayList<>();
+
     @EventHandler
     public void onCompass(PlayerInteractEvent event) {
         Player p = event.getPlayer();
@@ -125,14 +121,18 @@ public class PlayerEvents implements Listener {
         Bukkit.broadcastMessage(String.valueOf(playersOnline));
     }
     @EventHandler
-    public void test(BlockBreakEvent e){
+    public boolean test(BlockBreakEvent e){
         Player p = e.getPlayer();
         Block b = e.getBlock();
         if(b.getType() == Material.GRASS){
             //Bukkit.broadcastMessage("§cinvencibilidade = " + Main.Invincibility);
             //Bukkit.broadcastMessage("§epregame = "+Main.PreGame);
             //Bukkit.broadcastMessage("§cEm jogo? = " + Main.inGame);
-            Bukkit.broadcastMessage(String.valueOf(cooldowns));
+            Miner.minerKit(p);
+            UndroppableItens.undroppableItens.add(miner);
+            minerList.add(p);
+            return true;
         }
+        return false;
     }
 }

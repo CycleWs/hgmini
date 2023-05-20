@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,10 +20,12 @@ public class Poseidon implements Listener {
         Material m = p.getLocation().getBlock().getType();
         PotionEffect speed = new PotionEffect(PotionEffectType.SPEED,100,1);
         PotionEffect strength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE,100,0);
-
-        if((m == Material.STATIONARY_WATER) || (m == Material.WATER)){
-            p.addPotionEffect(speed);
-            p.addPotionEffect(strength);
+        if(poseidonList.contains(p) && Main.inGame){
+            if((m == Material.STATIONARY_WATER) || (m == Material.WATER)){
+                p.addPotionEffect(speed);
+                p.addPotionEffect(strength);
+            }
         }
+
     }
 }

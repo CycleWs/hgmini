@@ -1,5 +1,7 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
+import me.minihg.events.UndroppableItens;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -24,46 +26,56 @@ public class Thor implements Listener {
     public static ArrayList<Player> thorList = new ArrayList<>();
 
     public static ItemStack thor;
-
     public static boolean Thor(Player p){
-        thor = new ItensConfig(Material.WOOD_AXE,1,(short) 0).setName("&2Thor")
-                .setUnbreakable().getItemStack();
+        ItemStack Bussola = new ItemStack(Material.COMPASS);
+        thor = new ItensConfig(Material.WOOD_AXE, 1, (short) 0)
+                .setName("§aThor")
+                .setUnbreakable()
+                .getItemStack();
+        UndroppableItens.undroppableItens.add(thor);
+
+        p.getInventory().clear();
+        p.getInventory().addItem(thor);
+        p.getInventory().addItem(Bussola);
         return true;
     }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-
-                if ((event.getAction() == Action.RIGHT_CLICK_BLOCK) && (p.getItemInHand().getType() == Material.WOOD_AXE)) {
-                        if(Cooldown.checkCooldown(p)){
-                            p.getWorld().strikeLightningEffect(p.getWorld().getHighestBlockAt(event.getClickedBlock().getLocation()).getLocation());
-                            for (Entity entity : Bukkit.getWorld("world").getEntities()) {
-                                if (entity.getLocation().distance(event.getClickedBlock().getLocation()) <= 3.0D) {
-                                    if (((entity instanceof LivingEntity)) && (entity != p)) {
-                                        LivingEntity e = (LivingEntity) entity;
-                                        e.damage(4, p);
-                                    }
-                                }
+        ItemStack itemKit = p.getItemInHand();
+        if(thorList.contains(p) && Main.inGame){
+            if ((event.getAction() == Action.RIGHT_CLICK_BLOCK) && (itemKit.getItemMeta().getDisplayName().equalsIgnoreCase("§aThor"))) {
+                if(Cooldown.checkCooldown(p)){
+                    p.getWorld().strikeLightningEffect(p.getWorld().getHighestBlockAt(event.getClickedBlock().getLocation()).getLocation());
+                    for (Entity entity : Bukkit.getWorld("world").getEntities()) {
+                        if (entity.getLocation().distance(event.getClickedBlock().getLocation()) <= 3.0D) {
+                            if (((entity instanceof LivingEntity)) && (entity != p)) {
+                                LivingEntity e = (LivingEntity) entity;
+                                e.damage(4, p);
                             }
-                            Block b = event.getClickedBlock();
-                            Location loc = b.getLocation();
-                            Block hb = p.getWorld().getHighestBlockAt(loc);
-
-                            if ((hb.getType() == Material.FIRE)
-                                    && (hb.getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK)) {
-                                CreateExplosion(hb.getRelative(BlockFace.DOWN).getLocation());
-                            } else if (hb.getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK) {
-                                CreateExplosion(hb.getRelative(BlockFace.DOWN).getLocation());
-                            } else if (hb.getLocation().getY() >= 80.0D) {
-                                hb.setType(Material.NETHERRACK);
-                                hb.getRelative(BlockFace.UP).setType(Material.FIRE);
-                            }
-                                Cooldown.setCooldown(p,7);
-                    }else{
-                        p.sendMessage("§cVocê não pode usar o kit por: "+Cooldown.getCooldown(p));
+                        }
                     }
+                    Block b = event.getClickedBlock();
+                    Location loc = b.getLocation();
+                    Block hb = p.getWorld().getHighestBlockAt(loc);
+
+                    if ((hb.getType() == Material.FIRE)
+                            && (hb.getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK)) {
+                        CreateExplosion(hb.getRelative(BlockFace.DOWN).getLocation());
+                    } else if (hb.getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK) {
+                        CreateExplosion(hb.getRelative(BlockFace.DOWN).getLocation());
+                    } else if (hb.getLocation().getY() >= 80.0D) {
+                        hb.setType(Material.NETHERRACK);
+                        hb.getRelative(BlockFace.UP).setType(Material.FIRE);
+                    }
+                    Cooldown.setCooldown(p,7);
+                }else{
+                    p.sendMessage("§cVocê não pode usar o kit por: "+Cooldown.getCooldown(p));
+                }
             }
+        }
+
     }
 
     @EventHandler

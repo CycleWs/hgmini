@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.events.UndroppableItens;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -15,18 +16,15 @@ import java.util.ArrayList;
 
 public class Grandpa implements Listener {
     public static ArrayList<Player> grandpaList = new ArrayList<>();
-    public static ItemStack stick;
+    public static ItemStack grandpa;
 
-    public static boolean Grandpa(Player p){
-        stick = new ItensConfig(Material.STICK,1,(short) 0).setName("&2Grandpa")
-                .setEnchant(Enchantment.KNOCKBACK,5).getItemStack();
+    public static boolean grandpa(Player p) {
+        grandpa = new ItensConfig(Material.STICK, 1, (short) 0)
+                .setName("§aGrandpa")
+                .setEnchant(Enchantment.KNOCKBACK, 2)
+                .getItemStack();
+
+        UndroppableItens.undroppableItens.add(grandpa);
         return true;
-    }
-
-    @EventHandler
-    public void onDrop(PlayerDropItemEvent e){
-        if (e.getItemDrop().equals(stick)){
-            e.setCancelled(true);
-        }
     }
 }

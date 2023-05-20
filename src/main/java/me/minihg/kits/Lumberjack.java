@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.events.UndroppableItens;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -17,20 +18,33 @@ public class Lumberjack implements Listener {
     public static ArrayList<Player> lumberjackList = new ArrayList<>();
     public static ItemStack lumberjack;
 
-    public static boolean Lumberjack(Player p){
-        lumberjack = new ItensConfig(Material.WOOD_AXE,1,(short) 0).setName("&3LumberJack").setUnbreakable()
+    public static boolean Lumberjack(Player p) {
+        lumberjack = new ItensConfig(Material.WOOD_AXE, 1, (short) 0)
+                .setName("§aLumberJack")
+                .setUnbreakable()
                 .getItemStack();
+
+        UndroppableItens.undroppableItens.add(lumberjack);
         return true;
     }
 
+    public static void breakTree(Block tree) {
+        if (tree.getType() != Material.LOG && tree.getType() != Material.LOG_2) return;
+        tree.breakNaturally();
+        for (BlockFace face : BlockFace.values())
+            breakTree(tree.getRelative(face));
+
+    }
+
     @EventHandler
-    public void onBreak(BlockBreakEvent event) {
-        if ((event.getBlock().getType() == Material.LOG) && (event.getPlayer().getItemInHand().getType() == Material.WOOD_AXE)) {
-            Block b = event.getBlock();
-            while (b.getType() == Material.LOG) {
-                b.breakNaturally();
-                b = b.getRelative(BlockFace.UP);
-            }
+    public void onBreak(BlockBreakEvent e) {
+        Player p = e.getPlayer();
+        ItemStack item = p.getInventory().getItemInHand();
+        Block b = e.getBlock();
+
+        if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§aLumberJack") && b.getType()
+                == Material.LOG || b.getType() == Material.LOG_2) {
+            breakTree(b);
         }
     }
 }

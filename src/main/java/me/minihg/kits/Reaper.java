@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,12 +17,14 @@ public class Reaper implements Listener {
     public static ArrayList<Player> reaperList = new ArrayList<>();
 
     @EventHandler
-    public void onDamage(EntityDamageByEntityEvent e){
-        Player damager = (Player) e.getDamager();
-        Player damage = (Player) e.getEntity();
-        if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
-            if(new Random().nextInt(3) == 1)
-                damage.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,120,0),true);
+        public void onDamage(EntityDamageByEntityEvent e){
+            Player damager = (Player) e.getDamager();
+            Player damage = (Player) e.getEntity();
+            if(reaperList.contains(damage) && Main.inGame){
+                if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
+                    if(new Random().nextInt(3) == 1)
+                        damage.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,120,0),true);
+                }
+            }
         }
-    }
     }

@@ -9,6 +9,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import java.util.ArrayList;
 
 public class IronMan implements Listener {
+
     public static ArrayList<Player> ironmanList = new ArrayList<>();
 
     @EventHandler

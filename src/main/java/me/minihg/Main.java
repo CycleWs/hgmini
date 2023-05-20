@@ -1,10 +1,7 @@
 package me.minihg;
 
 import me.minihg.api.Files;
-import me.minihg.events.InGameEvents;
-import me.minihg.events.PlayerEvents;
-import me.minihg.events.PreGameEvents;
-import me.minihg.events.ServerEvents;
+import me.minihg.events.*;
 import me.minihg.kits.*;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
@@ -83,6 +80,7 @@ public class Main extends JavaPlugin{
             Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
             Bukkit.getPluginManager().registerEvents(new PreGameEvents(), this);
             Bukkit.getPluginManager().registerEvents(new InGameEvents(), this);
+            Bukkit.getPluginManager().registerEvents(new UndroppableItens(), this);
     }
     public void registerKitEvents(){
             //Bukkit.getPluginManager().registerEvents(new Achilles(), this);
@@ -92,8 +90,8 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Explorer(), this);
             //Bukkit.getPluginManager().registerEvents(new Fireman(), this); - DAR ITEM
             //Bukkit.getPluginManager().registerEvents(new Grandpa(), this); - DAR ITEM E TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Miner(), this); - FZR
-            //Bukkit.getPluginManager().registerEvents(new Lumberjack(), this); - AJEITAR MADEIRAS QUEBRADAS
+            Bukkit.getPluginManager().registerEvents(new Miner(), this);
+            Bukkit.getPluginManager().registerEvents(new Lumberjack(), this);
             //Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
             //Bukkit.getPluginManager().registerEvents(new Stomper(), this);
             //Bukkit.getPluginManager().registerEvents(new Fisherman(), this); - FZR
@@ -108,7 +106,7 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Cultivator(), this);
             //Bukkit.getPluginManager().registerEvents(new Snail(), this);
             //Bukkit.getPluginManager().registerEvents(new Monk(), this);
-            Bukkit.getPluginManager().registerEvents(new Titan(), this);
+            //Bukkit.getPluginManager().registerEvents(new Titan(), this);
             //Bukkit.getPluginManager().registerEvents(new Turtle(), this);
             //Bukkit.getPluginManager().registerEvents(new IronMan(), this); - ARRUMAR
     }

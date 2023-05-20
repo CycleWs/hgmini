@@ -18,7 +18,7 @@ public class ItensConfig {
     }
 
     public ItensConfig setName(String name){
-        itemmeta.setDisplayName(name.replace("§", "&"));
+        itemmeta.setDisplayName(name);
         itemstack.setItemMeta(itemmeta);
         return this;
     }
@@ -29,8 +29,8 @@ public class ItensConfig {
         return this;
     }
 
-    public ItensConfig setEnchant(Enchantment enchant, int level){
-        itemmeta.addEnchant(enchant,level,false);
+    public ItensConfig setEnchant(Enchantment enchant, int level) {
+        itemmeta.addEnchant(enchant, level, false);
         itemstack.setItemMeta(itemmeta);
         return this;
     }

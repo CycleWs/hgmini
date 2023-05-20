@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
 import org.bukkit.CropState;
 import org.bukkit.Material;
 import org.bukkit.TreeType;
@@ -18,22 +19,30 @@ public class Cultivator implements Listener {
     public static ArrayList<Player> cultivatorList = new ArrayList<>();
     @EventHandler
     public void onPlace(BlockPlaceEvent e){
-        if(e.getBlock().getType() == Material.SAPLING){
-            e.getBlock().setType(Material.AIR);
-            e.getPlayer().getWorld().generateTree(e.getBlock().getLocation(), TreeType.TREE);
+        Player p = e.getPlayer();
+        if(cultivatorList.contains(p) && Main.inGame){
+            if(e.getBlock().getType() == Material.SAPLING){
+                e.getBlock().setType(Material.AIR);
+                e.getPlayer().getWorld().generateTree(e.getBlock().getLocation(), TreeType.TREE);
+            }
+            else{
+                e.getBlock().setData((byte) 7);
+            }
         }
-        else{
-            e.getBlock().setData((byte) 7);
-        }
+
     }
     @EventHandler
     public void onInt(PlayerInteractEvent e){
-        if(e.getClickedBlock() == null)
-            return;
-        Block b = e.getClickedBlock().getRelative(BlockFace.UP);
-        if(b.getType() == Material.CROPS){
-            Crops c = (Crops)b.getState();
-            c.setState(CropState.RIPE);
+        Player p = e.getPlayer();
+        if(cultivatorList.contains(p) && Main.inGame){
+            if(e.getClickedBlock() == null)
+                return;
+            Block b = e.getClickedBlock().getRelative(BlockFace.UP);
+            if(b.getType() == Material.CROPS){
+                Crops c = (Crops)b.getState();
+                c.setState(CropState.RIPE);
+            }
         }
-    }
+        }
+
 }

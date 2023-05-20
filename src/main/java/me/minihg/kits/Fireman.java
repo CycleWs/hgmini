@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,16 +16,14 @@ public class Fireman implements Listener{
 
     public static ArrayList<Player> firemanList = new ArrayList<>();
 
-    public static ItemStack fisherman;
-    public static boolean Fisherman(Player p){
+    public static ItemStack fireman;
+    public static boolean fireman(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
-        fisherman = new ItensConfig(Material.FISHING_ROD, 1, (short) 0)
-                .setName("§eFisherman")
-                .setUnbreakable()
+        fireman = new ItensConfig(Material.WATER_BUCKET, 1, (short) 0)
                 .getItemStack();
 
         p.getInventory().clear();
-        p.getInventory().addItem(fisherman);
+        p.getInventory().addItem(fireman);
         p.getInventory().addItem(Bussola);
         return true;
     }
@@ -32,11 +31,12 @@ public class Fireman implements Listener{
     @EventHandler
     public void onFireman(EntityDamageEvent e) {
         Player p = (Player) e.getEntity();
-        if (e.getEntity() instanceof Player && ((e.getCause().equals(EntityDamageEvent.DamageCause.LAVA))
-                || (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK))
-                || (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE)))){
-            e.setCancelled(true);
+        if(firemanList.contains(p) && Main.inGame){
+            if (e.getEntity() instanceof Player && ((e.getCause().equals(EntityDamageEvent.DamageCause.LAVA))
+                    || (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK))
+                    || (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE)))){
+                e.setCancelled(true);
+            }
         }
     }
-
 }

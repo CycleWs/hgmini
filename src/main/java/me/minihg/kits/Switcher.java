@@ -1,6 +1,7 @@
 package me.minihg.kits;
 
 import me.minihg.Main;
+import me.minihg.events.UndroppableItens;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -25,9 +26,10 @@ public class Switcher implements Listener {
     public static boolean Switcher(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         switcher = new ItensConfig(Material.SNOW_BALL, 1, (short) 0)
-                .setName("§eSwitcher")
+                .setName("§aSwitcher")
                 .setUnbreakable()
                 .getItemStack();
+        UndroppableItens.undroppableItens.add(switcher);
 
         p.getInventory().clear();
         p.getInventory().addItem(switcher);
@@ -37,26 +39,30 @@ public class Switcher implements Listener {
 
     @EventHandler
     public void switcherEvent(EntityDamageByEntityEvent e){
-        Bukkit.broadcastMessage("FORA DOS DOIS IFS");
-        if (e.getDamager() instanceof Snowball) {
-            Snowball snowball = (Snowball) e.getDamager();
-            Player shooter = (Player) snowball.getShooter();
-            Player hitPlayer = (Player) e.getEntity();
-            if (snowball.getShooter() instanceof Player) {
-                Location shooterLoc = shooter.getLocation();
-                Location hitPlayerLoc = hitPlayer.getLocation();
-                if(Cooldown.checkCooldown(shooter)){
-                    shooter.teleport(hitPlayerLoc);
-                    hitPlayer.teleport(shooterLoc);
-                    shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
-                    Cooldown.setCooldown(shooter, 5);
-                }else{
-                    shooter.sendMessage("§cVocê não pode utilizar o kit por: " + Cooldown.getCooldown(shooter) + " Segundos");
-                    shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
-                    e.setCancelled(true);
-            }
+        Player p = (Player) e.getDamager();
+        if(switcherList.contains(p) && Main.inGame){
+            if (e.getDamager() instanceof Snowball) {
+                Snowball snowball = (Snowball) e.getDamager();
+                Player shooter = (Player) snowball.getShooter();
+                Player hitPlayer = (Player) e.getEntity();
+                ItemStack itemKit = shooter.getInventory().getItemInHand();
+                if (snowball.getShooter() instanceof Player && (itemKit.getItemMeta().getDisplayName().equalsIgnoreCase("§aSwitcher"))) {
+                    Location shooterLoc = shooter.getLocation();
+                    Location hitPlayerLoc = hitPlayer.getLocation();
+                    if(Cooldown.checkCooldown(shooter)){
+                        shooter.teleport(hitPlayerLoc);
+                        hitPlayer.teleport(shooterLoc);
+                        shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
+                        Cooldown.setCooldown(shooter, 5);
+                    }else{
+                        shooter.sendMessage("§cVocê não pode utilizar o kit por: " + Cooldown.getCooldown(shooter) + " Segundos");
+                        shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
+                        e.setCancelled(true);
+                    }
+                }
             }
         }
+
     }
 
     @EventHandler

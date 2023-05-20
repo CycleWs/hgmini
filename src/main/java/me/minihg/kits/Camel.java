@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
@@ -17,15 +18,16 @@ public class Camel implements Listener {
     @EventHandler
     public void onPoseidon(PlayerMoveEvent e){
         Player p = e.getPlayer();
-        Material m = p.getLocation().getBlock().getType();
         PotionEffect speed = new PotionEffect(PotionEffectType.SPEED,120,1);
-        PotionEffect regeneracao = new PotionEffect(PotionEffectType.REGENERATION,120,0);
-        PotionEffect resistencia = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,120,0);
+        PotionEffect regeneration = new PotionEffect(PotionEffectType.REGENERATION,120,0);
+        PotionEffect resistance = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,120,0);
 
-        if(p.getWorld().getBiome(p.getLocation().getBlockX(), p.getLocation().getBlockZ()).equals(Biome.DESERT)){
-            p.addPotionEffect(speed);
-            p.addPotionEffect(regeneracao);
-            p.addPotionEffect(resistencia);
+        if(camelList.contains(p) && Main.inGame){
+            if(p.getWorld().getBiome(p.getLocation().getBlockX(), p.getLocation().getBlockZ()).equals(Biome.DESERT)){
+                p.addPotionEffect(speed);
+                p.addPotionEffect(regeneration);
+                p.addPotionEffect(resistance);
+            }
         }
     }
 }
