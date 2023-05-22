@@ -25,6 +25,7 @@ public class InGameStage {
         int p = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () ->{
             ++Main.InGameTime;
+            Main.updateScore();
             //verifyWinner();
             if(Main.InGameTime == 3){
                 FeastManager.feastAnnouncement(0);

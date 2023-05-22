@@ -11,12 +11,15 @@ import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.*;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +41,7 @@ public class Main extends JavaPlugin{
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean Invincibility = false;
-    public static Integer InvincibilityTime = 3;
+    public static Integer InvincibilityTime = 5;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
@@ -143,5 +146,37 @@ public class Main extends JavaPlugin{
         new Files();
     }
 
+    public static String timerFormat(int i){
+            int millis = i * 1000;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss");
+            return dateFormat.format(Integer.valueOf(millis));
+    }
 
+    public static void updateScore(){
+            for(Player p : Bukkit.getOnlinePlayers()){
+                Scoreboard scoreboard = p.getScoreboard();
+                Objective objective = scoreboard.getObjective(DisplaySlot.SIDEBAR);
+                if(Main.PreGame){
+                    objective.setDisplayName("§cIniciando em: "+timerFormat(Main.StartTime));
+                }
+                if (Main.Invincibility){
+                    objective.setDisplayName("§cInvencível por: "+timerFormat(Main.InvincibilityTime));
+                }
+                if (Main.inGame){
+                    objective.setDisplayName("§cTempo de jogo: "+timerFormat(Main.InGameTime));
+                }
+
+                objective.getScore("Jogadores: ").setScore(Bukkit.getOnlinePlayers().size());
+            }
+    }
+
+    public static void sendScoreboard(Player p){
+        ScoreboardManager scoremanager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = scoremanager.getNewScoreboard();
+        Objective objective = scoreboard.registerNewObjective("board","dummy");
+        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+        objective.setDisplayName("§cIniciando em: "+timerFormat(Main.StartTime));
+        objective.getScore("Jogadores: ").setScore(Bukkit.getOnlinePlayers().size());
+        p.setScoreboard(scoreboard);
+    }
 }

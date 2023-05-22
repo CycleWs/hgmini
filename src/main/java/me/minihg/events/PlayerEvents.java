@@ -13,20 +13,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import static me.minihg.Main.playersOnline;
-import static me.minihg.kits.Achilles.achillesList;
-import static me.minihg.kits.Boxer.boxerList;
-import static me.minihg.kits.Explorer.explorerList;
 import static me.minihg.kits.Worm.wormList;
 
 public class PlayerEvents implements Listener {
@@ -113,6 +108,7 @@ public class PlayerEvents implements Listener {
         uuid = p.getUniqueId();
         playersOnline.add(String.valueOf(p));
         Bukkit.broadcastMessage(String.valueOf(p));
+        Main.sendScoreboard(p);
     }
 
     @EventHandler

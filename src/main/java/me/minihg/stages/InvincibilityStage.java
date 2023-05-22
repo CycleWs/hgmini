@@ -36,6 +36,7 @@ public class InvincibilityStage {
                     }
                 }
                 Main.InvincibilityTime -= 1;
+                Main.updateScore();
             }else{
                 Main.finishInvencibility();
             }

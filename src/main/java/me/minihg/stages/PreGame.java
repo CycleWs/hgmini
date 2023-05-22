@@ -7,7 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
-public class PreGame {
+public class PreGame{
 
     private static Integer shed_id = null;
 
@@ -58,6 +58,7 @@ public class PreGame {
                         }
                     }
                     Main.StartTime -= 1;
+                    Main.updateScore();
                 }else if(Main.PreGame && Main.playersOnline.size() < Main.MinPlayers){
                     Bukkit.broadcastMessage("§cJogadores insuficientes!");
                     Main.StartTime = 300;
