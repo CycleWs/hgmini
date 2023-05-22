@@ -40,6 +40,7 @@ public class Main extends JavaPlugin{
     //----------GameInfos-----------------------
     public static boolean inGame = false;
     public static Integer InGameTime = 0;
+    public static boolean finalArena = false;
     public static boolean Ending = false;
     public static List<String> playersOnline = new ArrayList<>();
     //----------GameInfos-----------------------
