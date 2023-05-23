@@ -11,6 +11,7 @@ import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -74,6 +75,7 @@ public class Main extends JavaPlugin{
                     .addIngredient(Material.BOWL);
             this.getServer().addRecipe(cocoaSoup);
             this.getServer().addRecipe(cactusSoup);
+            this.worldBorder();
     }
 
     public void onLoad(){
@@ -120,6 +122,13 @@ public class Main extends JavaPlugin{
         Main.Invincibility = true;
         new InvincibilityStage();
     }
+
+    public void worldBorder(){
+        WorldBorder wb = Bukkit.getWorld("world").getWorldBorder();
+        wb.setCenter(0, 0);
+        wb.setSize(400);
+        }
+
 
     public static void finishInvencibility(){
             Main.Invincibility = false;
