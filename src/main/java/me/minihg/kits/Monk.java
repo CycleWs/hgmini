@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Monk implements Listener {
@@ -48,6 +50,11 @@ public class Monk implements Listener {
             }
          }
         }
-
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cEmbaralhe o inventário do seu inimigo");
+        list.add("§cao bater nele com o monk");
+        return list;
+    }
 
 }

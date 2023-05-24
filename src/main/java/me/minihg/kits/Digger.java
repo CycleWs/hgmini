@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Digger implements Listener {
     public static ArrayList<Player> diggerList = new ArrayList<>();
@@ -47,6 +48,12 @@ public class Digger implements Listener {
                             }
             }
         }, 60L);
+    }
+
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cAbra uma cratera 6x6x6 no chão");
+        return list;
     }
 
 

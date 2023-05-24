@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Fireman implements Listener{
 
@@ -38,5 +39,11 @@ public class Fireman implements Listener{
                 e.setCancelled(true);
             }
         }
+    }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cSeja imune à lava e receba um");
+        list.add("§cBalde de água");
+        return list;
     }
 }

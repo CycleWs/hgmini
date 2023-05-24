@@ -10,6 +10,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Turtle implements Listener {
     public static ArrayList<Player> turtleList = new ArrayList<>();
@@ -20,7 +21,12 @@ public class Turtle implements Listener {
             Player p = (Player) event.getDamager();
             if(turtleList.contains(p) && Main.inGame){
                 if (p.isSneaking()) event.setCancelled(true);
-            }
                 }
+            }
         }
+    public static List<String> getKitDescription() {
+        List<String> list = new ArrayList<>();
+        list.add("§cReceba menos dano quando estiver agachado ");
+        return list;
+    }
     }

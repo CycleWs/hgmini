@@ -13,6 +13,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Lumberjack implements Listener {
     public static ArrayList<Player> lumberjackList = new ArrayList<>();
@@ -36,15 +37,21 @@ public class Lumberjack implements Listener {
 
     }
 
-    @EventHandler
-    public void onBreak(BlockBreakEvent e) {
-        Player p = e.getPlayer();
-        ItemStack item = p.getInventory().getItemInHand();
-        Block b = e.getBlock();
+//    @EventHandler
+//    public void onBreak(BlockBreakEvent e) {
+//        Player p = e.getPlayer();
+//        ItemStack item = p.getInventory().getItemInHand();
+//        Block b = e.getBlock();
+//
+//        if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§aLumberJack") && b.getType()
+//                == Material.LOG || b.getType() == Material.LOG_2) {
+//            breakTree(b);
+//        }
+//    }
 
-        if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§aLumberJack") && b.getType()
-                == Material.LOG || b.getType() == Material.LOG_2) {
-            breakTree(b);
-        }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cQuebre uma madeira e derrube a arvore inteira");
+        return list;
     }
 }

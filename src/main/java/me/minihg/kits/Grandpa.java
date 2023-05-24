@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Grandpa implements Listener {
     public static ArrayList<Player> grandpaList = new ArrayList<>();
@@ -26,5 +27,12 @@ public class Grandpa implements Listener {
 
         UndroppableItens.undroppableItens.add(grandpa);
         return true;
+    }
+
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cTenha uma bengala que joga");
+        list.add("§cseus inimigos para longe");
+        return list;
     }
 }

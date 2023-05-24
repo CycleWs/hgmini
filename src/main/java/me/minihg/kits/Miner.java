@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Miner implements Listener {
     public static ArrayList<Player> minerList = new ArrayList<>();
@@ -33,22 +34,29 @@ public class Miner implements Listener {
         return true;
     }
 
-    public static void breakOres(Block ores) {
-        if (ores.getType() != Material.IRON_ORE && ores.getType() != Material.COAL_ORE) return;
-        ores.breakNaturally();
-        for (BlockFace face : BlockFace.values())
-            breakOres(ores.getRelative(face));
+//    public static void breakOres(Block ores) {
+//        if (ores.getType() != Material.IRON_ORE && ores.getType() != Material.COAL_ORE) return;
+//        ores.breakNaturally();
+//        for (BlockFace face : BlockFace.values())
+//            breakOres(ores.getRelative(face));
+//
+//    }
+//
+//    @EventHandler
+//    public void onBreak(BlockBreakEvent e) {
+//        Player p = e.getPlayer();
+//        Block b = e.getBlock();
+//        ItemStack item = p.getInventory().getItemInHand();
+//        if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§aMiner") && (b.getType()
+//                == Material.IRON_ORE || b.getType() == Material.COAL_ORE) && minerList.contains(p)) {
+//            breakOres(b);
+//        }
+//    }
 
-    }
-
-    @EventHandler
-    public void onBreak(BlockBreakEvent e) {
-        Player p = e.getPlayer();
-        Block b = e.getBlock();
-        ItemStack item = p.getInventory().getItemInHand();
-        if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§aMiner") && (b.getType()
-                == Material.IRON_ORE || b.getType() == Material.COAL_ORE) && minerList.contains(p)) {
-            breakOres(b);
-        }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cQuebre um minério e receba todos");
+        list.add("§cos outros proximos a ele");
+        return list;
     }
 }

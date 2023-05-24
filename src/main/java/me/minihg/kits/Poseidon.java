@@ -10,6 +10,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Poseidon implements Listener {
     public static ArrayList<Player> poseidonList = new ArrayList<>();
@@ -26,6 +27,11 @@ public class Poseidon implements Listener {
                 p.addPotionEffect(strength);
             }
         }
-
+    }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cFique mais forte quando entrar em contato");
+        list.add("§ccom a água");
+        return list;
     }
 }

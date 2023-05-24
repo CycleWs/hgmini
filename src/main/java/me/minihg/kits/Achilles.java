@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Achilles implements Listener {
 
@@ -44,6 +45,14 @@ public class Achilles implements Listener {
             }
         }
 
+    }
+
+
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cSeja quase imune a qualquer tipo de espada");
+        list.add("§cPorem, receberá um dano mortal de itens de madeira");
+        return list;
     }
 
     private boolean isCritical(Player p) {

@@ -13,6 +13,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Worm implements Listener {
     public static ArrayList<Player> wormList = new ArrayList<>();
@@ -37,12 +38,20 @@ public class Worm implements Listener {
             Player p = (Player) e.getEntity();
             Material blockFall = p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType();
             if(wormList.contains(p) && Main.inGame){
-                if(e.getEntity() instanceof Player && (e.getCause().equals(EntityDamageEvent.DamageCause.FALL) && blockFall == Material.DIRT) && wormList.contains(p)){
+                if(e.getEntity() instanceof Player && (e.getCause().equals(EntityDamageEvent.DamageCause.FALL)
+                        && blockFall == Material.DIRT) && wormList.contains(p)){
                     e.setCancelled(true);
                 }
             }
 
         }
+    }
+    public static List<String> getKitDescription() {
+        List<String> list = new ArrayList<>();
+        list.add("§cQuebre blocos de terra instantaneamente,");
+        list.add("§creceba regeneração e não tome dano de");
+        list.add("§cqueda caso caia em um bloco de terra");
+        return list;
     }
 
 }

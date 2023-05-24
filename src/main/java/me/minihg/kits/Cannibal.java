@@ -10,6 +10,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Cannibal implements Listener {
@@ -29,7 +30,12 @@ public class Cannibal implements Listener {
                         damage.setFoodLevel(damage.getFoodLevel() - 2);
                 }
             }
-
         }
+    }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cRegenere sua fome ao hitar seus inimigos e");
+        list.add("§cos deixe com fome");
+        return list;
     }
 }

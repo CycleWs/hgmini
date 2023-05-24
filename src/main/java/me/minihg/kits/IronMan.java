@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class IronMan implements Listener {
 
@@ -19,5 +20,10 @@ public class IronMan implements Listener {
         if((death.getKiller() == killer) /*&& (killer : ironmanList)*/){
             killer.getInventory().addItem().equals(Material.IRON_INGOT);
         }
+    }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cA cada kill feita, receba um iron");
+        return list;
     }
 }

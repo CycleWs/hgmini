@@ -9,6 +9,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Viper implements Listener {
@@ -23,4 +24,10 @@ public class Viper implements Listener {
                     damage.addPotionEffect(new PotionEffect(PotionEffectType.POISON,120,0),true);
             }
         }
+    public static List<String> getKitDescription() {
+        List<String> list = new ArrayList<>();
+        list.add("§cDeixe seus inimigos envenenados quando");
+        list.add("§cestiverem em combate");
+        return list;
+    }
 }

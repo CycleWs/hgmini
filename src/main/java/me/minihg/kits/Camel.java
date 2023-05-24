@@ -11,6 +11,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Camel implements Listener {
     public static ArrayList<Player> camelList = new ArrayList<>();
@@ -29,5 +30,11 @@ public class Camel implements Listener {
                 p.addPotionEffect(resistance);
             }
         }
+    }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cSeja mais forte quando estiver");
+        list.add("§cNos biomas de deserto");
+        return list;
     }
 }

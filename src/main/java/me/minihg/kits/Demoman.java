@@ -57,5 +57,11 @@ public class Demoman implements Listener {
             b.getWorld().createExplosion(ex,5F);
         }
     }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cPlante armadilhas no chão que explodirão");
+        list.add("§cquando seus inimigos pisarem nela");
+        return list;
+    }
 
 }

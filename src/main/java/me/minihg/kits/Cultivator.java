@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.material.Crops;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cultivator implements Listener {
     public static ArrayList<Player> cultivatorList = new ArrayList<>();
@@ -41,8 +42,13 @@ public class Cultivator implements Listener {
             if(b.getType() == Material.CROPS){
                 Crops c = (Crops)b.getState();
                 c.setState(CropState.RIPE);
+                }
             }
         }
-        }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cPlante comida e faça ela crescer instantaneamente");
+        return list;
+    }
 
 }

@@ -17,7 +17,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class Titan implements Listener {
@@ -58,5 +60,11 @@ public class Titan implements Listener {
         if(titanTimer.containsKey(p.getUniqueId()) && e.getEntity() instanceof Player){
             e.setCancelled(true);
         }
+    }
+    public static List<String> getKitDescription() {
+        List<String> list = new ArrayList<>();
+        list.add("§cFique imortal por 10 segundos quando");
+        list.add("§cusar o seu item");
+        return list;
     }
 }

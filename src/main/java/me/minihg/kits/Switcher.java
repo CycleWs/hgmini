@@ -17,13 +17,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Switcher implements Listener {
     private static Integer shed_id = null;
     public static ArrayList<Player> switcherList = new ArrayList<>();
 
     public static ItemStack switcher;
-    public static boolean Switcher(Player p){
+
+    public static boolean Switcher(Player p) {
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         switcher = new ItensConfig(Material.SNOW_BALL, 1, (short) 0)
                 .setName("§aSwitcher")
@@ -38,9 +40,9 @@ public class Switcher implements Listener {
     }
 
     @EventHandler
-    public void switcherEvent(EntityDamageByEntityEvent e){
+    public void switcherEvent(EntityDamageByEntityEvent e) {
         Player p = (Player) e.getDamager();
-        if(switcherList.contains(p) && Main.inGame){
+        if (switcherList.contains(p) && Main.inGame) {
             if (e.getDamager() instanceof Snowball) {
                 Snowball snowball = (Snowball) e.getDamager();
                 Player shooter = (Player) snowball.getShooter();
@@ -49,12 +51,12 @@ public class Switcher implements Listener {
                 if (snowball.getShooter() instanceof Player && (itemKit.getItemMeta().getDisplayName().equalsIgnoreCase("§aSwitcher"))) {
                     Location shooterLoc = shooter.getLocation();
                     Location hitPlayerLoc = hitPlayer.getLocation();
-                    if(Cooldown.checkCooldown(shooter)){
+                    if (Cooldown.checkCooldown(shooter)) {
                         shooter.teleport(hitPlayerLoc);
                         hitPlayer.teleport(shooterLoc);
                         shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
                         Cooldown.setCooldown(shooter, 5);
-                    }else{
+                    } else {
                         shooter.sendMessage("§cVocê não pode utilizar o kit por: " + Cooldown.getCooldown(shooter) + " Segundos");
                         shooter.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 1));
                         e.setCancelled(true);
@@ -66,13 +68,19 @@ public class Switcher implements Listener {
     }
 
     @EventHandler
-    public void switcherCooldownVerify(PlayerInteractEvent e){
+    public void switcherCooldownVerify(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         ItemStack item = p.getInventory().getItemInHand();
-        if((e.getAction() == Action.RIGHT_CLICK_AIR) && (item.getType() == Material.SNOW_BALL) && (switcherList.contains(p))){
+        if ((e.getAction() == Action.RIGHT_CLICK_AIR) && (item.getType() == Material.SNOW_BALL) && (switcherList.contains(p))) {
             e.setCancelled(true);
             Bukkit.broadcastMessage("UEU");
         }
+    }
 
+    public static List<String> getKitDescription() {
+        List<String> list = new ArrayList<>();
+        list.add("§cAo jogar sua bolinha de neve no seu inimigo");
+        list.add("§ctrocará de lugar com ele");
+        return list;
     }
 }

@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Stomper implements Listener {
 
@@ -30,6 +31,12 @@ public class Stomper implements Listener {
                 event.setDamage(event.getDamage() > 4 ? 4 : event.getDamage());
             }
         }
-
+    }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cReceba apenas 2 corações de dano de queda de qualquer altura");
+        list.add("§ce transfira todo o dano de queda para os inimigos próximos ");
+        list.add("§cde onde você pular ");
+        return list;
     }
 }

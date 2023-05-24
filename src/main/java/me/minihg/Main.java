@@ -1,6 +1,7 @@
 package me.minihg;
 
 import me.minihg.api.Files;
+import me.minihg.commands.Commands;
 import me.minihg.events.*;
 import me.minihg.kits.*;
 import me.minihg.stages.InGameStage;
@@ -57,6 +58,7 @@ public class Main extends JavaPlugin{
             Bukkit.getWorld("world").setSpawnLocation(0,100,0);
             registerEvents();
             registerKitEvents();
+            registerCommands();
             Cooldown.setupCooldown();
             Titan.setupCooldown();
             new PreGame();
@@ -83,6 +85,9 @@ public class Main extends JavaPlugin{
             Bukkit.getPluginManager().registerEvents(new InGameEvents(), this);
             Bukkit.getPluginManager().registerEvents(new UndroppableItens(), this);
     }
+    public void registerCommands(){
+            getCommand("kit").setExecutor(new Commands());
+    }
     public void registerKitEvents(){
             //Bukkit.getPluginManager().registerEvents(new Achilles(), this);
             //Bukkit.getPluginManager().registerEvents(new Switcher(), this); //- DAR ITEM
@@ -91,8 +96,8 @@ public class Main extends JavaPlugin{
             //Bukkit.getPluginManager().registerEvents(new Explorer(), this);
             //Bukkit.getPluginManager().registerEvents(new Fireman(), this); - DAR ITEM
             //Bukkit.getPluginManager().registerEvents(new Grandpa(), this); - DAR ITEM E TESTAR
-            Bukkit.getPluginManager().registerEvents(new Miner(), this);
-            Bukkit.getPluginManager().registerEvents(new Lumberjack(), this);
+            //Bukkit.getPluginManager().registerEvents(new Miner(), this);
+            //Bukkit.getPluginManager().registerEvents(new Lumberjack(), this);
             //Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
             //Bukkit.getPluginManager().registerEvents(new Stomper(), this);
             //Bukkit.getPluginManager().registerEvents(new Fisherman(), this); - FZR

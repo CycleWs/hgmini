@@ -10,6 +10,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Reaper implements Listener {
@@ -27,4 +28,9 @@ public class Reaper implements Listener {
                 }
             }
         }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cDê efeito de decomposição aos seus inimigos");
+        return list;
+    }
     }

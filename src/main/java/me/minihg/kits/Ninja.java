@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Ninja implements Listener {
 
@@ -45,6 +46,11 @@ public class Ninja implements Listener {
                 }
             }
         }
-
+    }
+    public static List<String> getKitDescription(){
+        List<String> list = new ArrayList<>();
+        list.add("§cAo bater em seu inimigo, teleporte");
+        list.add("§cpara ele ao pressionar shift");
+        return list;
     }
 }

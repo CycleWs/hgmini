@@ -97,5 +97,12 @@ public class Thor implements Listener {
         tnt.setFuseTicks(0);
         tnt.setYield(2.0F);
     }
+    public static List<String> getKitDescription() {
+        List<String> list = new ArrayList<>();
+        list.add("§cClickando no chão com o seu machado");
+        list.add("§cinvoque um raio que dará dano aos");
+        list.add("§cinimigos próximos");
+        return list;
+    }
 
 }
