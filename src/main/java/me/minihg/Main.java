@@ -89,32 +89,33 @@ public class Main extends JavaPlugin{
             getCommand("kit").setExecutor(new Commands());
     }
     public void registerKitEvents(){
-            //Bukkit.getPluginManager().registerEvents(new Achilles(), this);
-            //Bukkit.getPluginManager().registerEvents(new Switcher(), this); //- DAR ITEM
-            //Bukkit.getPluginManager().registerEvents(new Ninja(), this);
-            //Bukkit.getPluginManager().registerEvents(new Camel(), this);
-            //Bukkit.getPluginManager().registerEvents(new Explorer(), this);
-            //Bukkit.getPluginManager().registerEvents(new Fireman(), this); - DAR ITEM
-            //Bukkit.getPluginManager().registerEvents(new Grandpa(), this); - DAR ITEM E TESTAR
-            //Bukkit.getPluginManager().registerEvents(new Miner(), this);
-            //Bukkit.getPluginManager().registerEvents(new Lumberjack(), this);
-            //Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
-            //Bukkit.getPluginManager().registerEvents(new Stomper(), this);
-            //Bukkit.getPluginManager().registerEvents(new Fisherman(), this); - FZR
-            //Bukkit.getPluginManager().registerEvents(new Reaper(), this);
-            //Bukkit.getPluginManager().registerEvents(new Viper(), this);
-            //Bukkit.getPluginManager().registerEvents(new Boxer(), this); - ARRUMAR
-            //Bukkit.getPluginManager().registerEvents(new Worm(), this);
-            //Bukkit.getPluginManager().registerEvents(new Thor(), this);
-            //Bukkit.getPluginManager().registerEvents(new Digger(), this); - FZR
-            //Bukkit.getPluginManager().registerEvents(new Demoman(), this);
-            //Bukkit.getPluginManager().registerEvents(new Cannibal(), this);
-            //Bukkit.getPluginManager().registerEvents(new Cultivator(), this);
-            //Bukkit.getPluginManager().registerEvents(new Snail(), this);
-            //Bukkit.getPluginManager().registerEvents(new Monk(), this);
-            //Bukkit.getPluginManager().registerEvents(new Titan(), this);
-            //Bukkit.getPluginManager().registerEvents(new Turtle(), this);
-            //Bukkit.getPluginManager().registerEvents(new IronMan(), this); - ARRUMAR
+//            Bukkit.getPluginManager().registerEvents(new Achilles(), this);
+//            Bukkit.getPluginManager().registerEvents(new Switcher(), this); //- DAR ITEM
+              Bukkit.getPluginManager().registerEvents(new Ninja(), this);
+//            Bukkit.getPluginManager().registerEvents(new Camel(), this);
+//            Bukkit.getPluginManager().registerEvents(new Explorer(), this);
+//            Bukkit.getPluginManager().registerEvents(new Fireman(), this); //- DAR ITEM
+//            Bukkit.getPluginManager().registerEvents(new Grandpa(), this); //- DAR ITEM E TESTAR
+              Bukkit.getPluginManager().registerEvents(new Miner(), this);
+              Bukkit.getPluginManager().registerEvents(new Lumberjack(), this);
+              Bukkit.getPluginManager().registerEvents(new Poseidon(), this);
+//            Bukkit.getPluginManager().registerEvents(new Stomper(), this);
+//            Bukkit.getPluginManager().registerEvents(new Fisherman(), this);// - FZR
+              Bukkit.getPluginManager().registerEvents(new Reaper(), this);
+//            Bukkit.getPluginManager().registerEvents(new Viper(), this);
+//            Bukkit.getPluginManager().registerEvents(new Boxer(), this); //- ARRUMAR
+//            Bukkit.getPluginManager().registerEvents(new Worm(), this);
+//            Bukkit.getPluginManager().registerEvents(new Thor(), this);
+//            Bukkit.getPluginManager().registerEvents(new Digger(), this); //- FZR
+              Bukkit.getPluginManager().registerEvents(new Demoman(), this);
+//            Bukkit.getPluginManager().registerEvents(new Cannibal(), this);
+//            Bukkit.getPluginManager().registerEvents(new Cultivator(), this);
+              Bukkit.getPluginManager().registerEvents(new Snail(), this);
+              Bukkit.getPluginManager().registerEvents(new IronMan(), this);
+              Bukkit.getPluginManager().registerEvents(new Monk(), this);
+//            Bukkit.getPluginManager().registerEvents(new Titan(), this);
+              Bukkit.getPluginManager().registerEvents(new Turtle(), this);
+//            Bukkit.getPluginManager().registerEvents(new IronMan(), this);// - ARRUMAR
     }
 
     public static void startMatch(){

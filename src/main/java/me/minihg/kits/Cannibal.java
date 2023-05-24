@@ -22,7 +22,7 @@ public class Cannibal implements Listener {
         if (e.getEntity() instanceof Player && e.getDamager() instanceof Player){
             Player damager = (Player) e.getDamager();
             Player damage = (Player) e.getEntity();
-            if(cannibalList.contains(damage) && Main.inGame){
+            if((KitSelector.kitMap.containsKey(damage) && KitSelector.kitMap.containsValue(3)) && Main.inGame){
                 if(new Random().nextInt(3) == 1)damage.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,120,0),true);
                 if(damager.getFoodLevel() < 20){
                     damager.setFoodLevel(damager.getFoodLevel() + 2);

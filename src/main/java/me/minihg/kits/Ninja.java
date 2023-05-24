@@ -23,7 +23,7 @@ public class Ninja implements Listener {
     public void ninjaEvent(EntityDamageByEntityEvent e){
         ninja = (Player) e.getDamager();
         hitedPlayer = (Player) e.getEntity();
-        if(ninjaList.contains(ninja)){
+        if(KitSelector.kitMap.containsKey(ninja) && KitSelector.kitMap.containsValue(15) && Main.inGame){
             if((e.getDamager() instanceof Player && e.getEntity() instanceof Player)){
                 ninjaListTeleport.remove(hitedPlayer,ninja);
                 ninjaListTeleport.put(hitedPlayer, ninja);
@@ -34,7 +34,7 @@ public class Ninja implements Listener {
     @EventHandler
     public void ninjaSneak(PlayerToggleSneakEvent e){
         Player PlayerSneaked = e.getPlayer();
-        if(ninjaList.contains(PlayerSneaked) && Main.inGame){
+        if((KitSelector.kitMap.containsKey(PlayerSneaked) && KitSelector.kitMap.containsValue(15)) && Main.inGame){
             if((ninjaListTeleport.containsKey(hitedPlayer) && ninjaListTeleport.containsValue(ninja) && PlayerSneaked == ninja)){
                 if(Cooldown.checkCooldown(PlayerSneaked)){
                     Location LocPlayerTP = hitedPlayer.getLocation();

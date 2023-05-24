@@ -21,7 +21,7 @@ public class Poseidon implements Listener {
         Material m = p.getLocation().getBlock().getType();
         PotionEffect speed = new PotionEffect(PotionEffectType.SPEED,100,1);
         PotionEffect strength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE,100,0);
-        if(poseidonList.contains(p) && Main.inGame){
+        if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(16)) && Main.inGame){
             if((m == Material.STATIONARY_WATER) || (m == Material.WATER)){
                 p.addPotionEffect(speed);
                 p.addPotionEffect(strength);

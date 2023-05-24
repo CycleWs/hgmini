@@ -25,7 +25,7 @@ public class Achilles implements Listener {
             Player p = (Player) e.getEntity();
             Player damager = (Player) e.getDamager();
 
-            if(achillesList.contains(p) && Main.inGame){
+            if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(0))  && Main.inGame){
                 if(damager.getInventory().getItemInHand().getType() == Material.WOOD_SWORD||
                         damager.getInventory().getItemInHand().getType() == Material.WOOD_AXE ||
                         damager.getInventory().getItemInHand().getType() == Material.WOOD_HOE ||

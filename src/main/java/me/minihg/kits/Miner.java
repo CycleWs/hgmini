@@ -20,7 +20,7 @@ public class Miner implements Listener {
     public static ArrayList<Player> minerList = new ArrayList<>();
 
     public static ItemStack miner;
-    public static boolean minerKit(Player p){
+    public static boolean miner(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         miner = new ItensConfig(Material.STONE_PICKAXE, 1, (short) 0)
                 .setName("§aMiner")
@@ -34,24 +34,26 @@ public class Miner implements Listener {
         return true;
     }
 
-//    public static void breakOres(Block ores) {
-//        if (ores.getType() != Material.IRON_ORE && ores.getType() != Material.COAL_ORE) return;
-//        ores.breakNaturally();
-//        for (BlockFace face : BlockFace.values())
-//            breakOres(ores.getRelative(face));
-//
-//    }
-//
-//    @EventHandler
-//    public void onBreak(BlockBreakEvent e) {
-//        Player p = e.getPlayer();
-//        Block b = e.getBlock();
-//        ItemStack item = p.getInventory().getItemInHand();
-//        if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§aMiner") && (b.getType()
-//                == Material.IRON_ORE || b.getType() == Material.COAL_ORE) && minerList.contains(p)) {
-//            breakOres(b);
-//        }
-//    }
+    public static void breakOres(Block ores) {
+        if (ores.getType() != Material.IRON_ORE && ores.getType() != Material.COAL_ORE) return;
+        ores.breakNaturally();
+        for (BlockFace face : BlockFace.values())
+            breakOres(ores.getRelative(face));
+
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent e) {
+        Player p = e.getPlayer();
+        Block b = e.getBlock();
+        ItemStack item = p.getInventory().getItemInHand();
+        if ((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(12))
+                && item.getType() == miner.getType()
+                && (b.getType() == Material.IRON_ORE
+                || b.getType() == Material.COAL_ORE)) {
+            breakOres(b);
+        }
+    }
 
     public static List<String> getKitDescription(){
         List<String> list = new ArrayList<>();

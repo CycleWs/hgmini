@@ -35,7 +35,7 @@ public class Cultivator implements Listener {
     @EventHandler
     public void onInt(PlayerInteractEvent e){
         Player p = e.getPlayer();
-        if(cultivatorList.contains(p) && Main.inGame){
+        if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(4)) && Main.inGame){
             if(e.getClickedBlock() == null)
                 return;
             Block b = e.getClickedBlock().getRelative(BlockFace.UP);

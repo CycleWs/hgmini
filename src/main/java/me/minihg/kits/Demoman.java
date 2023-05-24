@@ -29,11 +29,15 @@ public class Demoman implements Listener {
     @EventHandler
     public void onPlace(BlockPlaceEvent e){
         Block placed = e.getBlock();
-        if(placed.getType() != Material.STONE_PLATE)
-            return;
-        if(placed.getRelative(BlockFace.DOWN).getType() != Material.GRAVEL)
-            return;
-        traps.add(placed);
+        Player p = e.getPlayer();
+        if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(5))){
+            if(placed.getType() != Material.STONE_PLATE)
+                return;
+            if(placed.getRelative(BlockFace.DOWN).getType() != Material.GRAVEL)
+                return;
+            traps.add(placed);
+        }
+
     }
     @EventHandler
     public void onBreak(BlockBreakEvent e){
@@ -49,13 +53,19 @@ public class Demoman implements Listener {
     public void onInteract(PlayerInteractEvent e){
         if(!(e.getAction() == Action.PHYSICAL))
             return;
+        Player p = e.getPlayer();
         Block b = e.getClickedBlock();
         Location ex = b.getRelative(BlockFace.UP).getLocation();
-        if(b.getType() == Material.STONE_PLATE && traps.contains(b)){
-            traps.remove(b);
-            b.setType(Material.AIR);
-            b.getWorld().createExplosion(ex,5F);
+        if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(5))){
+            p.sendMessage("§cVocê não pode ativar sua propria armadilha");
+        }else{
+            if(b.getType() == Material.STONE_PLATE && traps.contains(b)){
+                traps.remove(b);
+                b.setType(Material.AIR);
+                b.getWorld().createExplosion(ex,5F);
+            }
         }
+
     }
     public static List<String> getKitDescription(){
         List<String> list = new ArrayList<>();

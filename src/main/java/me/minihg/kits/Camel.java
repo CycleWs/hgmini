@@ -23,7 +23,7 @@ public class Camel implements Listener {
         PotionEffect regeneration = new PotionEffect(PotionEffectType.REGENERATION,120,0);
         PotionEffect resistance = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,120,0);
 
-        if(camelList.contains(p) && Main.inGame){
+        if(((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(2)) && Main.inGame)){
             if(p.getWorld().getBiome(p.getLocation().getBlockX(), p.getLocation().getBlockZ()).equals(Biome.DESERT)){
                 p.addPotionEffect(speed);
                 p.addPotionEffect(regeneration);

@@ -71,17 +71,13 @@ public class Commands implements CommandExecutor {
                     Demoman.getKitDescription();
                     return true;
                 }
-                if(args[0].equalsIgnoreCase("Explorer")){
-                    Explorer.explorerList.add(p);
-                    KitSelector.kitMap.put(p,7);
-                    Explorer.getKitDescription();
+                if(args[0].equalsIgnoreCase("snail")){
+                    KitSelector.kitMap.put(p,18);
+                    Miner.miner(p);
                     return true;
                 }
-                if(args[0].equalsIgnoreCase("Fireman")){
-                    Fireman.firemanList.add(p);
-                    Fireman.fireman(p);
-                    KitSelector.kitMap.put(p,8);
-                    Fireman.getKitDescription();
+                if(args[0].equalsIgnoreCase("turtle")){
+                    KitSelector.kitMap.put(p,23);
                     return true;
                 }
             }

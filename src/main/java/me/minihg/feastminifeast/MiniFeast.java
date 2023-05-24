@@ -2,6 +2,7 @@ package me.minihg.feastminifeast;
 
 import me.minihg.api.Files;
 import me.minihg.kits.Explorer;
+import me.minihg.kits.KitSelector;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -80,7 +81,7 @@ public class MiniFeast {
             int g = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
             for(int i = 0; i < g; ++i){
                 Player pe = arrayOfPlayer[i];
-                if(Explorer.explorerList.contains(pe)){
+                if((KitSelector.kitMap.containsKey(pe) && KitSelector.kitMap.containsValue(6))){
                     pe.sendMessage(("§cO Mini Feast spawnou exatamente em: §fX: (" + (mainBlock.getLocation().getX()) + " ‚§7e ‚§f"
                             + df.format(mainBlock.getLocation().getZ()) + ")"));
                 }else {

@@ -43,7 +43,7 @@ public class InGameStage {
                 int Z = (int) FeastManager.mainBlock.getLocation().getZ();
                 Bukkit.broadcastMessage("§bO Feast nasceu em X:§e " + X + " §bY:§e " + Y + " §bZ:§e " + Z);
             }
-            if(Main.InGameTime == 20){
+            if(Main.InGameTime == 2000){
                 World world = Bukkit.getWorld("world");
                 List<Entity> entList = world.getEntities();
                 for(Entity current : entList){

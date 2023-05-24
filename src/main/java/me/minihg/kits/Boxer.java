@@ -15,13 +15,17 @@ public class Boxer implements Listener {
     public void onDamage(EntityDamageByEntityEvent event) {
         if ((event.getDamager() instanceof Player)) {
             Player p = (Player) event.getDamager();
-            if ((p.getItemInHand() == null))
-                event.setDamage(5);
+            if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(1))){
+                if ((p.getItemInHand() == null))
+                    event.setDamage(5);
+            }
         }
         if ((event.getEntity() instanceof Player)) {
             Player damaged = (Player) event.getEntity();
-            if ((event.getDamage() > 1))
-                event.setDamage(event.getDamage() - 1);
+            if((KitSelector.kitMap.containsKey(damaged) && KitSelector.kitMap.containsValue(1))){
+                if ((event.getDamage() > 1))
+                    event.setDamage(event.getDamage() - 1);
+            }
         }
     }
     public static List<String> getKitDescription(){

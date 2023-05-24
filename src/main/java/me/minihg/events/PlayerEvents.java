@@ -2,6 +2,7 @@ package me.minihg.events;
 
 import me.minihg.Main;
 import me.minihg.kits.Miner;
+import me.minihg.kits.Ninja;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -128,9 +129,7 @@ public class PlayerEvents implements Listener {
             //Bukkit.broadcastMessage("§cinvencibilidade = " + Main.Invincibility);
             //Bukkit.broadcastMessage("§epregame = "+Main.PreGame);
             //Bukkit.broadcastMessage("§cEm jogo? = " + Main.inGame);
-            Miner.minerKit(p);
-            UndroppableItens.undroppableItens.add(miner);
-            minerList.add(p);
+            Ninja.ninjaList.add(p);
             return true;
         }
         return false;

@@ -19,13 +19,17 @@ public class Lumberjack implements Listener {
     public static ArrayList<Player> lumberjackList = new ArrayList<>();
     public static ItemStack lumberjack;
 
-    public static boolean Lumberjack(Player p) {
+    public static boolean lumberjack(Player p) {
+        ItemStack Bussola = new ItemStack(Material.COMPASS);
         lumberjack = new ItensConfig(Material.WOOD_AXE, 1, (short) 0)
                 .setName("§aLumberJack")
                 .setUnbreakable()
                 .getItemStack();
 
         UndroppableItens.undroppableItens.add(lumberjack);
+        p.getInventory().clear();
+        p.getInventory().addItem(lumberjack);
+        p.getInventory().addItem(Bussola);
         return true;
     }
 
@@ -37,17 +41,19 @@ public class Lumberjack implements Listener {
 
     }
 
-//    @EventHandler
-//    public void onBreak(BlockBreakEvent e) {
-//        Player p = e.getPlayer();
-//        ItemStack item = p.getInventory().getItemInHand();
-//        Block b = e.getBlock();
-//
-//        if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§aLumberJack") && b.getType()
-//                == Material.LOG || b.getType() == Material.LOG_2) {
-//            breakTree(b);
-//        }
-//    }
+    @EventHandler
+    public void onBreak(BlockBreakEvent e) {
+        Player p = e.getPlayer();
+        ItemStack item = p.getInventory().getItemInHand();
+        Block b = e.getBlock();
+
+        if ((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(11))
+                && item.getType() == lumberjack.getType()
+                && b.getType()== Material.LOG
+                || b.getType() == Material.LOG_2) {
+            breakTree(b);
+        }
+    }
 
     public static List<String> getKitDescription(){
         List<String> list = new ArrayList<>();
