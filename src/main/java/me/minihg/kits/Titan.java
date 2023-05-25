@@ -21,15 +21,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class Titan implements Listener {
 
-    public static HashMap<UUID, Double> titanTimer;
-
-    public static void setupCooldown(){
-        titanTimer = new HashMap<>();
-    }
-
+    private HashMap<Player, Long> titanTimer = new HashMap<>();
     public static ItemStack titan;
     public static boolean Titan(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
@@ -48,19 +44,29 @@ public class Titan implements Listener {
     public void titanEvent(PlayerInteractEvent e){
         Player p =  e.getPlayer();
         ItemStack itemKit = p.getInventory().getItemInHand();
-
-        if(e.getAction() == Action.RIGHT_CLICK_AIR && (itemKit.getItemMeta().getDisplayName().equalsIgnoreCase("§aTitan"))){
-            Cooldown.setCooldown(p,5);
+        if(Cooldown.checkCooldown(p)){
+            if(e.getAction() == Action.RIGHT_CLICK_AIR && (itemKit.getType() == titan.getType())){
+                titanTimer.put(p, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(10));
             }
+        }else{
+            p.sendMessage("§cCooldown por: "+Cooldown.getCooldown(p));
         }
+    }
 
     @EventHandler
     public void titanDamage(EntityDamageEvent e){
         Player p = (Player) e.getEntity();
-        if(titanTimer.containsKey(p.getUniqueId()) && e.getEntity() instanceof Player){
+        if((KitSelector.kitMap.containsKey(p)
+                && KitSelector.kitMap.containsValue(22))
+                &&titanTimer.containsKey(p)
+                && !(System.currentTimeMillis() >= titanTimer.get(p))
+                && e.getEntity() instanceof Player){
             e.setCancelled(true);
+        }else{
+            e.setCancelled(false);
         }
     }
+
     public static List<String> getKitDescription() {
         List<String> list = new ArrayList<>();
         list.add("§cFique imortal por 10 segundos quando");

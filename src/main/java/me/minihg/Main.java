@@ -60,7 +60,6 @@ public class Main extends JavaPlugin{
             registerKitEvents();
             registerCommands();
             Cooldown.setupCooldown();
-            Titan.setupCooldown();
             new PreGame();
 
             ShapelessRecipe cocoaSoup = (new ShapelessRecipe(new ItemStack(Material.MUSHROOM_SOUP, 1)))
@@ -104,7 +103,7 @@ public class Main extends JavaPlugin{
               Bukkit.getPluginManager().registerEvents(new Reaper(), this);
 //            Bukkit.getPluginManager().registerEvents(new Viper(), this);
 //            Bukkit.getPluginManager().registerEvents(new Boxer(), this); //- ARRUMAR
-//            Bukkit.getPluginManager().registerEvents(new Worm(), this);
+              Bukkit.getPluginManager().registerEvents(new Worm(), this);
 //            Bukkit.getPluginManager().registerEvents(new Thor(), this);
 //            Bukkit.getPluginManager().registerEvents(new Digger(), this); //- FZR
               Bukkit.getPluginManager().registerEvents(new Demoman(), this);
@@ -113,7 +112,7 @@ public class Main extends JavaPlugin{
               Bukkit.getPluginManager().registerEvents(new Snail(), this);
               Bukkit.getPluginManager().registerEvents(new IronMan(), this);
               Bukkit.getPluginManager().registerEvents(new Monk(), this);
-//            Bukkit.getPluginManager().registerEvents(new Titan(), this);
+              Bukkit.getPluginManager().registerEvents(new Titan(), this);
               Bukkit.getPluginManager().registerEvents(new Turtle(), this);
 //            Bukkit.getPluginManager().registerEvents(new IronMan(), this);// - ARRUMAR
     }

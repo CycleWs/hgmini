@@ -76,8 +76,8 @@ public class Commands implements CommandExecutor {
                     Miner.miner(p);
                     return true;
                 }
-                if(args[0].equalsIgnoreCase("turtle")){
-                    KitSelector.kitMap.put(p,23);
+                if(args[0].equalsIgnoreCase("titan")){
+                    KitSelector.kitMap.put(p,22);
                     return true;
                 }
             }
