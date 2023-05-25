@@ -17,13 +17,19 @@ public class Turtle implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
-        Player p = (Player) e.getEntity();
-        if (KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(23) && Main.inGame) {
-            if ((e.getEntity() instanceof Player)) {
-                if ((p.isSneaking()) && (e.getDamage() > 1))
-                    e.setDamage(1);
+        if(!(e.getEntity() instanceof Player)){
+            //the sender is not a Player
+            return;
+        }else{
+            Player p = (Player) e.getEntity();
+            if (KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(23) && Main.inGame) {
+                if ((e.getEntity() instanceof Player)) {
+                    if ((p.isSneaking()) && (e.getDamage() > 1))
+                        e.setDamage(1);
+                }
             }
         }
+
     }
     @EventHandler
     public void onDamage1(EntityDamageByEntityEvent e) {

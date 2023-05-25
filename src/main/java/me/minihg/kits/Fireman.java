@@ -31,12 +31,16 @@ public class Fireman implements Listener{
 
     @EventHandler
     public void onFireman(EntityDamageEvent e) {
-        Player p = (Player) e.getEntity();
-        if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(7)) && Main.inGame){
-            if (e.getEntity() instanceof Player && ((e.getCause().equals(EntityDamageEvent.DamageCause.LAVA))
-                    || (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK))
-                    || (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE)))){
-                e.setCancelled(true);
+        if(!(e.getEntity() instanceof Player)){
+            return ;
+        }else{
+            Player p = (Player) e.getEntity();
+            if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(7)) && Main.inGame){
+                if (e.getEntity() instanceof Player && ((e.getCause().equals(EntityDamageEvent.DamageCause.LAVA))
+                        || (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK))
+                        || (e.getCause().equals(EntityDamageEvent.DamageCause.FIRE)))){
+                    e.setCancelled(true);
+                }
             }
         }
     }

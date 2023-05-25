@@ -26,7 +26,7 @@ public class Thor implements Listener {
     public static ArrayList<Player> thorList = new ArrayList<>();
 
     public static ItemStack thor;
-    public static boolean Thor(Player p){
+    public static boolean thor(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         thor = new ItensConfig(Material.WOOD_AXE, 1, (short) 0)
                 .setName("§aThor")
@@ -44,8 +44,8 @@ public class Thor implements Listener {
     public void onInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         ItemStack itemKit = p.getItemInHand();
-        if(thorList.contains(p) && Main.inGame){
-            if ((event.getAction() == Action.RIGHT_CLICK_BLOCK) && (itemKit.getItemMeta().getDisplayName().equalsIgnoreCase("§aThor"))) {
+        if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.containsValue(21) && Main.inGame){
+            if ((event.getAction() == Action.RIGHT_CLICK_BLOCK) && itemKit.getType() == Material.WOOD_AXE) {
                 if(Cooldown.checkCooldown(p)){
                     p.getWorld().strikeLightningEffect(p.getWorld().getHighestBlockAt(event.getClickedBlock().getLocation()).getLocation());
                     for (Entity entity : Bukkit.getWorld("world").getEntities()) {

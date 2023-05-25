@@ -18,14 +18,20 @@ public class Viper implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent e){
-        Player damager = (Player) e.getDamager();
-        Player damage = (Player) e.getEntity();
-        if((KitSelector.kitMap.containsKey(damager) && KitSelector.kitMap.containsValue(24)) && Main.inGame){
-            if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
-                if(new Random().nextInt(3) == 1)
-                    damage.addPotionEffect(new PotionEffect(PotionEffectType.POISON,120,0),true);
+        if(!(e.getEntity() instanceof Player)){
+            //the sender is not a Player
+            return;
+        }else{
+            Player damager = (Player) e.getDamager();
+            Player damage = (Player) e.getEntity();
+            if((KitSelector.kitMap.containsKey(damager) && KitSelector.kitMap.containsValue(24)) && Main.inGame){
+                if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
+                    if(new Random().nextInt(3) == 1)
+                        damage.addPotionEffect(new PotionEffect(PotionEffectType.POISON,120,0),true);
+                }
             }
         }
+
     }
     public static List<String> getKitDescription() {
         List<String> list = new ArrayList<>();

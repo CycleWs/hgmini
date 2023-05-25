@@ -1,6 +1,7 @@
 package me.minihg.commands;
 
 import me.minihg.kits.*;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,7 +39,7 @@ public class Commands implements CommandExecutor {
                 if(args[0].equalsIgnoreCase("achilles")){
                     Achilles.achillesList.add(p);
                     KitSelector.kitMap.put(p,1);
-                    Achilles.getKitDescription();
+                    Bukkit.broadcastMessage(Achilles.getKitDescription().toString());
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("boxer")){
@@ -76,8 +77,9 @@ public class Commands implements CommandExecutor {
                     Miner.miner(p);
                     return true;
                 }
-                if(args[0].equalsIgnoreCase("titan")){
-                    KitSelector.kitMap.put(p,22);
+                if(args[0].equalsIgnoreCase("thor")){
+                    Thor.thor(p);
+                    KitSelector.kitMap.put(p,21);
                     return true;
                 }
             }

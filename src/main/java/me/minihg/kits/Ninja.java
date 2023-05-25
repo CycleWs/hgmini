@@ -21,14 +21,20 @@ public class Ninja implements Listener {
     public static Player hitedPlayer;
     @EventHandler
     public void ninjaEvent(EntityDamageByEntityEvent e){
-        ninja = (Player) e.getDamager();
-        hitedPlayer = (Player) e.getEntity();
-        if(KitSelector.kitMap.containsKey(ninja) && KitSelector.kitMap.containsValue(15) && Main.inGame){
-            if((e.getDamager() instanceof Player && e.getEntity() instanceof Player)){
-                ninjaListTeleport.remove(hitedPlayer,ninja);
-                ninjaListTeleport.put(hitedPlayer, ninja);
+        if(!(e.getEntity() instanceof Player)){
+            //the sender is not a Player
+            return;
+        }else{
+            ninja = (Player) e.getDamager();
+            hitedPlayer = (Player) e.getEntity();
+            if(KitSelector.kitMap.containsKey(ninja) && KitSelector.kitMap.containsValue(15) && Main.inGame){
+                if((e.getDamager() instanceof Player && e.getEntity() instanceof Player)){
+                    ninjaListTeleport.remove(hitedPlayer,ninja);
+                    ninjaListTeleport.put(hitedPlayer, ninja);
+                }
             }
         }
+
     }
 
     @EventHandler

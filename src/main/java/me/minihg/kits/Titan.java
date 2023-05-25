@@ -27,7 +27,7 @@ public class Titan implements Listener {
 
     private HashMap<Player, Long> titanTimer = new HashMap<>();
     public static ItemStack titan;
-    public static boolean Titan(Player p){
+    public static boolean titan(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         titan = new ItensConfig(Material.BEDROCK, 1, (short) 0)
                 .setName("§aTitan")
@@ -45,26 +45,37 @@ public class Titan implements Listener {
         Player p =  e.getPlayer();
         ItemStack itemKit = p.getInventory().getItemInHand();
         if(Cooldown.checkCooldown(p)){
-            if(e.getAction() == Action.RIGHT_CLICK_AIR && (itemKit.getType() == titan.getType())){
+            if( KitSelector.kitMap.containsKey(p)
+                    && KitSelector.kitMap.containsValue(22)
+                    && (e.getAction() == Action.RIGHT_CLICK_AIR)
+                    && (itemKit.getType() == Material.BEDROCK)){
                 titanTimer.put(p, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(10));
+                Cooldown.setCooldown(p,40);
             }
-        }else{
+        }else if(KitSelector.kitMap.containsKey(p)
+                && KitSelector.kitMap.containsValue(22)){
             p.sendMessage("§cCooldown por: "+Cooldown.getCooldown(p));
         }
     }
 
     @EventHandler
     public void titanDamage(EntityDamageEvent e){
-        Player p = (Player) e.getEntity();
-        if((KitSelector.kitMap.containsKey(p)
-                && KitSelector.kitMap.containsValue(22))
-                &&titanTimer.containsKey(p)
-                && !(System.currentTimeMillis() >= titanTimer.get(p))
-                && e.getEntity() instanceof Player){
-            e.setCancelled(true);
+        if(!(e.getEntity() instanceof Player)){
+            //the sender is not a Player
+            return;
         }else{
-            e.setCancelled(false);
+            Player p = (Player) e.getEntity();
+            if((KitSelector.kitMap.containsKey(p)
+                    && KitSelector.kitMap.containsValue(22))
+                    && titanTimer.containsKey(p)
+                    && !(System.currentTimeMillis() >= titanTimer.get(p))
+                    && e.getEntity() instanceof Player){
+                e.setCancelled(true);
+            }else{
+                e.setCancelled(false);
+            }
         }
+
     }
 
     public static List<String> getKitDescription() {

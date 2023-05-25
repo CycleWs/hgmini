@@ -19,6 +19,10 @@ public class Reaper implements Listener {
 
     @EventHandler
         public void onDamage(EntityDamageByEntityEvent e){
+        if(!(e.getEntity() instanceof Player)){
+            //the sender is not a Player
+            return;
+        }else{
             Player damager = (Player) e.getDamager();
             Player damage = (Player) e.getEntity();
             if((KitSelector.kitMap.containsKey(damager) && KitSelector.kitMap.containsValue(17)) && Main.inGame){
@@ -27,6 +31,8 @@ public class Reaper implements Listener {
                         damage.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,120,0),true);
                 }
             }
+        }
+
         }
     public static List<String> getKitDescription(){
         List<String> list = new ArrayList<>();
