@@ -67,11 +67,9 @@ public class Demoman implements Listener {
         }
 
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cPlante armadilhas no chão que explodirão");
-        list.add("§cquando seus inimigos pisarem nela");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cPlante armadilhas no chão que explodirão");
+        p.sendMessage("§cquando seus inimigos pisarem nela");
     }
 
 }

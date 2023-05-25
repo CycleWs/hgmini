@@ -51,11 +51,9 @@ public class Monk implements Listener {
                 }
         }
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cEmbaralhe o inventário do seu inimigo");
-        list.add("§cao bater nele com o monk");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cEmbaralhe o inventário do seu inimigo");
+        p.sendMessage("§cao bater nele com o monk");
     }
 
 }

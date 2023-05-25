@@ -28,10 +28,8 @@ public class Boxer implements Listener {
             }
         }
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cReceba meio coração de dano a menos");
-        list.add("§cDê meio coração de dano a mais");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cReceba meio coração de dano a menos");
+        p.sendMessage("§cDê meio coração de dano a mais");
     }
 }

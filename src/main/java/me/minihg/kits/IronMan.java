@@ -20,9 +20,7 @@ public class IronMan implements Listener {
             killer.getInventory().setItem(1,new ItemStack(Material.IRON_INGOT));
         }
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cA cada kill feita, receba um iron");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cA cada kill feita, receba um ferro");
     }
 }

@@ -41,9 +41,7 @@ public class Turtle implements Listener {
             }
         }
     }
-    public static List<String> getKitDescription() {
-        List<String> list = new ArrayList<>();
-        list.add("§cReceba menos dano quando estiver agachado ");
-        return list;
+    public static void getKitDescription(Player p) {
+        p.sendMessage("§cReceba menos dano quando estiver agachado ");
     }
 }

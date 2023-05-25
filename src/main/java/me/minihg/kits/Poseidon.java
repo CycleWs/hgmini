@@ -28,10 +28,8 @@ public class Poseidon implements Listener {
             }
         }
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cFique mais forte quando entrar em contato");
-        list.add("§ccom a água");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cFique mais forte quando entrar em contato");
+        p.sendMessage("§ccom a água");
     }
 }

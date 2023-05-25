@@ -33,10 +33,7 @@ public class Viper implements Listener {
         }
 
     }
-    public static List<String> getKitDescription() {
-        List<String> list = new ArrayList<>();
-        list.add("§cDeixe seus inimigos envenenados quando");
-        list.add("§cestiverem em combate");
-        return list;
+    public static void getKitDescription(Player p) {
+        p.sendMessage("§cDeixe seus inimigos envenenados quando");
     }
 }

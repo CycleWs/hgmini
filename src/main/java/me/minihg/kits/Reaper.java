@@ -34,9 +34,7 @@ public class Reaper implements Listener {
         }
 
         }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cDê efeito de decomposição aos seus inimigos");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cDê efeito de decomposição aos seus inimigos");
     }
     }

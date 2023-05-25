@@ -48,11 +48,9 @@ public class Achilles implements Listener {
     }
 
 
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cSeja quase imune a qualquer tipo de espada");
-        list.add("§cPorem, receberá um dano mortal de itens de madeira");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cSeja quase imune a qualquer tipo de espada");
+        p.sendMessage("§cPorem, receberá um dano mortal de itens de madeira");
     }
 
     private boolean isCritical(Player p) {

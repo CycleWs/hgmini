@@ -55,9 +55,7 @@ public class Lumberjack implements Listener {
         }
     }
 
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cQuebre uma madeira e derrube a arvore inteira");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cQuebre uma madeira e derrube a arvore INTEIRA");
     }
 }

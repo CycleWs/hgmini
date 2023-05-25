@@ -77,10 +77,8 @@ public class Switcher implements Listener {
         }
     }
 
-    public static List<String> getKitDescription() {
-        List<String> list = new ArrayList<>();
-        list.add("§cAo jogar sua bolinha de neve no seu inimigo");
-        list.add("§ctrocará de lugar com ele");
-        return list;
+    public static void getKitDescription(Player p) {
+        p.sendMessage("§cAo jogar sua bolinha de neve no seu inimigo");
+        p.sendMessage("§ctrocará de lugar com ele");
     }
 }

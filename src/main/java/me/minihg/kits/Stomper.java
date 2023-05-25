@@ -32,11 +32,8 @@ public class Stomper implements Listener {
             }
         }
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cReceba apenas 2 corações de dano de queda de qualquer altura");
-        list.add("§ce transfira todo o dano de queda para os inimigos próximos ");
-        list.add("§cde onde você pular ");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cReceba apenas 2 corações de dano de queda de qualquer altura");
+        p.sendMessage("§ce transfira todo o dano de queda para os inimigos próximos ");
     }
 }

@@ -55,10 +55,8 @@ public class Miner implements Listener {
         }
     }
 
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cQuebre um minério e receba todos");
-        list.add("§cos outros proximos a ele");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cQuebre um minério e receba todos");
+        p.sendMessage("§cos outros proximos a ele");
     }
 }

@@ -31,10 +31,8 @@ public class Camel implements Listener {
             }
         }
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cSeja mais forte quando estiver");
-        list.add("§cNos biomas de deserto");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cSeja mais forte quando estiver");
+        p.sendMessage("§cNos biomas de deserto");
     }
 }

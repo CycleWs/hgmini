@@ -45,10 +45,8 @@ public class Cultivator implements Listener {
                 }
             }
         }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cPlante comida e faça ela crescer instantaneamente");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cPlante uma semente e faça ela crescer instantaneamente");
     }
 
 }

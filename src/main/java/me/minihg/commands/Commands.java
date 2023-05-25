@@ -39,47 +39,49 @@ public class Commands implements CommandExecutor {
                 if(args[0].equalsIgnoreCase("achilles")){
                     Achilles.achillesList.add(p);
                     KitSelector.kitMap.put(p,1);
-                    Bukkit.broadcastMessage(Achilles.getKitDescription().toString());
+                    Achilles.getKitDescription(p);
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("boxer")){
                     Boxer.boxerList.add(p);
                     KitSelector.kitMap.put(p,2);
-                    Boxer.getKitDescription();
+                    Boxer.getKitDescription(p);
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("camel")){
                     Camel.camelList.add(p);
                     KitSelector.kitMap.put(p,3);
-                    Camel.getKitDescription();
+                    Camel.getKitDescription(p);
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("cannibal")){
                     Cannibal.cannibalList.add(p);
                     KitSelector.kitMap.put(p,4);
-                    Cannibal.getKitDescription();
+                    Cannibal.getKitDescription(p);
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("Cultivator")){
                     Cultivator.cultivatorList.add(p);
                     KitSelector.kitMap.put(p,5);
-                    Cultivator.getKitDescription();
+                    Cultivator.getKitDescription(p);
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("Demoman")){
                     Demoman.demomanList.add(p);
                     KitSelector.kitMap.put(p,6);
-                    Demoman.getKitDescription();
+                    Demoman.getKitDescription(p);
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("snail")){
                     KitSelector.kitMap.put(p,18);
                     Miner.miner(p);
+                    Miner.getKitDescription(p);
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("thor")){
                     Thor.thor(p);
                     KitSelector.kitMap.put(p,21);
+                    Thor.getKitDescription(p);
                     return true;
                 }
             }

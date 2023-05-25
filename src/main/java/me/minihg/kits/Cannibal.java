@@ -32,10 +32,8 @@ public class Cannibal implements Listener {
             }
         }
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cRegenere sua fome ao hitar seus inimigos e");
-        list.add("§cos deixe com fome");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cRegenere sua fome ao hitar seus inimigos e");
+        p.sendMessage("§cos deixe com fome");
     }
 }

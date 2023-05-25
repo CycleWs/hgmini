@@ -47,12 +47,10 @@ public class Worm implements Listener {
 
         }
     }
-    public static List<String> getKitDescription() {
-        List<String> list = new ArrayList<>();
-        list.add("§cQuebre blocos de terra instantaneamente,");
-        list.add("§creceba regeneração e não tome dano de");
-        list.add("§cqueda caso caia em um bloco de terra");
-        return list;
+    public static void getKitDescription(Player p) {
+        p.sendMessage("§cQuebre blocos de terra instantaneamente,");
+        p.sendMessage("§creceba regeneração e não tome dano de");
+        p.sendMessage("§cqueda caso caia em um bloco de terra");
     }
 
 }

@@ -10,10 +10,8 @@ public class Explorer implements Listener {
 
     public static ArrayList<Player> explorerList = new ArrayList<>();
 
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cSaiba as localizações exatas de mini-feasts e");
-        list.add("§cdo bonus Feast");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cSaiba as localizações exatas de mini-feasts e");
+        p.sendMessage("§cdo bonus Feast");
     }
 }

@@ -53,10 +53,8 @@ public class Ninja implements Listener {
             }
         }
     }
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cAo bater em seu inimigo, teleporte");
-        list.add("§cpara ele ao pressionar shift");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cAo bater em seu inimigo, teleporte");
+        p.sendMessage("§cpara ele ao pressionar shift");
     }
 }

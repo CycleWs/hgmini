@@ -18,10 +18,8 @@ public class Fisherman implements Listener {
         Player hooker = (Player) e.getHook();
     }
 
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cTenha uma vara de pesca que puxa instantaneamente");
-        list.add("§cseus inimigos para você");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cTenha uma vara de pesca que puxa instantaneamente");
+        p.sendMessage("§cseus inimigos para você");
     }
 }

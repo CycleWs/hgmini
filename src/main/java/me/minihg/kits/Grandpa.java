@@ -29,10 +29,8 @@ public class Grandpa implements Listener {
         return true;
     }
 
-    public static List<String> getKitDescription(){
-        List<String> list = new ArrayList<>();
-        list.add("§cTenha uma bengala que joga");
-        list.add("§cseus inimigos para longe");
-        return list;
+    public static void getKitDescription(Player p){
+        p.sendMessage("§cTenha uma bengala que joga");
+        p.sendMessage("§cseus inimigos para longe");
     }
 }

@@ -78,10 +78,7 @@ public class Titan implements Listener {
 
     }
 
-    public static List<String> getKitDescription() {
-        List<String> list = new ArrayList<>();
-        list.add("§cFique imortal por 10 segundos quando");
-        list.add("§cusar o seu item");
-        return list;
+    public static void getKitDescription(Player p) {
+        p.sendMessage("§cFique imortal por 10 segundos");
     }
 }
