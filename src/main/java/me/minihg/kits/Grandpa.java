@@ -23,9 +23,7 @@ public class Grandpa implements Listener {
                 .getItemStack();
 
         UndroppableItens.undroppableItens.add(grandpa);
-        p.getInventory().clear();
         p.getInventory().addItem(grandpa);
-        p.getInventory().addItem(Bussola);
     }
 
     public static void getKitDescription(Player p){

@@ -24,9 +24,7 @@ public class Lumberjack implements Listener {
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         lumberjack = (new ItensConfig(Material.WOOD_AXE, 1, (short)0)).setName("§aLumberJack").setUnbreakable().getItemStack();
         UndroppableItens.undroppableItens.add(lumberjack);
-        p.getInventory().clear();
         p.getInventory().addItem(new ItemStack[]{lumberjack});
-        p.getInventory().addItem(new ItemStack[]{Bussola});
     }
 
     public static void breakTree(Block tree) {

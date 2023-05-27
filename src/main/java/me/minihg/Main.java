@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
+
 import me.minihg.api.Files;
 import me.minihg.commands.Commands;
 import me.minihg.events.InGameEvents;
@@ -58,19 +60,20 @@ public class Main extends JavaPlugin {
     public static Plugin instance;
     //----------PreGameInfos--------------------
     public static boolean preGame = true;
-    public static Integer startTime = 30;
-    public static Integer minPlayers = 2 ;
+    public static Integer startTime = 20;
+    public static Integer minPlayers = 1 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean invincibility = false;
-    public static Integer invincibilityTime = 10;
+    public static Integer invincibilityTime = 20;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
     public static Integer inGameTime = 0;
     public static boolean finalArena = false;
     public static boolean ending = false;
-    public static List<String> playersOnline = new ArrayList<>();
+    public static List<Player> playersOnline = new ArrayList<>();
+    public static List<UUID> playersAdmin = new ArrayList<>();
     //----------GameInfos-----------------------
     //----------FeastInfos-----------------------
     public static Boolean feastChests = true;
@@ -108,13 +111,14 @@ public class Main extends JavaPlugin {
     }
 
     public void onLoad() {
+//        plugin = this;
+//        deleteWorld(new File ("world"));
     }
 
     public void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new ServerEvents(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
         Bukkit.getPluginManager().registerEvents(new PreGameEvents(), this);
-        Bukkit.getPluginManager().registerEvents(new InGameEvents(), this);
         Bukkit.getPluginManager().registerEvents(new UndroppableItens(), this);
     }
 
@@ -194,7 +198,7 @@ public class Main extends JavaPlugin {
 
     public static void updateScore() {
         Objective objective;
-        for(Iterator var0 = Bukkit.getOnlinePlayers().iterator(); var0.hasNext(); objective.getScore("Jogadores: ").setScore(Bukkit.getOnlinePlayers().size())) {
+        for(Iterator var0 = Bukkit.getOnlinePlayers().iterator(); var0.hasNext(); objective.getScore("Jogadores: ").setScore(playersOnline.size())) {
             Player p = (Player)var0.next();
             Scoreboard scoreboard = p.getScoreboard();
             objective = scoreboard.getObjective(DisplaySlot.SIDEBAR);
@@ -224,7 +228,7 @@ public class Main extends JavaPlugin {
         Objective objective = scoreboard.registerNewObjective("board", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName("§cIniciando em: " + timerFormat(startTime));
-        objective.getScore("Jogadores: ").setScore(Bukkit.getOnlinePlayers().size());
+        objective.getScore("Jogadores: ").setScore(playersOnline.size());
         p.setScoreboard(scoreboard);
     }
 }

@@ -30,7 +30,6 @@ public class InvincibilityStage {
                         p.playSound(p.getLocation(), Sound.CLICK, 8.0F, 1.0F);
                     }
                 }
-
                 if (Main.invincibilityTime == 0) {
                     Bukkit.broadcastMessage("§A invencibilidade acabou!");
                     g = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
@@ -40,7 +39,6 @@ public class InvincibilityStage {
                         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 10.0F, 1.0F);
                     }
                 }
-
                 Main.invincibilityTime = Main.invincibilityTime - 1;
                 Main.updateScore();
             } else {

@@ -34,10 +34,7 @@ public class Thor implements Listener {
                 .setUnbreakable()
                 .getItemStack();
         UndroppableItens.undroppableItens.add(thor);
-
-        p.getInventory().clear();
         p.getInventory().addItem(thor);
-        p.getInventory().addItem(Bussola);
     }
 
     @EventHandler

@@ -11,14 +11,13 @@ public class ServerEvents implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
-
         p.sendMessage("§2Bem vindo ao servidor");
     }
 
     @EventHandler
     public void cancelJoinInGame(PlayerJoinEvent e){
         Player p = e.getPlayer();
-        if(!Main.preGame){
+        if((!Main.preGame) && !(Main.playersAdmin.contains(p.getUniqueId()))){
             p.kickPlayer("§cPartida em andamento!");
         }
     }

@@ -58,6 +58,7 @@ public class KitSelector {
             Stomper.getKitDescription(p);
         }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 19){
             Thor.getItems(p);
+            Thor.getKitDescription(p);
         }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 20){
             Titan.getItems(p);
             Titan.getKitDescription(p);

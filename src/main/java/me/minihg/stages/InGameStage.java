@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
 public class InGameStage {
     public static Player[] arrayOfPlayer;
     private static Integer shed_id = null;
-
     public InGameStage() {
     }
 
@@ -29,8 +28,8 @@ public class InGameStage {
     public static void Start(int counter) {
         int p = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () -> {
+            Main.inGameTime += 1;
             verifyWinner();
-            Main.inGameTime = Main.inGameTime + 1;
             Main.updateScore();
             if (Main.finalArena) {
                 FinalArena.checkFinalArena();
@@ -72,6 +71,7 @@ public class InGameStage {
             }
 
             if (Main.inGameTime == 720) {
+                FeastManager.spawnFeast();
                 Bukkit.broadcastMessage("§cO Feast Spawnou!");
             }
 
@@ -106,7 +106,6 @@ public class InGameStage {
             Bukkit.getServer().getScheduler().cancelTask(shed_id);
             shed_id = null;
         }
-
         Main.inGame = false;
     }
 }

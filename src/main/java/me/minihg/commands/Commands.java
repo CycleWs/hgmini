@@ -28,19 +28,19 @@ public class Commands implements CommandExecutor {
 
             if(args.length == 0){
                 p.sendMessage("");
-                p.sendMessage("§cAchilles - Boxer - Camel - Cannibal - Cultivator - Demoman");
-                p.sendMessage("§cExplorer - Fisherman - Grandpa - Iroman - Lumberjack - Miner");
-                p.sendMessage("§cMonk - Ninja - Poseidon - Reaper - Snail - Stomper - Switcher");
-                p.sendMessage("§cThor - Titan - Turtle - Viper - Worm");
+                p.sendMessage("§aAchilles - Boxer - Camel - Cannibal - Cultivator - Demoman");
+                p.sendMessage("§aExplorer - Fisherman - Grandpa - Iroman - Lumberjack - Miner");
+                p.sendMessage("§aMonk - Ninja - Poseidon - Reaper - Snail - Stomper - Switcher");
+                p.sendMessage("§aThor - Titan - Turtle - Viper - Worm");
                 p.sendMessage("");
                 return true;
             }
-//            if(args.length == 1){
-//                if(args[0].equalsIgnoreCase("achilles")){
-//                    KitSelector.kitMap.put(p,1);
-//                    Achilles.getKitDescription(p);
-//                    return true;
-//                }
+            if(args.length == 1){
+                if(args[0].equalsIgnoreCase("fisherman")){
+                    KitSelector.kitMap.put(p,8);
+                    Fisherman.getKitDescription(p);
+                    return true;
+                }
 //                if(args[0].equalsIgnoreCase("boxer")){
 //                    KitSelector.kitMap.put(p,2);
 //                    Boxer.getKitDescription(p);
@@ -164,7 +164,7 @@ public class Commands implements CommandExecutor {
 //                    Worm.getKitDescription(p);
 //                    return true;
 //                }
-//            }
+            }
         }
         return false;
     }

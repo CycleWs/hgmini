@@ -4,8 +4,10 @@ import me.minihg.Main;
 import me.minihg.kits.KitSelector;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class PreGame {
     private static Integer shed_id = null;
@@ -55,7 +57,13 @@ public class PreGame {
 
                         if (Main.preGame && Main.startTime == 10) {
                             Bukkit.broadcastMessage("§cA partida vai iniciar em 00:10");
-                            new Location(Bukkit.getWorld("world"), 0.0, 80.0, 0.0, 0.0F, 0.0F);
+                            Location loc = new Location(Bukkit.getWorld("world"), 0.0, 80.0, 0.0, 0.0F, 0.0F);
+                            f = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
+
+                            for(int i = 0; i < f; ++i) {
+                                Player px = arrayOfPlayer[i];
+                                px.teleport(loc);
+                            }
                         }
 
                         if (Main.preGame && Main.startTime < 10 && Main.startTime > 0) {
@@ -82,6 +90,7 @@ public class PreGame {
                     for(f = 0; f < g; ++f) {
                         p = arrayOfPlayer[f];
                         p.playSound(p.getLocation(), Sound.ENDERDRAGON_GROWL, 6.0F, 1.0F);
+                        p.getInventory().addItem(new ItemStack(Material.COMPASS));
                     }
                 }
 

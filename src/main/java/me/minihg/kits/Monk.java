@@ -24,9 +24,7 @@ public class Monk implements Listener {
                 .getItemStack();
 
         UndroppableItens.undroppableItens.add(monk);
-        p.getInventory().clear();
         p.getInventory().addItem(monk);
-        p.getInventory().addItem(Bussola);
     }
     @EventHandler
     public void onInteract(PlayerInteractEntityEvent e){

@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.events.UndroppableItens;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -27,9 +28,8 @@ public class Miner implements Listener {
                 .setUnbreakable()
                 .getItemStack();
 
-        p.getInventory().clear();
+        UndroppableItens.undroppableItens.add(miner);
         p.getInventory().addItem(miner);
-        p.getInventory().addItem(Bussola);
     }
 
     public static void breakOres(Block ores) {

@@ -31,10 +31,7 @@ public class Titan implements Listener {
                 .setUnbreakable()
                 .getItemStack();
         UndroppableItens.undroppableItens.add(titan);
-
-        p.getInventory().clear();
         p.getInventory().addItem(titan);
-        p.getInventory().addItem(Bussola);
     }
 
     @EventHandler

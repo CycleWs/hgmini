@@ -20,9 +20,7 @@ public class Fireman implements Listener {
     public static void getItems(Player p) {
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         fireman = (new ItensConfig(Material.WATER_BUCKET, 1, (short)0)).getItemStack();
-        p.getInventory().clear();
         p.getInventory().addItem(new ItemStack[]{fireman});
-        p.getInventory().addItem(new ItemStack[]{Bussola});
     }
 
     @EventHandler

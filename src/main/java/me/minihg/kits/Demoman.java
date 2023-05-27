@@ -33,10 +33,8 @@ public class Demoman implements Listener {
                 .setName("§aAtivador")
                 .getItemStack();
 
-        p.getInventory().clear();
         p.getInventory().addItem(demoman);
         p.getInventory().addItem(demomanPlates);
-        p.getInventory().addItem(Bussola);
     }
     @EventHandler
     public void onPlace(BlockPlaceEvent e){

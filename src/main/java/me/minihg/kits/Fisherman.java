@@ -24,18 +24,19 @@ public class Fisherman implements Listener {
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         fisherman = (new ItensConfig(Material.FISHING_ROD, 1, (short)0)).setName("§aFisherman").setUnbreakable().getItemStack();
         UndroppableItens.undroppableItens.add(fisherman);
-        p.getInventory().clear();
-        p.getInventory().addItem(new ItemStack[]{fisherman});
-        p.getInventory().addItem(new ItemStack[]{Bussola});
+        p.getInventory().addItem(fisherman);
     }
 
     @EventHandler
     public void onFish(PlayerFishEvent e) {
         Entity caught = e.getCaught();
         Player p = e.getPlayer();
-        if (KitSelector.kitMap.containsKey(p) && (Integer)KitSelector.kitMap.get(p) == this.value && Main.inGame && caught != null) {
-            caught.teleport(e.getPlayer());
+        if(e.getCaught() instanceof Player){
+            if (KitSelector.kitMap.containsKey(p) && (Integer)KitSelector.kitMap.get(p) == this.value && Main.inGame && caught != null) {
+                caught.teleport(e.getPlayer());
+            }
         }
+
 
     }
 
