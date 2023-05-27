@@ -29,7 +29,6 @@ public class Snail implements Listener {
         }
 
     public static void getKitDescription(Player p){
-        p.sendMessage("§cDeixe seus inimigos lentos quando estiverem");
-        p.sendMessage("§cem combate");
+        p.sendMessage("§aDeixe seus inimigos lentos quando estiverem em combate");
     }
 }

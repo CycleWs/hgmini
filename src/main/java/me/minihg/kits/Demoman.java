@@ -26,11 +26,11 @@ public class Demoman implements Listener {
     public static void getItems(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
         ItemStack demoman = new ItensConfig(Material.GRAVEL, 8, (short) 0)
-                .setName("Demoman")
+                .setName("§aBomba")
                 .getItemStack();
 
         ItemStack demomanPlates = new ItensConfig(Material.STONE_PLATE, 8, (short)0)
-                .setName("Ativador")
+                .setName("§aAtivador")
                 .getItemStack();
 
         p.getInventory().clear();
@@ -80,8 +80,7 @@ public class Demoman implements Listener {
 
     }
     public static void getKitDescription(Player p){
-        p.sendMessage("§cPlante armadilhas no chão que explodirão");
-        p.sendMessage("§cquando seus inimigos pisarem nela");
+        p.sendMessage("§aColoque armadilhas no chão que explodirão quando seus inimigos pisarem nela");
     }
 
 }

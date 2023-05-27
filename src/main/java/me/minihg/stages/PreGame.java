@@ -30,36 +30,36 @@ public class PreGame {
                         }
 
                         if (Main.preGame && Main.startTime == 300) {
-                            Bukkit.broadcastMessage("§cA partida vai iniciar em: 05:00");
+                            Bukkit.broadcastMessage("§cA partida vai iniciar em 05:00");
                         }
 
                         if (Main.preGame && Main.startTime == 240) {
-                            Bukkit.broadcastMessage("§cA partida vai iniciar em: 04:00");
+                            Bukkit.broadcastMessage("§cA partida vai iniciar em 04:00");
                         }
 
                         if (Main.preGame && Main.startTime == 180) {
-                            Bukkit.broadcastMessage("§cA partida vai iniciar em: 03:00");
+                            Bukkit.broadcastMessage("§cA partida vai iniciar em 03:00");
                         }
 
                         if (Main.preGame && Main.startTime == 120) {
-                            Bukkit.broadcastMessage("§cA partida vai iniciar em: 02:00");
+                            Bukkit.broadcastMessage("§cA partida vai iniciar em 02:00");
                         }
 
                         if (Main.preGame && Main.startTime == 60) {
-                            Bukkit.broadcastMessage("§cA partida vai iniciar em: 01:00");
+                            Bukkit.broadcastMessage("§cA partida vai iniciar em 01:00");
                         }
 
                         if (Main.preGame && Main.startTime == 30) {
-                            Bukkit.broadcastMessage("§cA partida vai iniciar em: 00:30");
+                            Bukkit.broadcastMessage("§cA partida vai iniciar em 00:30");
                         }
 
                         if (Main.preGame && Main.startTime == 10) {
-                            Bukkit.broadcastMessage("§cA partida vai iniciar em: 00:10");
+                            Bukkit.broadcastMessage("§cA partida vai iniciar em 00:10");
                             new Location(Bukkit.getWorld("world"), 0.0, 80.0, 0.0, 0.0F, 0.0F);
                         }
 
                         if (Main.preGame && Main.startTime < 10 && Main.startTime > 0) {
-                            Bukkit.broadcastMessage("§cA partida vai iniciar em: 00:0" + Main.startTime);
+                            Bukkit.broadcastMessage("§cA partida vai iniciar em 00:0" + Main.startTime);
                             f = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
 
                             for(int i = 0; i < f; ++i) {

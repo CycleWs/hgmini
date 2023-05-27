@@ -1,6 +1,7 @@
 package me.minihg.events;
 
 import me.minihg.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -32,7 +33,7 @@ public class PreGameEvents implements Listener {
     }
     @EventHandler
     public void onDamage(EntityDamageEvent e){
-        if(Main.preGame || Main.invincibility){
+        if(Main.preGame){
             e.setCancelled(true);
         }
     }

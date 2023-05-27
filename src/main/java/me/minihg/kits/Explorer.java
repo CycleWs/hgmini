@@ -15,7 +15,6 @@ public class Explorer implements Listener {
     }
 
     public static void getKitDescription(Player p) {
-        p.sendMessage("§cSaiba as localizações exatas de mini-feasts e");
-        p.sendMessage("§cdo bonus Feast");
+        p.sendMessage("§aSaiba as localizações exatas de mini-feasts e do bonus Feast");
     }
 }

@@ -1,5 +1,6 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
 import me.minihg.events.UndroppableItens;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Material;
@@ -62,15 +63,21 @@ public class Titan implements Listener {
     @EventHandler
     public void titanDamage(EntityDamageEvent e){
         if(e.getEntity() instanceof Player){
-            p = (Player) e.getEntity();
-            if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value)
-                    && titanTimer.containsKey(p)
-                    && !(System.currentTimeMillis() >= titanTimer.get(p))
-                    && e.getEntity() instanceof Player){
-                e.setCancelled(true);
-            }else{
-                e.setCancelled(false);
+            if(Main.inGame){
+                p = (Player) e.getEntity();
+                if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value)
+                        && titanTimer.containsKey(p)
+                        && !(System.currentTimeMillis() >= titanTimer.get(p))
+                        && e.getEntity() instanceof Player){
+                    e.setCancelled(true);
+                }else if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value)
+                        && titanTimer.containsKey(p)
+                        && (System.currentTimeMillis() >= titanTimer.get(p))
+                        && e.getEntity() instanceof Player){
+                    e.setCancelled(false);
+                }
             }
+
         }
     }
 
