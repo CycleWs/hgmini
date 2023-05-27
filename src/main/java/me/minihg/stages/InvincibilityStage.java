@@ -39,8 +39,16 @@ public class InvincibilityStage {
                         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 10.0F, 1.0F);
                     }
                 }
-                Main.invincibilityTime = Main.invincibilityTime - 1;
+                Main.invincibilityTime -= 1;
                 Main.updateScore();
+                g = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
+                for(int f = 0; f < g; ++f) {
+                    p = arrayOfPlayer[f];
+                    p.setHealth(20.0);
+                    p.setFoodLevel(20);
+                    p.setExp(0.0F);
+                    p.setRemainingAir(20);
+                }
             } else {
                 Main.finishInvencibility();
             }

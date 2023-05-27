@@ -36,9 +36,9 @@ public class Commands implements CommandExecutor {
                 return true;
             }
             if(args.length == 1){
-                if(args[0].equalsIgnoreCase("fisherman")){
-                    KitSelector.kitMap.put(p,8);
-                    Fisherman.getKitDescription(p);
+                if(args[0].equalsIgnoreCase("achilles")){
+                    KitSelector.kitMap.put(p,0);
+                    Achilles.getKitDescription(p);
                     return true;
                 }
 //                if(args[0].equalsIgnoreCase("boxer")){

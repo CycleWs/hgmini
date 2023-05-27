@@ -9,11 +9,7 @@ import java.util.UUID;
 
 import me.minihg.api.Files;
 import me.minihg.commands.Commands;
-import me.minihg.events.InGameEvents;
-import me.minihg.events.PlayerEvents;
-import me.minihg.events.PreGameEvents;
-import me.minihg.events.ServerEvents;
-import me.minihg.events.UndroppableItens;
+import me.minihg.events.*;
 import me.minihg.kits.Achilles;
 import me.minihg.kits.Boxer;
 import me.minihg.kits.Camel;
@@ -42,9 +38,7 @@ import me.minihg.kits.Worm;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.WorldBorder;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -60,12 +54,12 @@ public class Main extends JavaPlugin {
     public static Plugin instance;
     //----------PreGameInfos--------------------
     public static boolean preGame = true;
-    public static Integer startTime = 20;
+    public static Integer startTime = 45;
     public static Integer minPlayers = 1 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean invincibility = false;
-    public static Integer invincibilityTime = 20;
+    public static Integer invincibilityTime = 120;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
@@ -108,6 +102,7 @@ public class Main extends JavaPlugin {
         this.getServer().addRecipe(this.cocoaSoup);
         this.getServer().addRecipe(this.cactusSoup);
         this.worldBorder();
+
     }
 
     public void onLoad() {
@@ -120,6 +115,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(), this);
         Bukkit.getPluginManager().registerEvents(new PreGameEvents(), this);
         Bukkit.getPluginManager().registerEvents(new UndroppableItens(), this);
+        Bukkit.getPluginManager().registerEvents(new DamageEvents(), this);
     }
 
     public void registerCommands() {
@@ -169,6 +165,8 @@ public class Main extends JavaPlugin {
 
     public void worldBorder() {
         WorldBorder border = Bukkit.getWorld("world").getWorldBorder();
+        World world = Bukkit.getWorld("world");
+        world.setDifficulty(Difficulty.NORMAL);
         border.setCenter(0.0, 0.0);
         border.setSize(500.0);
     }

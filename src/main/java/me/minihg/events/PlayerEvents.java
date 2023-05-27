@@ -12,15 +12,18 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerEvents implements Listener {
@@ -110,10 +113,12 @@ public class PlayerEvents implements Listener {
             p.kickPlayer("§cVocê foi eliminado");
             Main.playersOnline.remove(p);
         }
-        if(UndroppableItens.undroppableItens.contains(p.getInventory())){
-            p.getInventory().remove((ItemStack) p.getInventory());
+        Inventory inventory = p.getInventory();
+        for (ItemStack item : UndroppableItens.undroppableItens) {
+            if (inventory.contains(item)) {
+                inventory.removeItem(item);
+            }
         }
-
     }
 
     @EventHandler
@@ -121,7 +126,9 @@ public class PlayerEvents implements Listener {
         Player p = e.getPlayer();
         Main.sendScoreboard(p);
         UUID uuid = p.getUniqueId();
-        Main.playersOnline.add(p);
+        if(!(Main.inGame || Main.finalArena)){
+            Main.playersOnline.add(p);
+        }
         if(uuid.toString().equals("0d88d7ba-fad3-425d-8ce8-ee83be9e706b")
                 || uuid.toString().equals("8876ca6c-814d-47f1-bb0e-4253456de83c")
                 || uuid.toString().equals("61af26df-d7c2-4201-8a48-1f8c7f821250")){

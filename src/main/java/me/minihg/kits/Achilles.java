@@ -14,6 +14,8 @@ public class Achilles implements Listener {
     public Achilles() {
     }
 
+
+
     @EventHandler
     public void achillesEvent(EntityDamageByEntityEvent e) {
         if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
@@ -22,10 +24,16 @@ public class Achilles implements Listener {
             Player p = (Player)e.getEntity();
             Player damager = (Player)e.getDamager();
             if (KitSelector.kitMap.containsKey(p) && (Integer)KitSelector.kitMap.get(p) == this.value && Main.inGame) {
-                if (damager.getInventory().getItemInHand().getType() != Material.WOOD_SWORD && damager.getInventory().getItemInHand().getType() != Material.WOOD_AXE && damager.getInventory().getItemInHand().getType() != Material.WOOD_HOE && damager.getInventory().getItemInHand().getType() != Material.WOOD_PICKAXE && damager.getInventory().getItemInHand().getType() != Material.WOOD_SPADE) {
+                if (damager.getInventory().getItemInHand().getType() != Material.WOOD_SWORD
+                        && damager.getInventory().getItemInHand().getType() != Material.WOOD_AXE
+                        && damager.getInventory().getItemInHand().getType() != Material.WOOD_HOE
+                        && damager.getInventory().getItemInHand().getType() != Material.WOOD_PICKAXE
+                        && damager.getInventory().getItemInHand().getType() != Material.WOOD_SPADE) {
                     e.setDamage(anySword);
+                    damager.sendMessage("§cO jogador que você está lutando é §aACHILLES §cuse algum item de madeira para ser mais efetivo");
                     if (this.isCritical(damager)) {
                         e.setDamage(anySword + 1.0);
+                        damager.sendMessage("§cO jogador que você está lutando é §aACHILLES §cuse algum item de madeira para ser mais efetivo");
                     }
                 } else {
                     e.setDamage(woodSword);

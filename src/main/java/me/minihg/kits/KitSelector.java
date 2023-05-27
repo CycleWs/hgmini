@@ -69,7 +69,6 @@ public class KitSelector {
         }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 23){
             Worm.getKitDescription(p);
         }
-
     }
 
     public static void kitSelectorRandom(){
@@ -84,8 +83,6 @@ public class KitSelector {
                 kitMap.put(p,randomKit);
                 verifyPlayerKit(p);
             }
-            Bukkit.broadcastMessage(kitMap.toString());
         }
-
     }
 }
