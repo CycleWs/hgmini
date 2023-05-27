@@ -18,7 +18,7 @@ public class ServerEvents implements Listener {
     @EventHandler
     public void cancelJoinInGame(PlayerJoinEvent e){
         Player p = e.getPlayer();
-        if(!Main.PreGame){
+        if(!Main.preGame){
             p.kickPlayer("§cPartida em andamento!");
         }
     }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Explorer implements Listener {
 
-    public static ArrayList<Player> explorerList = new ArrayList<>();
+    int value = 6;
 
 
 }

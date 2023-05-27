@@ -27,6 +27,7 @@ public class Cooldown {
     //checkCooldown
     public static boolean checkCooldown(Player p){
         if(!cooldowns.containsKey(p.getUniqueId()) || cooldowns.get(p.getUniqueId()) <= System.currentTimeMillis()){
+            cooldowns.remove(p.getUniqueId());
             return true;
         }
         return false;

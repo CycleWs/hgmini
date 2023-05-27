@@ -1,9 +1,14 @@
 package me.minihg.events;
 
 import me.minihg.Main;
+<<<<<<< Updated upstream
+=======
+import me.minihg.kits.KitSelector;
+>>>>>>> Stashed changes
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.WorldBorder;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -24,8 +29,11 @@ import java.util.List;
 import java.util.UUID;
 
 import static me.minihg.Main.playersOnline;
+<<<<<<< Updated upstream
 import static me.minihg.kits.Achilles.achillesList;
 import static me.minihg.kits.Explorer.explorerList;
+=======
+>>>>>>> Stashed changes
 
 public class PlayerEvents implements Listener {
 
@@ -108,6 +116,7 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
+        Main.sendScoreboard(p);
         uuid = p.getUniqueId();
         playersOnline.add(String.valueOf(p));
         Bukkit.broadcastMessage(String.valueOf(p));
@@ -118,7 +127,6 @@ public class PlayerEvents implements Listener {
         Player p = e.getPlayer();
         UUID uuid = p.getUniqueId();
         playersOnline.remove(uuid);
-        Bukkit.broadcastMessage(String.valueOf(playersOnline));
     }
     @EventHandler
     public void test(BlockBreakEvent e){
@@ -128,9 +136,14 @@ public class PlayerEvents implements Listener {
             //Bukkit.broadcastMessage("§cinvencibilidade = " + Main.Invincibility);
             //Bukkit.broadcastMessage("§epregame = "+Main.PreGame);
             //Bukkit.broadcastMessage("§cEm jogo? = " + Main.inGame);
+<<<<<<< Updated upstream
             explorerList.add(p);
             int teste = explorerList.size();
             Bukkit.broadcastMessage("§5PlayerEvents: "+p);
+=======
+            Bukkit.broadcastMessage(String.valueOf(KitSelector.kitMap));
+            return true;
+>>>>>>> Stashed changes
         }
     }
 }

@@ -14,31 +14,26 @@ public class PreGameEvents implements Listener {
     }
     @EventHandler
     public void onDrop(PlayerDropItemEvent e){
-        if(Main.PreGame ){
+        if(Main.preGame){
             e.setCancelled(true);
         }
     }
     @EventHandler
     public void onInteract(PlayerInteractEvent e){
-        if(Main.PreGame){
+        if(Main.preGame){
             e.setCancelled(true);
         }
     }
     @EventHandler
     public void getItem(PlayerPickupItemEvent e){
-        if(Main.PreGame){
+        if(Main.preGame){
             e.setCancelled(true);
         }
     }
     @EventHandler
     public void onDamage(EntityDamageEvent e){
-        if(Main.PreGame || Main.Invincibility){
+        if(Main.preGame || Main.invincibility){
             e.setCancelled(true);
         }
     }
-
-
-
-
-
 }

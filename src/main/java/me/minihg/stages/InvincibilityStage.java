@@ -12,22 +12,27 @@ public class InvincibilityStage {
     public InvincibilityStage(){
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), ()->{
             Player [] arrayOfPlayer;
+<<<<<<< Updated upstream
 
             if(Main.InvincibilityTime > 0 && Main.Invincibility){
                 if(Main.InvincibilityTime == 60 && Main.Invincibility){
+=======
+            if(Main.invincibilityTime > 0 && Main.invincibility){
+                if(Main.invincibilityTime == 60 && Main.invincibility){
+>>>>>>> Stashed changes
                     Bukkit.broadcastMessage("§cA invencibilidade acaba em 01:00");
-                }else if(Main.InvincibilityTime == 30 && Main.Invincibility){
+                }else if(Main.invincibilityTime == 30 && Main.invincibility){
                     Bukkit.broadcastMessage("§cA invencibilidade acaba em 00:30");
-                }else if(Main.InvincibilityTime == 10 && Main.Invincibility){
+                }else if(Main.invincibilityTime == 10 && Main.invincibility){
                     Bukkit.broadcastMessage("§cA invencibilidade acaba em 00:10");
-                }else if((Main.InvincibilityTime <= 5 && Main.InvincibilityTime > 0) && Main.Invincibility){
-                    Bukkit.broadcastMessage("§cA invencibilidade acaba em 00:0"+Main.InvincibilityTime);
+                }else if((Main.invincibilityTime <= 5 && Main.invincibilityTime > 0) && Main.invincibility){
+                    Bukkit.broadcastMessage("§cA invencibilidade acaba em 00:0"+Main.invincibilityTime);
                     int g = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
                     for(int i = 0; i < g; ++i){
                         Player p = arrayOfPlayer[i];
                         p.playSound(p.getLocation(), Sound.CLICK, 8, 1);
                     }
-                }if(Main.InvincibilityTime == 0 ){
+                }if(Main.invincibilityTime == 0 ){
                     Bukkit.broadcastMessage("§A invencibilidade acabou!");
                     int g = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
                     for(int i = 0; i < g; ++i){
@@ -35,7 +40,8 @@ public class InvincibilityStage {
                         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 10, 1);
                     }
                 }
-                Main.InvincibilityTime -= 1;
+                Main.invincibilityTime -= 1;
+                Main.updateScore();
             }else{
                 Main.finishInvencibility();
             }

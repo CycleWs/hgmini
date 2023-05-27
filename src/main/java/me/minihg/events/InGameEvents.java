@@ -11,9 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.UUID;
 
 public class InGameEvents implements Listener {
     public static boolean feastProtection;
@@ -29,7 +27,7 @@ public class InGameEvents implements Listener {
         ItemStack MLG = new ItemStack(Material.WATER_BUCKET);
         Player player = Bukkit.getPlayer(PlayerEvents.uuid);
         Location winnerLoc = new Location(player.getWorld(), 0.0D, 170.0,  0.0D);
-        Main.Ending = true;
+        Main.ending = true;
 
         for (int i = 0; i < 1; ++i) {
             for (int x = -3; x < 3; ++x) {

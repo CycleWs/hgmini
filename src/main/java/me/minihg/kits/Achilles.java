@@ -14,8 +14,7 @@ import java.util.ArrayList;
 
 public class Achilles implements Listener {
 
-    public static ArrayList<Player> achillesList = new ArrayList<>();
-    //FAZER METODO PARA SELECIONAR O KIT
+    int value = 0;
     @EventHandler
     public void achillesEvent (EntityDamageByEntityEvent e){
         if(e.getEntity() instanceof Player && e.getDamager() instanceof Player){
@@ -24,7 +23,11 @@ public class Achilles implements Listener {
             Player p = (Player) e.getEntity();
             Player damager = (Player) e.getDamager();
 
+<<<<<<< Updated upstream
             if(achillesList.contains(p) && Main.inGame){
+=======
+            if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value) && Main.inGame){
+>>>>>>> Stashed changes
                 if(damager.getInventory().getItemInHand().getType() == Material.WOOD_SWORD||
                         damager.getInventory().getItemInHand().getType() == Material.WOOD_AXE ||
                         damager.getInventory().getItemInHand().getType() == Material.WOOD_HOE ||
@@ -43,9 +46,16 @@ public class Achilles implements Listener {
                 }
             }
         }
-
     }
 
+<<<<<<< Updated upstream
+=======
+
+    public static void getKitDescription(Player p){
+        p.sendMessage("§aSeja quase imune a qualquer tipo de espada, porém receberá um dano mortal de itens de madeira");
+    }
+
+>>>>>>> Stashed changes
     private boolean isCritical(Player p) {
         return p.getFallDistance() > 0 && !p.isOnGround() && !p.hasPotionEffect(PotionEffectType.BLINDNESS);
     }

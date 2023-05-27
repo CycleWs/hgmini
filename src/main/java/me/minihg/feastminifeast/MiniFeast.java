@@ -80,7 +80,11 @@ public class MiniFeast {
             int g = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
             for(int i = 0; i < g; ++i){
                 Player pe = arrayOfPlayer[i];
+<<<<<<< Updated upstream
                 if(Explorer.explorerList.contains(pe)){
+=======
+                if((KitSelector.kitMap.containsKey(pe) && KitSelector.kitMap.get(pe) == 7)){
+>>>>>>> Stashed changes
                     pe.sendMessage(("§cO Mini Feast spawnou exatamente em: §fX: (" + (mainBlock.getLocation().getX()) + " ‚§7e ‚§f"
                             + df.format(mainBlock.getLocation().getZ()) + ")"));
                 }else {
