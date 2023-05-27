@@ -9,12 +9,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 public class Explorer implements Listener {
-    int value = 6;
+    public static int explorerValue = 6;
 
     public Explorer() {
     }
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit EXPLORER");
         p.sendMessage("§aSaiba as localizações exatas de mini-feasts e do bonus Feast");
     }
 }

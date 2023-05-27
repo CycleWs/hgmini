@@ -59,7 +59,7 @@ public class Main extends JavaPlugin {
     //----------PreGameInfos--------------------
     public static boolean preGame = true;
     public static Integer startTime = 30;
-    public static Integer minPlayers = 1 ;
+    public static Integer minPlayers = 2 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean invincibility = false;

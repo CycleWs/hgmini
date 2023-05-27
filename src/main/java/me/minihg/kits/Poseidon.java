@@ -31,7 +31,7 @@ public class Poseidon implements Listener {
         }
     }
     public static void getKitDescription(Player p){
-        p.sendMessage("§cFique mais forte quando entrar em contato");
-        p.sendMessage("§ccom a água");
+        p.sendMessage("§l§6Você recebeu o kit POSEIDON");
+        p.sendMessage("§aFique mais forte quando entrar em contato com a água");
     }
 }

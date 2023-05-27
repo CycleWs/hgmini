@@ -39,6 +39,7 @@ public class Achilles implements Listener {
     }
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit ACHILLES");
         p.sendMessage("§aSeja quase imune a qualquer tipo de espada, porém receberá um dano mortal de itens de madeira");
     }
 

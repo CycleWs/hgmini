@@ -30,6 +30,7 @@ public class Stomper implements Listener {
 
     }
     public static void getKitDescription(Player p){
+        p.sendMessage("§l§6Você recebeu o kit STOMPER");
         p.sendMessage("§aReceba apenas 2 corações de dano de queda de qualquer altura e transfira todo o dano de queda para os inimigos próximos ");
     }
 }

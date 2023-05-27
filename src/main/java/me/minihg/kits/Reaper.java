@@ -31,6 +31,7 @@ public class Reaper implements Listener {
     }
 
     public static void getKitDescription(Player p){
-        p.sendMessage("§cDê efeito de decomposição aos seus inimigos");
+        p.sendMessage("§l§6Você recebeu o kit REAPER");
+        p.sendMessage("§aDê efeito de decomposição aos seus inimigos");
     }
     }

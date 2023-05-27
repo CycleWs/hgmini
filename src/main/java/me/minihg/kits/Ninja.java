@@ -52,6 +52,7 @@ public class Ninja implements Listener {
     }
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit NINJA");
         p.sendMessage("§aAo bater em seu inimigo, teleporte para ele ao pressionar shift");
     }
 }

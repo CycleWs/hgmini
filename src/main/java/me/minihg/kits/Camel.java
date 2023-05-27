@@ -32,6 +32,7 @@ public class Camel implements Listener {
     }
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit CAMEL");
         p.sendMessage("§aSeja mais forte quando estiver nos biomas de deserto");
     }
 }

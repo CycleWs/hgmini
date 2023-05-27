@@ -53,6 +53,7 @@ public class Cultivator implements Listener {
             }
         }
     public static void getKitDescription(Player p){
+        p.sendMessage("§l§6Você recebeu o kit CULTIVATOR");
         p.sendMessage("§aPlante uma semente e faça ela crescer instantaneamente");
     }
 

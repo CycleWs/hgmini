@@ -98,7 +98,8 @@ public class Thor implements Listener {
         tnt.setYield(2.0F);
     }
     public static void getKitDescription(Player p) {
-        p.sendMessage("§cAo clicar no chão com o seu machado cairá um raio que dará dano aos inimigos próximos");
+        p.sendMessage("§l§6Você recebeu o kit THOR");
+        p.sendMessage("§aAo clicar no chão com o seu machado cairá um raio que dará dano aos inimigos próximos");
     }
 
 }

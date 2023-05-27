@@ -36,12 +36,12 @@ public class Worm implements Listener {
                 if(e.getEntity() instanceof Player && (e.getCause().equals(EntityDamageEvent.DamageCause.FALL)
                         && blockFall == Material.DIRT)){
                     e.setCancelled(true);
-                    Bukkit.broadcastMessage("aaaaaaaa");
                 }
             }
         }
     }
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit WORM");
         p.sendMessage("§aQuebre blocos de terra instantaneamente, " +
                         "receba regeneração e não tome dano de queda" +
                         " caso caia em um bloco de terra");

@@ -97,6 +97,7 @@ public class Titan implements Listener {
     }
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit TITAN");
         p.sendMessage("§aFique imortal por 10 segundos");
     }
 }

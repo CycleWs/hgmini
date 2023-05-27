@@ -61,6 +61,7 @@ public class Turtle implements Listener {
 
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit TURTLE");
         p.sendMessage("§aReceba menos dano quando estiver agachado ");
     }
 }

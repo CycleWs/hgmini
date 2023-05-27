@@ -38,6 +38,7 @@ public class Boxer implements Listener {
     }
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit BOXER");
         p.sendMessage("§aReceba meio coração de dano a menos e dê dano de uma espada de pedra usando a mão");
     }
 

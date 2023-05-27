@@ -29,6 +29,7 @@ public class Viper implements Listener {
             }
         }
     public static void getKitDescription(Player p) {
-        p.sendMessage("§cDeixe seus inimigos envenenados quando");
+        p.sendMessage("§l§6Você recebeu o kit VIPER");
+        p.sendMessage("§aDeixe seus inimigos envenenados quando");
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 import me.minihg.api.Files;
+import me.minihg.kits.Explorer;
 import me.minihg.kits.KitSelector;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -84,7 +85,7 @@ public class MiniFeast {
 
         for(int i = 0; i < g; ++i) {
             Player pe = arrayOfPlayer[i];
-            if (KitSelector.kitMap.containsKey(pe) && (Integer)KitSelector.kitMap.get(pe) == 7) {
+            if (KitSelector.kitMap.containsKey(pe) && (Integer)KitSelector.kitMap.get(pe) == Explorer.explorerValue) {
                 pe.sendMessage("§cO Mini Feast spawnou exatamente em: §fX: (" + mainBlock.getLocation().getX() + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getZ()) + ")");
             } else {
                 pe.sendMessage("§cUm mini feast nasceu entre: §fX: (" + df.format(mainBlock.getLocation().getX()) + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getX()) + ") ‚§7e ‚§fZ: (" + df.format(mainBlock.getLocation().getZ()) + " ‚§7e‚§f " + df.format(mainBlock.getLocation().getZ()) + ")");

@@ -53,6 +53,7 @@ public class Miner implements Listener {
     }
 
     public static void getKitDescription(Player p){
+        p.sendMessage("§l§6Você recebeu o kit MINER");
         p.sendMessage("§aQuebre um minério e receba todos os outros proximos a ele");
     }
 }

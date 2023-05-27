@@ -31,6 +31,7 @@ public class Cannibal implements Listener {
     }
 
     public static void getKitDescription(Player p){
+        p.sendMessage("§l§6Você recebeu o kit CANNIBAL");
         p.sendMessage("§aRegenere sua fome ao hitar seus inimigos e os deixe com fome");
     }
 }

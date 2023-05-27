@@ -80,6 +80,7 @@ public class Demoman implements Listener {
 
     }
     public static void getKitDescription(Player p){
+        p.sendMessage("§l§6Você recebeu o kit DEMOMAN");
         p.sendMessage("§aColoque armadilhas no chão que explodirão quando seus inimigos pisarem nela");
     }
 

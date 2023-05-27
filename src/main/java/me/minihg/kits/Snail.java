@@ -29,6 +29,7 @@ public class Snail implements Listener {
         }
 
     public static void getKitDescription(Player p){
+        p.sendMessage("§l§6Você recebeu o kit SNAIL");
         p.sendMessage("§aDeixe seus inimigos lentos quando estiverem em combate");
     }
 }

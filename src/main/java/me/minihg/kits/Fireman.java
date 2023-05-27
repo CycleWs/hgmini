@@ -37,7 +37,7 @@ public class Fireman implements Listener {
     }
 
     public static void getKitDescription(Player p) {
-        p.sendMessage("§cSeja imune à lava e receba um");
-        p.sendMessage("§cBalde de água");
+        p.sendMessage("§l§6Você recebeu o kit FIREMAN");
+        p.sendMessage("§aSeja imune à lava e receba um Balde de água");
     }
 }

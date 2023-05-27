@@ -22,6 +22,7 @@ public class IronMan implements Listener {
         }
     }
     public static void getKitDescription(Player p){
-        p.sendMessage("§cA cada kill feita, receba um ferro");
+        p.sendMessage("§l§6Você recebeu o kit IRONMAN");
+        p.sendMessage("§aA cada kill feita, receba um ferro");
     }
 }

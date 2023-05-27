@@ -55,6 +55,7 @@ public class Lumberjack implements Listener {
     }
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit LUMBERJACK");
         p.sendMessage("§aQuebre uma madeira e derrube a arvore INTEIRA");
     }
 }

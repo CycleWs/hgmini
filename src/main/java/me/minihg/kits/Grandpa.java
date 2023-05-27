@@ -29,7 +29,7 @@ public class Grandpa implements Listener {
     }
 
     public static void getKitDescription(Player p){
-        p.sendMessage("§cTenha uma bengala que joga");
-        p.sendMessage("§cseus inimigos para longe");
+        p.sendMessage("§l§6Você recebeu o kit GRANDPA");
+        p.sendMessage("§aTenha uma bengala que joga seus inimigos para longe");
     }
 }

@@ -40,6 +40,7 @@ public class Fisherman implements Listener {
     }
 
     public static void getKitDescription(Player p) {
+        p.sendMessage("§l§6Você recebeu o kit FISHERMAN");
         p.sendMessage("§aTenha uma vara de pesca que puxa instantaneamente seus inimigos para você");
     }
 }

@@ -20,7 +20,7 @@ public class InGameStage {
     public InGameStage() {
     }
 
-    public static void verifyWinner() {
+    private static void verifyWinner() {
         InGameEvents.winCheck();
         Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, () -> {
         }, 600L);
@@ -29,24 +29,16 @@ public class InGameStage {
     public static void Start(int counter) {
         int p = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () -> {
+            verifyWinner();
             Main.inGameTime = Main.inGameTime + 1;
             Main.updateScore();
             if (Main.finalArena) {
                 FinalArena.checkFinalArena();
             }
 
-            if (Main.inGameTime == 20) {
+            if (Main.inGameTime == 400) {
                 MiniFeast.miniFeastAnnouncement();
             }
-
-            if (Main.inGameTime == 50) {
-                MiniFeast.miniFeastAnnouncement();
-            }
-
-            if (Main.inGameTime == 80) {
-                MiniFeast.miniFeastAnnouncement();
-            }
-
             int X;
             int Y;
             int i;

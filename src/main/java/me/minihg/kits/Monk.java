@@ -52,6 +52,7 @@ public class Monk implements Listener {
 
     }
     public static void getKitDescription(Player p){
+        p.sendMessage("§l§6Você recebeu o kit MONK");
         p.sendMessage("§aEmbaralhe o inventário do seu inimigo ao bater nele com o monk");
     }
 

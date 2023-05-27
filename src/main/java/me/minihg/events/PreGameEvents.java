@@ -33,7 +33,7 @@ public class PreGameEvents implements Listener {
     }
     @EventHandler
     public void onDamage(EntityDamageEvent e){
-        if(Main.preGame){
+        if(Main.preGame || Main.invincibility){
             e.setCancelled(true);
         }
     }
