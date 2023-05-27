@@ -1,7 +1,6 @@
 package me.minihg.kits;
 
 import me.minihg.Main;
-import me.minihg.stages.InGameStage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

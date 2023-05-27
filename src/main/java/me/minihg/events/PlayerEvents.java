@@ -1,14 +1,13 @@
 package me.minihg.events;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.UUID;
 import me.minihg.Main;
-<<<<<<< Updated upstream
-=======
 import me.minihg.kits.KitSelector;
->>>>>>> Stashed changes
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.WorldBorder;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -18,52 +17,36 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
-
-import static me.minihg.Main.playersOnline;
-<<<<<<< Updated upstream
-import static me.minihg.kits.Achilles.achillesList;
-import static me.minihg.kits.Explorer.explorerList;
-=======
->>>>>>> Stashed changes
-
 public class PlayerEvents implements Listener {
-
     public static UUID uuid;
 
-    //public static List<UUID> playersOnline = new ArrayList<>();
+    public PlayerEvents() {
+    }
+
     @EventHandler
     public void onCompass(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-        if (p.getItemInHand().getType() == Material.COMPASS && (event.getAction() == Action.LEFT_CLICK_AIR ||
-                event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK ||
-                event.getAction() == Action.RIGHT_CLICK_AIR)) {
+        if (p.getItemInHand().getType() == Material.COMPASS && (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR)) {
             Boolean found = false;
 
             for(int i = 0; i < 1000; ++i) {
-                List entities = p.getNearbyEntities((double)i, 128.0D, (double)i);
+                List entities = p.getNearbyEntities((double)i, 128.0, (double)i);
                 Iterator var = entities.iterator();
 
                 while(var.hasNext()) {
                     Object e = var.next();
-                    if (((Entity)e).getType().equals(EntityType.PLAYER)
-                            && p.getLocation().distance(((Entity)e).getLocation()) > 25.0D
-                            && !Main.Watch.contains(((Player)e).getName())) {
-
+                    if (((Entity)e).getType().equals(EntityType.PLAYER) && p.getLocation().distance(((Entity)e).getLocation()) > 25.0 && !Main.Watch.contains(((Player)e).getName())) {
                         p.setCompassTarget(((Entity)e).getLocation());
                         p.sendMessage("§aBússola apontando para " + ((Player)e).getName());
                         found = true;
                         break;
                     }
                 }
+
                 if (found) {
                     break;
                 }
@@ -71,30 +54,28 @@ public class PlayerEvents implements Listener {
 
             if (!found) {
                 p.sendMessage("§cERRO: Nenhum jogador encontrado, apontando para o spawn!");
-                p.setCompassTarget(new Location(p.getWorld(), 0.0D, 120.0D, 0.0D));
+                p.setCompassTarget(new Location(p.getWorld(), 0.0, 120.0, 0.0));
             }
         }
 
     }
 
     @EventHandler
-    public void onSoup(PlayerInteractEvent e){
+    public void onSoup(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         ItemStack item = e.getItem();
-
-        if((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
-                && item != null
-                && item.getType() == Material.MUSHROOM_SOUP
-                && (p.getHealth() < 20.0D || p.getFoodLevel() < 20)){
+        if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) && item != null && item.getType() == Material.MUSHROOM_SOUP && (p.getHealth() < 20.0 || p.getFoodLevel() < 20)) {
             int restores = 7;
             e.setCancelled(true);
-            if(p.getHealth() < 20.0D){
-                if (p.getHealth() + (double)restores <= 20.0D) {
+            if (p.getHealth() < 20.0) {
+                if (p.getHealth() + (double)restores <= 20.0) {
                     p.setHealth(p.getHealth() + (double)restores);
-                }else{
-                    p.setHealth(20.0D);
+                } else {
+                    p.setHealth(20.0);
                 }
-            }if (p.getFoodLevel() < 20) {
+            }
+
+            if (p.getFoodLevel() < 20) {
                 if (p.getFoodLevel() + restores <= 20) {
                     p.setFoodLevel(p.getFoodLevel() + restores);
                     p.setSaturation(75.0F);
@@ -104,46 +85,44 @@ public class PlayerEvents implements Listener {
                     p.setSaturation(75.0F);
                     p.setExhaustion(0.0F);
                 }
-            }if (item.getAmount() > 1) {
+            }
+
+            if (item.getAmount() > 1) {
                 p.setItemInHand(new ItemStack(Material.BOWL));
             } else {
                 item = new ItemStack(Material.BOWL);
             }
+
             p.setItemInHand(item);
         }
+
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e){
+    public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         Main.sendScoreboard(p);
         uuid = p.getUniqueId();
-        playersOnline.add(String.valueOf(p));
+        Main.playersOnline.add(String.valueOf(p));
         Bukkit.broadcastMessage(String.valueOf(p));
     }
 
     @EventHandler
-    public void onLeave(PlayerQuitEvent e){
+    public void onLeave(PlayerQuitEvent e) {
         Player p = e.getPlayer();
         UUID uuid = p.getUniqueId();
-        playersOnline.remove(uuid);
+        Main.playersOnline.remove(uuid);
     }
+
     @EventHandler
-    public void test(BlockBreakEvent e){
+    public boolean test(BlockBreakEvent e) {
         Player p = e.getPlayer();
         Block b = e.getBlock();
-        if(b.getType() == Material.GRASS){
-            //Bukkit.broadcastMessage("§cinvencibilidade = " + Main.Invincibility);
-            //Bukkit.broadcastMessage("§epregame = "+Main.PreGame);
-            //Bukkit.broadcastMessage("§cEm jogo? = " + Main.inGame);
-<<<<<<< Updated upstream
-            explorerList.add(p);
-            int teste = explorerList.size();
-            Bukkit.broadcastMessage("§5PlayerEvents: "+p);
-=======
+        if (b.getType() == Material.GRASS) {
             Bukkit.broadcastMessage(String.valueOf(KitSelector.kitMap));
             return true;
->>>>>>> Stashed changes
+        } else {
+            return false;
         }
     }
 }

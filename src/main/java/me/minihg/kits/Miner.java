@@ -37,7 +37,6 @@ public class Miner implements Listener {
         ores.breakNaturally();
         for (BlockFace face : BlockFace.values())
             breakOres(ores.getRelative(face));
-
     }
 
     @EventHandler

@@ -1,6 +1,5 @@
 package me.minihg.kits;
 
-import me.minihg.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
@@ -13,8 +12,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Worm implements Listener {
     int value = 23;
@@ -49,5 +46,4 @@ public class Worm implements Listener {
                         "receba regeneração e não tome dano de queda" +
                         " caso caia em um bloco de terra");
     }
-
 }
