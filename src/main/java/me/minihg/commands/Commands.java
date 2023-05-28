@@ -58,11 +58,11 @@ public class Commands implements CommandExecutor {
 //                    Cannibal.getKitDescription(p);
 //                    return true;
 //                }
-//                if(args[0].equalsIgnoreCase("cultivator")){
-//                    KitSelector.kitMap.put(p,5);
-//                    Cultivator.getKitDescription(p);
-//                    return true;
-//                }
+                if(args[0].equalsIgnoreCase("cultivator")){
+                    KitSelector.kitMap.put(p,4);
+                    Cultivator.getKitDescription(p);
+                    return true;
+                }
 //                if(args[0].equalsIgnoreCase("demoman")){
 //                    KitSelector.kitMap.put(p,6);
 //                    Cultivator.getKitDescription(p);
