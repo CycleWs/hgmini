@@ -41,7 +41,7 @@ public class InGameStage {
             int X;
             int Y;
             int i;
-            if (Main.inGameTime == 540) {
+            if (Main.inGameTime == 10) {
                 FeastManager.feastAnnouncement(0);
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
@@ -49,28 +49,28 @@ public class InGameStage {
                 Bukkit.broadcastMessage("§aO Feast irá spawnar em 3 minutos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
-            if (Main.inGameTime == 600) {
+            if (Main.inGameTime == 10) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
                 Bukkit.broadcastMessage("§aO Feast irá spawnar em 2 minutos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
-            if (Main.inGameTime == 660) {
+            if (Main.inGameTime == 10) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
                 Bukkit.broadcastMessage("§aO Feast irá spawnar em 1 minuto em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
-            if (Main.inGameTime == 690) {
+            if (Main.inGameTime == 10) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
                 Bukkit.broadcastMessage("§aO Feast irá spawnar em 30 segundos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
-            if (Main.inGameTime == 720) {
+            if (Main.inGameTime == 10) {
                 FeastManager.spawnFeast();
                 Bukkit.broadcastMessage("§aO Feast Spawnou!");
             }

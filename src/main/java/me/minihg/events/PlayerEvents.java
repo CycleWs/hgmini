@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import me.minihg.Main;
 import me.minihg.kits.KitSelector;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -18,19 +15,25 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.EnchantingInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.Dye;
+
+import static me.minihg.Main.plugin;
+import static org.bukkit.Material.INK_SACK;
 
 public class PlayerEvents implements Listener {
-
-    public PlayerEvents() {
-    }
 
     @EventHandler
     public void onCompass(PlayerInteractEvent event) {
@@ -167,5 +170,48 @@ public class PlayerEvents implements Listener {
 //            Bukkit.broadcastMessage(String.valueOf(Main.inGame));
 //            Bukkit.broadcastMessage(String.valueOf(Main.ending));
 //        }
+    }
+
+    private ItemStack lapis;
+    public PlayerEvents() {
+        Dye d = new Dye();
+        d.setColor(DyeColor.BLUE);
+        this.lapis = d.toItemStack();
+        this.lapis.setAmount(32);
+        this.lapis.setType(INK_SACK);
+    }
+    @EventHandler
+    public void openInventoryEvent(InventoryOpenEvent e) {
+        if (e.getInventory() instanceof EnchantingInventory) {
+            e.getInventory().setItem(1, lapis);
+            e.getInventory().addItem(lapis);
+        }
+    }
+
+    @EventHandler
+    public void closeInventoryEvent(InventoryCloseEvent e) {
+        if(e.getInventory() instanceof EnchantingInventory){
+            if (e.getInventory().contains(INK_SACK)){
+                e.getInventory().remove(INK_SACK);
+            }
+        }
+    }
+
+    @EventHandler
+    public void inventoryClickEvent(InventoryClickEvent e) {
+        if(e.getInventory() instanceof EnchantingInventory){
+            if (e.getCurrentItem().isSimilar(lapis) && lapis.getAmount() <= 32){
+                e.setCancelled(true) ;
+            }
+        }
+    }
+
+    @EventHandler
+    public void enchantItemEvent(EnchantItemEvent e) {
+        if(e.getInventory() instanceof EnchantingInventory){
+            if (e.getInventory().contains((ItemStack) e.getInventory())) {
+                e.getInventory().setItem(1, this.lapis);
+            }
+        }
     }
 }
