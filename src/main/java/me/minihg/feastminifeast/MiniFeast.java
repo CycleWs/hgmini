@@ -1,14 +1,9 @@
-package me.minihg.feastminifeast;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
 
-import me.minihg.api.Files;
-import me.minihg.kits.Explorer;
-import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.Chest;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+package me.minihg.feastminifeast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -16,8 +11,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
-public class MiniFeast {
+import me.minihg.api.Files;
+import me.minihg.kits.Explorer;
+import me.minihg.kits.KitSelector;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Chest;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
+public class MiniFeast {
     public static Block mainBlock = null;
     private static Integer radius = 2;
     private static Logger log = Bukkit.getLogger();
@@ -29,12 +38,7 @@ public class MiniFeast {
     public static String presentName;
     public static Player[] arrayOfPlayer;
 
-    static {
-        presentName = ChatColor.WHITE + "Presente para kit - %s";
-    }
-
-    public MiniFeast(){
-
+    public MiniFeast() {
     }
 
     public static Location getRespawn() {
@@ -77,20 +81,16 @@ public class MiniFeast {
 
     public static void miniFeastSpawn() {
         DecimalFormat df = new DecimalFormat("##");
-            int g = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
-            for(int i = 0; i < g; ++i){
-                Player pe = arrayOfPlayer[i];
-                if(Explorer.explorerList.contains(pe)){
-                    pe.sendMessage(("§cO Mini Feast spawnou exatamente em: §fX: (" + (mainBlock.getLocation().getX()) + " ‚§7e ‚§f"
-                            + df.format(mainBlock.getLocation().getZ()) + ")"));
-                }else {
-                    pe.sendMessage("§cUm mini feast nasceu entre: §fX: (" + df.format(mainBlock.getLocation()
-                            .getX() /*+ 50.0*/) + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getX() /*+ 50.0*/) +
-                            ") ‚§7e ‚§fZ: (" + df.format(mainBlock.getLocation().getZ() /*+ 50.0*/) + " ‚§7e‚§f "
-                            + df.format(mainBlock.getLocation().getZ() /*+ 50.0*/) + ")");
-                }
-            }
+        int g = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
 
+        for(int i = 0; i < g; ++i) {
+            Player pe = arrayOfPlayer[i];
+            if (KitSelector.kitMap.containsKey(pe) && (Integer)KitSelector.kitMap.get(pe) == Explorer.explorerValue) {
+                pe.sendMessage("§cO Mini Feast spawnou exatamente em: §fX: (" + mainBlock.getLocation().getX() + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getZ()) + ")");
+            } else {
+                pe.sendMessage("§cUm mini feast nasceu entre: §fX: (" + df.format(mainBlock.getLocation().getX()) + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getX()) + ") ‚§7e ‚§fZ: (" + df.format(mainBlock.getLocation().getZ()) + " ‚§7e‚§f " + df.format(mainBlock.getLocation().getZ()) + ")");
+            }
+        }
 
         spawnChests();
         List<String> items = Files.MiniFeast.getStringList("ITEMSMF");
@@ -264,5 +264,9 @@ public class MiniFeast {
 
     public static Block getMainBlock() {
         return mainBlock;
+    }
+
+    static {
+        presentName = ChatColor.WHITE + "Presente para kit - %s";
     }
 }

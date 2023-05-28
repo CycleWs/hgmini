@@ -54,7 +54,7 @@ public class Titan implements Listener {
             }
         }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value
                 && itemKit.getType() == Material.BEDROCK){
-            p.sendMessage("§cVocê nao pode usar o titan por: "+Cooldown.getCooldown(p)+ " Segundos");
+            p.sendMessage("§cVocê nao pode usar o titan por: "+Cooldown.getCooldown(p)+ "Segundos");
         }
     }
 

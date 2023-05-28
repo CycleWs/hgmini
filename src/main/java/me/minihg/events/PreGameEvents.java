@@ -1,6 +1,7 @@
 package me.minihg.events;
 
 import me.minihg.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -14,31 +15,26 @@ public class PreGameEvents implements Listener {
     }
     @EventHandler
     public void onDrop(PlayerDropItemEvent e){
-        if(Main.PreGame ){
+        if(Main.preGame){
             e.setCancelled(true);
         }
     }
     @EventHandler
     public void onInteract(PlayerInteractEvent e){
-        if(Main.PreGame){
+        if(Main.preGame){
             e.setCancelled(true);
         }
     }
     @EventHandler
     public void getItem(PlayerPickupItemEvent e){
-        if(Main.PreGame){
+        if(Main.preGame){
             e.setCancelled(true);
         }
     }
     @EventHandler
     public void onDamage(EntityDamageEvent e){
-        if(Main.PreGame || Main.Invincibility){
+        if(Main.preGame || Main.invincibility){
             e.setCancelled(true);
         }
     }
-
-
-
-
-
 }
