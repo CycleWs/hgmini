@@ -35,13 +35,13 @@ public class Commands implements CommandExecutor {
                 p.sendMessage("");
                 return true;
             }
-            if(args.length == 1){
-                if(args[0].equalsIgnoreCase("grandpa")){
-                    KitSelector.kitMap.put(p,9);
-                    Grandpa.getItems(p);
-                    Grandpa.getKitDescription(p);
-                    return true;
-                }
+//            if(args.length == 1){
+//                if(args[0].equalsIgnoreCase("grandpa")){
+//                    KitSelector.kitMap.put(p,9);
+//                    Grandpa.getItems(p);
+//                   Grandpa.getKitDescription(p);
+//                    return true;
+//                }
 //                if(args[0].equalsIgnoreCase("boxer")){
 //                    KitSelector.kitMap.put(p,2);
 //                    Boxer.getKitDescription(p);
@@ -58,11 +58,11 @@ public class Commands implements CommandExecutor {
 //                    Cannibal.getKitDescription(p);
 //                    return true;
 //                }
-                if(args[0].equalsIgnoreCase("cultivator")){
-                    KitSelector.kitMap.put(p,4);
-                    Cultivator.getKitDescription(p);
-                    return true;
-                }
+//                if(args[0].equalsIgnoreCase("cultivator")){
+//                    KitSelector.kitMap.put(p,4);
+//                    Cultivator.getKitDescription(p);
+//                    return true;
+//                }
 //                if(args[0].equalsIgnoreCase("demoman")){
 //                    KitSelector.kitMap.put(p,6);
 //                    Cultivator.getKitDescription(p);
@@ -165,7 +165,7 @@ public class Commands implements CommandExecutor {
 //                    Worm.getKitDescription(p);
 //                    return true;
 //                }
-            }
+//            }
         }
         return false;
     }

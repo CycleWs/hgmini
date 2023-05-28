@@ -81,7 +81,7 @@ public class PreGame {
                     Main.updateScore();
                 } else if (Main.preGame && Main.playersOnline.size() < Main.minPlayers) {
                     Bukkit.broadcastMessage("§cJogadores insuficientes!");
-                    Main.startTime = 300;
+                    Main.startTime = 120;
                 } else {
                     Main.startMatch();
                     KitSelector.kitSelectorRandom();

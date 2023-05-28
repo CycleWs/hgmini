@@ -54,12 +54,12 @@ public class Main extends JavaPlugin {
     public static Plugin instance;
     //----------PreGameInfos--------------------
     public static boolean preGame = true;
-    public static Integer startTime = 20;
-    public static Integer minPlayers = 1 ;
+    public static Integer startTime = 120;
+    public static Integer minPlayers = 5 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean invincibility = false;
-    public static Integer invincibilityTime = 5;
+    public static Integer invincibilityTime = 120;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
@@ -106,8 +106,8 @@ public class Main extends JavaPlugin {
     }
 
     public void onLoad() {
-//        plugin = this;
-//        deleteWorld(new File ("world"));
+        plugin = this;
+        deleteWorld(new File ("world"));
     }
 
     public void registerEvents() {
@@ -168,7 +168,7 @@ public class Main extends JavaPlugin {
         World world = Bukkit.getWorld("world");
         world.setDifficulty(Difficulty.NORMAL);
         border.setCenter(0.0, 0.0);
-        border.setSize(500.0);
+        border.setSize(200);
     }
 
     private void deleteWorld(File file) {
