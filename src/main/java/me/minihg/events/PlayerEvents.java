@@ -1,9 +1,14 @@
 package me.minihg.events;
 
 import me.minihg.Main;
+<<<<<<< Updated upstream
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+=======
+import me.minihg.kits.KitSelector;
+import org.bukkit.*;
+>>>>>>> Stashed changes
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -12,10 +17,29 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+<<<<<<< Updated upstream
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+=======
+import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.EnchantingInventory;
+import org.bukkit.inventory.Inventory;
+>>>>>>> Stashed changes
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.Dye;
+
+import static me.minihg.Main.plugin;
+import static org.bukkit.Material.INK_SACK;
 
 import java.util.Iterator;
 import java.util.List;
@@ -25,8 +49,12 @@ import static me.minihg.Main.playersOnline;
 import static me.minihg.kits.Worm.wormList;
 
 public class PlayerEvents implements Listener {
+    private Main plugin;
 
+<<<<<<< Updated upstream
     public static UUID uuid;
+=======
+>>>>>>> Stashed changes
 
     //public static List<UUID> playersOnline = new ArrayList<>();
     @EventHandler
@@ -112,7 +140,19 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler
+<<<<<<< Updated upstream
     public void onLeave(PlayerQuitEvent e){
+=======
+    public void onDamage(EntityDamageByEntityEvent e){
+        if(e.getDamager() instanceof Player && e.getEntity() instanceof Player){
+            e.getDamager();
+        }
+    }
+
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent e) {
+>>>>>>> Stashed changes
         Player p = e.getPlayer();
         UUID uuid = p.getUniqueId();
         playersOnline.remove(uuid);
@@ -130,4 +170,63 @@ public class PlayerEvents implements Listener {
             Bukkit.broadcastMessage("§5PlayerEvents: "+p);
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+
+    @EventHandler
+    public void test(BlockBreakEvent e) {
+//        Player p = e.getPlayer();
+//        Block b = e.getBlock();
+//        if (b.getType() == Material.GRASS) {
+//            Bukkit.broadcastMessage(String.valueOf(Main.inGame));
+//            Bukkit.broadcastMessage(String.valueOf(Main.ending));
+//        }
+    }
+
+    private ItemStack lapis;
+    public PlayerEvents() {
+        this.plugin = plugin;
+        Dye d = new Dye();
+        d.setColor(DyeColor.BLUE);
+        this.lapis = d.toItemStack();
+        this.lapis.setAmount(32);
+        this.lapis.setType(INK_SACK);
+    }
+    @EventHandler
+    public void openInventoryEvent(InventoryOpenEvent e) {
+        if (e.getInventory() instanceof EnchantingInventory) {
+            e.getInventory().setItem(1, lapis);
+            e.getInventory().addItem(lapis);
+        }
+    }
+
+    @EventHandler
+    public void closeInventoryEvent(InventoryCloseEvent e) {
+        if(e.getInventory() instanceof EnchantingInventory){
+            if (e.getInventory().contains(INK_SACK)){
+                e.getInventory().remove(INK_SACK);
+            }
+        }
+    }
+
+    @EventHandler
+    public void inventoryClickEvent(InventoryClickEvent e) {
+        if(e.getInventory() instanceof EnchantingInventory){
+            if (e.getCurrentItem().isSimilar(lapis) && lapis.getAmount() <= 32){
+                e.setCancelled(true) ;
+            }
+        }
+    }
+
+    @EventHandler
+    public void enchantItemEvent(EnchantItemEvent e) {
+        if(e.getInventory() instanceof EnchantingInventory){
+            if (e.getInventory().contains((ItemStack) e.getInventory())) {
+                e.getInventory().setItem(1, this.lapis);
+            }
+        }
+
+    }
+}
+>>>>>>> Stashed changes

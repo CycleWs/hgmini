@@ -29,6 +29,7 @@ public class Main extends JavaPlugin{
     public static Main plugin;
     public static Plugin instance;
 
+<<<<<<< Updated upstream
     public static Main getInstance(){
         return getPlugin(Main.class);
     }
@@ -43,6 +44,16 @@ public class Main extends JavaPlugin{
     //----------InvincibilityInfo---------------
     public static boolean Invincibility = false;
     public static Integer InvincibilityTime = 5;
+=======
+    //----------PreGameInfos--------------------
+    public static boolean preGame = true;
+    public static Integer startTime = 120;
+    public static Integer minPlayers = 5;
+    //----------PreGameInfos--------------------
+    //----------InvincibilityInfo---------------
+    public static boolean invincibility = false;
+    public static Integer invincibilityTime = 120;
+>>>>>>> Stashed changes
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
@@ -178,8 +189,12 @@ public class Main extends JavaPlugin{
                 objective.getScore("Jogadores: ").setScore(Bukkit.getOnlinePlayers().size());
             }
     }
+<<<<<<< Updated upstream
 
     public static void sendScoreboard(Player p){
+=======
+    public static void sendScoreboard(Player p) {
+>>>>>>> Stashed changes
         ScoreboardManager scoremanager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = scoremanager.getNewScoreboard();
         Objective objective = scoreboard.registerNewObjective("board","dummy");
@@ -188,4 +203,10 @@ public class Main extends JavaPlugin{
         objective.getScore("Jogadores: ").setScore(Bukkit.getOnlinePlayers().size());
         p.setScoreboard(scoreboard);
     }
+<<<<<<< Updated upstream
 }
+=======
+
+
+}
+>>>>>>> Stashed changes
