@@ -15,6 +15,7 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -36,7 +37,6 @@ public class Thor implements Listener {
         UndroppableItens.undroppableItens.add(thor);
         p.getInventory().addItem(thor);
     }
-
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player p = event.getPlayer();
@@ -93,6 +93,12 @@ public class Thor implements Listener {
         TNTPrimed tnt = (TNTPrimed) loc.getWorld().spawn(loc, TNTPrimed.class);
         tnt.setFuseTicks(0);
         tnt.setYield(2.0F);
+    }
+    @EventHandler
+    public void onDeathDrops(EntityDeathEvent e){
+        if(e.getEntity() instanceof Player){
+            e.getDrops().remove(thor);
+        }
     }
     public static void getKitDescription(Player p) {
         p.sendMessage("§l§6Você recebeu o kit THOR");

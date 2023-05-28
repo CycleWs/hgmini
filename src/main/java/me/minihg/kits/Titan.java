@@ -11,6 +11,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -90,6 +91,13 @@ public class Titan implements Listener {
                     && !(System.currentTimeMillis() >= titanTimer.get(p2))){
                 e.setCancelled(true);
             }
+        }
+    }
+
+    @EventHandler
+    public void onDeathDrops(EntityDeathEvent e){
+        if(e.getEntity() instanceof Player){
+            e.getDrops().remove(titan);
         }
     }
 

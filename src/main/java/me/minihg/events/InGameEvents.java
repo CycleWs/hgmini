@@ -51,7 +51,7 @@ public class InGameEvents implements Listener{
     }
 
     public static void winCheck(){
-        if(Main.inGame){
+        if(Main.inGame || Main.finalArena){
             Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), ()->{
                 if(Main.playersOnline.size() == 1){
                     Bukkit.broadcastMessage("§e O jogo acabou!");

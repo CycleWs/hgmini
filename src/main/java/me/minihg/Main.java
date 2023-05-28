@@ -54,12 +54,12 @@ public class Main extends JavaPlugin {
     public static Plugin instance;
     //----------PreGameInfos--------------------
     public static boolean preGame = true;
-    public static Integer startTime = 45;
+    public static Integer startTime = 20;
     public static Integer minPlayers = 1 ;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean invincibility = false;
-    public static Integer invincibilityTime = 120;
+    public static Integer invincibilityTime = 5;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;

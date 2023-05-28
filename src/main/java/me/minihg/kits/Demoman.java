@@ -13,6 +13,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,14 +24,15 @@ import java.util.List;
 public class Demoman implements Listener {
     int value = 5;
     private static final List<Block> traps = new ArrayList<Block>();
-
+    static ItemStack demoman;
+    static ItemStack demomanPlates;
     public static void getItems(Player p){
         ItemStack Bussola = new ItemStack(Material.COMPASS);
-        ItemStack demoman = new ItensConfig(Material.GRAVEL, 8, (short) 0)
+        demoman = new ItensConfig(Material.GRAVEL, 8, (short) 0)
                 .setName("§aBomba")
                 .getItemStack();
 
-        ItemStack demomanPlates = new ItensConfig(Material.STONE_PLATE, 8, (short)0)
+        demomanPlates = new ItensConfig(Material.STONE_PLATE, 8, (short)0)
                 .setName("§aAtivador")
                 .getItemStack();
 
@@ -47,7 +50,6 @@ public class Demoman implements Listener {
                 return;
             traps.add(placed);
         }
-
     }
     @EventHandler
     public void onBreak(BlockBreakEvent e){
@@ -75,7 +77,14 @@ public class Demoman implements Listener {
                 b.getWorld().createExplosion(ex,5F);
             }
         }
+    }
 
+    @EventHandler
+    public void onDeathDrops(EntityDeathEvent e){
+        if(e.getEntity() instanceof Player){
+            e.getDrops().remove(demoman);
+            e.getDrops().remove(demomanPlates);
+        }
     }
     public static void getKitDescription(Player p){
         p.sendMessage("§l§6Você recebeu o kit DEMOMAN");

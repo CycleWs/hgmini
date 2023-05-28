@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -47,7 +48,12 @@ public class Monk implements Listener {
                 }
             }
         }
-
+    }
+    @EventHandler
+    public void onDeathDrops(EntityDeathEvent e){
+        if(e.getEntity() instanceof Player){
+            e.getDrops().remove(monk);
+        }
     }
     public static void getKitDescription(Player p){
         p.sendMessage("§l§6Você recebeu o kit MONK");

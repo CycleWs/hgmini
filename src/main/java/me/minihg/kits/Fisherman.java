@@ -9,6 +9,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -36,8 +38,13 @@ public class Fisherman implements Listener {
                 caught.teleport(e.getPlayer());
             }
         }
+    }
 
-
+    @EventHandler
+    public void onDeathDrops(EntityDeathEvent e){
+        if(e.getEntity() instanceof Player){
+            e.getDrops().remove(fisherman);
+        }
     }
 
     public static void getKitDescription(Player p) {

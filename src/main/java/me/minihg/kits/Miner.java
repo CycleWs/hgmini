@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -30,6 +31,12 @@ public class Miner implements Listener {
 
         UndroppableItens.undroppableItens.add(miner);
         p.getInventory().addItem(miner);
+    }
+    @EventHandler
+    public void onDeathDrops(EntityDeathEvent e){
+        if(e.getEntity() instanceof Player){
+            e.getDrops().remove(miner);
+        }
     }
 
     public static void breakOres(Block ores) {

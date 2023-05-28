@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class Lumberjack implements Listener {
@@ -49,7 +50,13 @@ public class Lumberjack implements Listener {
         if (KitSelector.kitMap.containsKey(p) && (Integer)KitSelector.kitMap.get(p) == this.value && item.getType() == lumberjack.getType() && b.getType() == Material.LOG || b.getType() == Material.LOG_2) {
             breakTree(b);
         }
+    }
 
+    @EventHandler
+    public void onDeathDrops(EntityDeathEvent e){
+        if(e.getEntity() instanceof Player){
+            e.getDrops().remove(lumberjack);
+        }
     }
 
     public static void getKitDescription(Player p) {

@@ -29,7 +29,7 @@ public class InGameStage {
         int p = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () -> {
             Main.inGameTime += 1;
-            verifyWinner();
+            //verifyWinner();
             Main.updateScore();
             if (Main.finalArena) {
                 FinalArena.checkFinalArena();
@@ -46,33 +46,33 @@ public class InGameStage {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
-                Bukkit.broadcastMessage("§cO Feast irá spawnar em 3 minutos em X:§e " + X + " §bY:§e " + Y + " §bZ:§e " + i);
+                Bukkit.broadcastMessage("§aO Feast irá spawnar em 3 minutos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
             if (Main.inGameTime == 600) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
-                Bukkit.broadcastMessage("§cO Feast irá spawnar em 2 minutos em X:§e " + X + " §bY:§e " + Y + " §bZ:§e " + i);
+                Bukkit.broadcastMessage("§aO Feast irá spawnar em 2 minutos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
             if (Main.inGameTime == 660) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
-                Bukkit.broadcastMessage("§cO Feast irá spawnar em 1 minuto em X:§e " + X + " §bY:§e " + Y + " §bZ:§e " + i);
+                Bukkit.broadcastMessage("§aO Feast irá spawnar em 1 minuto em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
             if (Main.inGameTime == 690) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
-                Bukkit.broadcastMessage("§cO Feast irá spawnar em 30 segundos em X:§e " + X + " §bY:§e " + Y + " §bZ:§e " + i);
+                Bukkit.broadcastMessage("§aO Feast irá spawnar em 30 segundos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
             if (Main.inGameTime == 720) {
                 FeastManager.spawnFeast();
-                Bukkit.broadcastMessage("§cO Feast Spawnou!");
+                Bukkit.broadcastMessage("§aO Feast Spawnou!");
             }
 
             if (Main.inGameTime == 1200) {

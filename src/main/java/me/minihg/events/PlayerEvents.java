@@ -19,6 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -105,6 +106,7 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onDeathPlayer(PlayerDeathEvent e){
         Player p = e.getEntity().getPlayer();
+        e.setDeathMessage(null);
         Main.playersOnline.remove(p);
         if(Main.playersAdmin.contains(p.getUniqueId())){
             p.setGameMode(GameMode.SPECTATOR);
@@ -142,6 +144,19 @@ public class PlayerEvents implements Listener {
         UUID uuid = p.getUniqueId();
         Main.playersOnline.remove(p);
         Main.playersAdmin.remove(uuid);
+    }
+
+    @EventHandler
+    public void deathMessage(EntityDeathEvent e) {
+        if (e.getEntity() instanceof Player && e.getEntity().getKiller() instanceof Player) {
+            Player dead = (Player) e.getEntity();
+            Player killer = e.getEntity().getKiller();
+            ItemStack itemHand = killer.getInventory().getItemInHand();
+            if (e.getEntity() == dead) {
+                Bukkit.broadcastMessage("§e" + dead.getName() + "§b foi morto por §a" + killer.getName() + "§b utilizando " + itemHand.getType().name().replace("_", " ").toLowerCase());
+                Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogadores restantes");
+            }
+        }
     }
 
     @EventHandler
