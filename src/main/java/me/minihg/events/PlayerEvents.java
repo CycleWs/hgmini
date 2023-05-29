@@ -155,12 +155,16 @@ public class PlayerEvents implements Listener {
             Player dead = (Player) e.getEntity();
             Player killer = e.getEntity().getKiller();
             ItemStack itemHand = killer.getInventory().getItemInHand();
-            if (e.getEntity() == dead) {
-                Bukkit.broadcastMessage("§e" + dead.getName() + "§b foi morto por §a" + killer.getName() + "§b utilizando " + itemHand.getType().name().replace("_", " ").toLowerCase());
+            if (e.getEntity() == dead && !(itemHand.getType().name().equals("AIR"))) {
+                Bukkit.broadcastMessage("§e" + dead.getName() + "§b foi morto por §e" + killer.getName() + "§b utilizando " + itemHand.getType().name().replace("_", " ").toLowerCase());
+                Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogadores restantes");
+            } else if (e.getEntity() == dead && itemHand.getType().name().equals("AIR")) {
+                Bukkit.broadcastMessage("§e" + dead.getName() + "§b foi morto por §e" + killer.getName() + "§b utilizando" + itemHand.getType().name().replace("AIR", " o soco ").toLowerCase());
                 Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogadores restantes");
             }
         }
     }
+
 
     @EventHandler
     public void test(BlockBreakEvent e) {

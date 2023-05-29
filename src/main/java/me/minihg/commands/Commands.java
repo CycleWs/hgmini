@@ -15,33 +15,34 @@ public class Commands implements CommandExecutor {
     private HashMap<Player, Long> commandCooldown = new HashMap<>();
     @Override
     public boolean onCommand(CommandSender player, Command cmd, String str, String[] args) {
-        if(!(player instanceof Player)) return false;
+        if (!(player instanceof Player)) return false;
         Player p = (Player) player;
-
-        if(cmd.getName().equalsIgnoreCase("kit")){
-            if(commandCooldown.containsKey(p) && !(System.currentTimeMillis() >= commandCooldown.get(p))){
-                p.sendMessage("§cAguarde para usar o comando novamente! "+convert(p)+" Segundos");
-                return false;
-            }else commandCooldown.remove(p);
-
-            commandCooldown.put(p, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(2));
-
-            if(args.length == 0){
-                p.sendMessage("");
-                p.sendMessage("§aAchilles - Boxer - Camel - Cannibal - Cultivator - Demoman");
-                p.sendMessage("§aExplorer - Fisherman - Grandpa - Iroman - Lumberjack - Miner");
-                p.sendMessage("§aMonk - Ninja - Poseidon - Reaper - Snail - Stomper - Switcher");
-                p.sendMessage("§aThor - Titan - Turtle - Viper - Worm");
-                p.sendMessage("");
-                return true;
-            }
-            if(args.length == 1){
-                if(args[0].equalsIgnoreCase("grandpa")){
-                    KitSelector.kitMap.put(p,9);
-                    Grandpa.getItems(p);
-                    Grandpa.getKitDescription(p);
-                    return true;
-                }
+        return false;
+    }
+//        if(cmd.getName().equalsIgnoreCase("kit")){
+//            if(commandCooldown.containsKey(p) && !(System.currentTimeMillis() >= commandCooldown.get(p))){
+//                p.sendMessage("§cAguarde para usar o comando novamente! "+convert(p)+" Segundos");
+//                return false;
+//            }else commandCooldown.remove(p);
+//
+//            commandCooldown.put(p, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(2));
+//
+//            if(args.length == 0){
+//                p.sendMessage("");
+//                p.sendMessage("§aAchilles - Boxer - Camel - Cannibal - Cultivator - Demoman");
+//                p.sendMessage("§aExplorer - Fisherman - Grandpa - Iroman - Lumberjack - Miner");
+//                p.sendMessage("§aMonk - Ninja - Poseidon - Reaper - Snail - Stomper - Switcher");
+//                p.sendMessage("§aThor - Titan - Turtle - Viper - Worm");
+//                p.sendMessage("");
+//                return true;
+//            }
+//            if(args.length == 1){
+//                if(args[0].equalsIgnoreCase("grandpa")){
+//                    KitSelector.kitMap.put(p,9);
+//                    Grandpa.getItems(p);
+//                    Grandpa.getKitDescription(p);
+//                    return true;
+//                }
 //                if(args[0].equalsIgnoreCase("boxer")){
 //                    KitSelector.kitMap.put(p,2);
 //                    Boxer.getKitDescription(p);
@@ -58,11 +59,11 @@ public class Commands implements CommandExecutor {
 //                    Cannibal.getKitDescription(p);
 //                    return true;
 //                }
-                if(args[0].equalsIgnoreCase("cultivator")){
-                    KitSelector.kitMap.put(p,4);
-                    Cultivator.getKitDescription(p);
-                    return true;
-                }
+//                if(args[0].equalsIgnoreCase("cultivator")){
+//                    KitSelector.kitMap.put(p,4);
+//                    Cultivator.getKitDescription(p);
+//                    return true;
+//                }
 //                if(args[0].equalsIgnoreCase("demoman")){
 //                    KitSelector.kitMap.put(p,6);
 //                    Cultivator.getKitDescription(p);
@@ -165,12 +166,12 @@ public class Commands implements CommandExecutor {
 //                    Worm.getKitDescription(p);
 //                    return true;
 //                }
-            }
-        }
-        return false;
-    }
-    private Long convert (Player p){
-        long tempo = System.currentTimeMillis() - commandCooldown.get(p);
-        return 1 + TimeUnit.MILLISECONDS.toSeconds(tempo) * -1;
-    }
+//            }
+//        }
+//        return false;
+//    }
+//    private Long convert (Player p){
+//        long tempo = System.currentTimeMillis() - commandCooldown.get(p);
+//        return 1 + TimeUnit.MILLISECONDS.toSeconds(tempo) * -1;
+//    }
 }
