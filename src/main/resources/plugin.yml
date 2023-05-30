@@ -2,4 +2,5 @@ main: me.minihg.Main
 version: 1.0
 name: MiniHG
 commands:
-  kit:
+  tempo:
+  mf:

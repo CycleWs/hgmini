@@ -30,13 +30,14 @@ public class MiniFeast {
     public static Block mainBlock = null;
     private static Integer radius = 2;
     private static Logger log = Bukkit.getLogger();
-    private static Boolean spawned = false;
+    public static Boolean spawned = false;
     private static Chest[] chests = new Chest[4];
     private static ArrayList<Location> fblocks = new ArrayList();
     public static int presentEndingDataValue = 15;
     public static int presentStartingDataValue = 0;
     public static String presentName;
     public static Player[] arrayOfPlayer;
+    public static Location locMF;
 
     public MiniFeast() {
     }
@@ -74,6 +75,7 @@ public class MiniFeast {
             fblocks.add(mainBlock.getLocation());
             createFeast(Material.GLASS);
             spawned = true;
+            locMF = mainBlock.getLocation();
             miniFeastSpawn();
         }
 
@@ -82,7 +84,6 @@ public class MiniFeast {
     public static void miniFeastSpawn() {
         DecimalFormat df = new DecimalFormat("##");
         int g = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
-
         for(int i = 0; i < g; ++i) {
             Player pe = arrayOfPlayer[i];
             if (KitSelector.kitMap.containsKey(pe) && (Integer)KitSelector.kitMap.get(pe) == Explorer.explorerValue) {

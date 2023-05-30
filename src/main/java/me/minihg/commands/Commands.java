@@ -1,14 +1,20 @@
 package me.minihg.commands;
 
+import me.minihg.Main;
+import me.minihg.feastminifeast.MiniFeast;
 import me.minihg.kits.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+
+import static me.minihg.feastminifeast.MiniFeast.locMF;
+import static org.bukkit.Bukkit.getServer;
 
 public class Commands implements CommandExecutor {
 
@@ -17,7 +23,74 @@ public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender player, Command cmd, String str, String[] args) {
         if (!(player instanceof Player)) return false;
         Player p = (Player) player;
+        String command = cmd.getName();
+        if(command.equalsIgnoreCase("mf")){
+            return executeMfCommand(p,args);
+        }else if(command.equalsIgnoreCase("tempo")){
+            return executeTimeCommand(p,args);
+        }
         return false;
+
+//        if(command.equalsIgnoreCase("borda") && Main.playersAdmin.contains(p.getUniqueId())) {
+//            if(args.length == 0){
+//                p.sendMessage("§aDigite /borda <tamanho final em blocos, tempo em segundos> ");
+//                return true;
+//            }
+//            if((args.length >= 1) && Main.preGame || Main.finalArena){
+//                int range = Integer.parseInt(args[0]);
+//                p.chat("/worldborder set "+ range);
+//                return true;
+//            }
+//            if((args.length >= 2) && (Main.preGame || Main.finalArena)){
+//                int range = Integer.parseInt(args[0]);
+//                int time = Integer.parseInt(args[1]);
+//                p.chat("/worldborder set "+ range+" "+ time);
+//                return true;
+//            }
+//
+//        }else if(!(Main.playersAdmin.contains(p.getUniqueId()))){
+//            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+//        }else{
+//            p.sendMessage("AAAAAAA");
+//        }
+    }
+    private boolean executeMfCommand(CommandSender explorer, String[] args){
+            Player p = (Player) explorer;
+            if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == Explorer.explorerValue)
+                    && MiniFeast.spawned && Main.inGame){
+                p.sendMessage("§aSua bússola está apontando para o mini feast");
+                p.setCompassTarget(locMF);
+            }else if(KitSelector.kitMap.get(p) != Explorer.explorerValue){
+                p.sendMessage("§cVocê não é um Explorer!");
+            }else if(!(MiniFeast.spawned)){
+                p.sendMessage("§cO mini feast ainda não spawnou!");
+            }else if(!(Main.inGame)){
+                p.sendMessage("§cA partida ainda não iniciou!");
+            }
+            return true;
+        }
+
+    private boolean executeTimeCommand(CommandSender player, String[] args){
+        Player p = (Player) player;
+        if(Main.playersAdmin.contains(p.getUniqueId())){
+            if(args.length == 0){
+                p.sendMessage("§aNumero em segundos para alterar o tempo da partida: ");
+            }
+            if((args.length == 1) && Main.preGame ){
+                Main.startTime = Integer.parseInt(args[0]);
+            }
+            if((args.length == 1) && Main.invincibility){
+                Main.invincibilityTime = Integer.parseInt(args[0]);
+            }
+            if((args.length == 1) && Main.inGame){
+                Main.inGameTime = Integer.parseInt(args[0]);
+            }
+        }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
+            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+        }else{
+            p.sendMessage("§cOcorreu algum erro ao executar o comando!");
+        }
+        return true;
     }
 //        if(cmd.getName().equalsIgnoreCase("kit")){
 //            if(commandCooldown.containsKey(p) && !(System.currentTimeMillis() >= commandCooldown.get(p))){
@@ -170,8 +243,8 @@ public class Commands implements CommandExecutor {
 //        }
 //        return false;
 //    }
-//    private Long convert (Player p){
-//        long tempo = System.currentTimeMillis() - commandCooldown.get(p);
-//        return 1 + TimeUnit.MILLISECONDS.toSeconds(tempo) * -1;
-//    }
+    private Long convert (Player p){
+        long tempo = System.currentTimeMillis() - commandCooldown.get(p);
+        return 1 + TimeUnit.MILLISECONDS.toSeconds(tempo) * -1;
+    }
 }

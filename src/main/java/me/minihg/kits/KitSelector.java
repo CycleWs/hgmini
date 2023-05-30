@@ -1,13 +1,14 @@
 package me.minihg.kits;
 
+import me.minihg.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class KitSelector {
     public static HashMap<Player, Integer> kitMap = new HashMap<>();
+    private static List<Integer> kits = new ArrayList<>(Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23));
     static Player[] arrayOfPlayer;
 
     private static void verifyPlayerKit(Player p){
@@ -70,19 +71,19 @@ public class KitSelector {
             Worm.getKitDescription(p);
         }
     }
-
     public static void kitSelectorRandom(){
         Random random = new Random();
-        int f = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
-        for(int i = 0; i < f; ++i) {
-            int randomKit = random.nextInt(23);
-            Player p = arrayOfPlayer[i];
-            if(kitMap.containsValue(randomKit)){
-                Bukkit.broadcastMessage("");
-            }else{
-                kitMap.put(p,randomKit);
+        int f = (arrayOfPlayer = Main.playersOnline.toArray(new Player[0])).length;
+        //while(kitMap.size() < kitsInMatch){
+            for(int i = 0; i < f; ++i) {
+                int randomKit = random.nextInt(kits.size() - 1);
+                Bukkit.broadcastMessage("for = "+ randomKit);
+                Player p = arrayOfPlayer[i];
+                int kitForPlayer = kits.get(randomKit);
+                kitMap.put(p,kitForPlayer);
                 verifyPlayerKit(p);
+                kits.remove(randomKit);
             }
-        }
+        //}
     }
 }

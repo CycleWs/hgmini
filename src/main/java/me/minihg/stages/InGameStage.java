@@ -13,6 +13,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class InGameStage {
     public static Player[] arrayOfPlayer;
     private static Integer shed_id = null;
@@ -27,9 +29,9 @@ public class InGameStage {
 
     public static void Start(int counter) {
         int p = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
-        shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () -> {
+        shed_id = getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () -> {
             Main.inGameTime += 1;
-            verifyWinner();
+            //verifyWinner();
             Main.updateScore();
             if (Main.finalArena) {
                 FinalArena.checkFinalArena();
@@ -90,6 +92,8 @@ public class InGameStage {
                 Main.finalArena = true;
                 Main.inGame = false;
                 FinalArena.finalArenaAnnouncement();
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 40");
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 0 60");
 
                 for(i = 0; i < p; ++i) {
                     Player playersList = arrayOfPlayer[i];
@@ -103,7 +107,7 @@ public class InGameStage {
 
     public static void cancel() {
         if (shed_id != null) {
-            Bukkit.getServer().getScheduler().cancelTask(shed_id);
+            getServer().getScheduler().cancelTask(shed_id);
             shed_id = null;
         }
         Main.inGame = false;

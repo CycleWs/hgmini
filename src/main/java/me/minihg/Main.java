@@ -92,6 +92,7 @@ public class Main extends JavaPlugin {
 
     public void onEnable() {
         Bukkit.getWorld("world").setSpawnLocation(0, 100, 0);
+        getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder center 0 0");
         Cooldown.setupCooldown();
         instance = this;
         this.Files();
@@ -119,7 +120,8 @@ public class Main extends JavaPlugin {
     }
 
     public void registerCommands() {
-        this.getCommand("kit").setExecutor(new Commands());
+        this.getCommand("tempo").setExecutor(new Commands());
+        this.getCommand("mf").setExecutor(new Commands());
     }
 
     public void registerKitEvents() {
@@ -168,7 +170,7 @@ public class Main extends JavaPlugin {
         World world = Bukkit.getWorld("world");
         world.setDifficulty(Difficulty.NORMAL);
         border.setCenter(0.0, 0.0);
-        border.setSize(500.0);
+        border.setSize(400.0);
     }
 
     private void deleteWorld(File file) {

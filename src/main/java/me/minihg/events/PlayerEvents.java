@@ -30,7 +30,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Dye;
 
-import static me.minihg.Main.plugin;
+import static org.bukkit.Bukkit.getServer;
 import static org.bukkit.Material.INK_SACK;
 
 public class PlayerEvents implements Listener {
@@ -134,6 +134,9 @@ public class PlayerEvents implements Listener {
         if(!(Main.inGame || Main.finalArena)){
             Main.playersOnline.add(p);
         }
+        if(Main.playersOnline.size() == 20){
+            getServer().dispatchCommand(getServer().getConsoleSender(), "whitelist on");
+        }
         if(uuid.toString().equals("0d88d7ba-fad3-425d-8ce8-ee83be9e706b")
                 || uuid.toString().equals("8876ca6c-814d-47f1-bb0e-4253456de83c")
                 || uuid.toString().equals("61af26df-d7c2-4201-8a48-1f8c7f821250")){
@@ -147,6 +150,9 @@ public class PlayerEvents implements Listener {
         UUID uuid = p.getUniqueId();
         Main.playersOnline.remove(p);
         Main.playersAdmin.remove(uuid);
+        if(Main.playersOnline.size() < 20){
+            getServer().dispatchCommand(getServer().getConsoleSender(), "whitelist off");
+        }
     }
 
     @EventHandler
@@ -168,12 +174,11 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void test(BlockBreakEvent e) {
-//        Player p = e.getPlayer();
-//        Block b = e.getBlock();
-//        if (b.getType() == Material.GRASS) {
-//            Bukkit.broadcastMessage(String.valueOf(Main.inGame));
-//            Bukkit.broadcastMessage(String.valueOf(Main.ending));
-//        }
+        Player p = e.getPlayer();
+        Block b = e.getBlock();
+        if (b.getType() == Material.GRASS) {
+            getServer().dispatchCommand(getServer().getConsoleSender(), "command");
+        }
     }
 
     private ItemStack lapis;
