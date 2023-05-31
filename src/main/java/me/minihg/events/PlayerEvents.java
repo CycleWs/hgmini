@@ -137,11 +137,11 @@ public class PlayerEvents implements Listener {
         if(Main.playersOnline.size() == 20){
             getServer().dispatchCommand(getServer().getConsoleSender(), "whitelist on");
         }
-        if(uuid.toString().equals("0d88d7ba-fad3-425d-8ce8-ee83be9e706b")
-                || uuid.toString().equals("8876ca6c-814d-47f1-bb0e-4253456de83c")
-                || uuid.toString().equals("61af26df-d7c2-4201-8a48-1f8c7f821250")){
-            Main.playersAdmin.add(uuid);
-        }
+//        if(uuid.toString().equals("0d88d7ba-fad3-425d-8ce8-ee83be9e706b")
+//                || uuid.toString().equals("8876ca6c-814d-47f1-bb0e-4253456de83c")
+//                || uuid.toString().equals("61af26df-d7c2-4201-8a48-1f8c7f821250")){
+//            Main.playersAdmin.add(uuid);
+//        }
     }
 
     @EventHandler

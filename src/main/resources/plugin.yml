@@ -4,3 +4,4 @@ name: MiniHG
 commands:
   tempo:
   mf:
+  borda:

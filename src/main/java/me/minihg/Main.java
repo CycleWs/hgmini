@@ -103,7 +103,12 @@ public class Main extends JavaPlugin {
         this.getServer().addRecipe(this.cocoaSoup);
         this.getServer().addRecipe(this.cactusSoup);
         this.worldBorder();
-
+        UUID yuki = UUID.fromString("61af26df-d7c2-4201-8a48-1f8c7f821250");
+        UUID cycleWs = UUID.fromString("0d88d7ba-fad3-425d-8ce8-ee83be9e706b");
+        UUID etcloide = UUID.fromString("8876ca6c-814d-47f1-bb0e-4253456de83c");
+        Main.playersAdmin.add(yuki);
+        Main.playersAdmin.add(cycleWs);
+        Main.playersAdmin.add(etcloide);
     }
 
     public void onLoad() {
@@ -122,6 +127,7 @@ public class Main extends JavaPlugin {
     public void registerCommands() {
         this.getCommand("tempo").setExecutor(new Commands());
         this.getCommand("mf").setExecutor(new Commands());
+        this.getCommand("borda").setExecutor(new Commands());
     }
 
     public void registerKitEvents() {

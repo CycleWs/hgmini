@@ -28,6 +28,8 @@ public class Commands implements CommandExecutor {
             return executeMfCommand(p,args);
         }else if(command.equalsIgnoreCase("tempo")){
             return executeTimeCommand(p,args);
+        }else if(command.equalsIgnoreCase("borda")){
+            return executeWorldBorderCmd(p,args);
         }
         return false;
 
@@ -54,6 +56,23 @@ public class Commands implements CommandExecutor {
 //            p.sendMessage("AAAAAAA");
 //        }
     }
+    private boolean executeWorldBorderCmd(CommandSender player, String[] args) {
+        Player p = (Player) player;
+            if (args.length == 0) {
+                p.sendMessage("§aDigite /borda <tamanho final em blocos, tempo em segundos> ");
+                return true;
+            }else if (args.length == 1){
+                int value = Integer.parseInt(args[0]);
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set "+value);
+                return true;
+            }else if(args.length == 2){
+                int firstValue = Integer.parseInt(args[0]);
+                int secondValue = Integer.parseInt(args[1]);
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set "+firstValue+" "+secondValue);
+                return true;
+            }
+            return false;
+        }
     private boolean executeMfCommand(CommandSender explorer, String[] args){
             Player p = (Player) explorer;
             if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == Explorer.explorerValue)
