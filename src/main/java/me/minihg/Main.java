@@ -10,31 +10,7 @@ import java.util.UUID;
 import me.minihg.api.Files;
 import me.minihg.commands.Commands;
 import me.minihg.events.*;
-import me.minihg.kits.Achilles;
-import me.minihg.kits.Boxer;
-import me.minihg.kits.Camel;
-import me.minihg.kits.Cannibal;
-import me.minihg.kits.Cooldown;
-import me.minihg.kits.Cultivator;
-import me.minihg.kits.Demoman;
-import me.minihg.kits.Explorer;
-import me.minihg.kits.Fireman;
-import me.minihg.kits.Fisherman;
-import me.minihg.kits.Grandpa;
-import me.minihg.kits.IronMan;
-import me.minihg.kits.Lumberjack;
-import me.minihg.kits.Miner;
-import me.minihg.kits.Monk;
-import me.minihg.kits.Ninja;
-import me.minihg.kits.Poseidon;
-import me.minihg.kits.Reaper;
-import me.minihg.kits.Snail;
-import me.minihg.kits.Stomper;
-import me.minihg.kits.Thor;
-import me.minihg.kits.Titan;
-import me.minihg.kits.Turtle;
-import me.minihg.kits.Viper;
-import me.minihg.kits.Worm;
+import me.minihg.kits.*;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
@@ -147,6 +123,8 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Monk(), this);
         Bukkit.getPluginManager().registerEvents(new Titan(), this);
         Bukkit.getPluginManager().registerEvents(new Turtle(), this);
+        Bukkit.getPluginManager().registerEvents(new Milkman(), this);
+        Bukkit.getPluginManager().registerEvents(new Scout(), this);
     }
 
     public static void startMatch() {

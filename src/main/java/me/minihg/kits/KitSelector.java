@@ -68,6 +68,12 @@ public class KitSelector {
             Viper.getKitDescription(p);
         }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 23){
             Worm.getKitDescription(p);
+        }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 24){
+            Scout.getItems(p);
+            Scout.getKitDescription(p);
+        }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 25){
+            Milkman.getItems(p);
+            Milkman.getKitDescription(p);
         }
     }
 
