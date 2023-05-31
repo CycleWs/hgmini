@@ -74,16 +74,13 @@ public class KitSelector {
     public static void kitSelectorRandom(){
         Random random = new Random();
         int f = (arrayOfPlayer = Main.playersOnline.toArray(new Player[0])).length;
-        //while(kitMap.size() < kitsInMatch){
             for(int i = 0; i < f; ++i) {
                 int randomKit = random.nextInt(kits.size() - 1);
-                Bukkit.broadcastMessage("for = "+ randomKit);
                 Player p = arrayOfPlayer[i];
                 int kitForPlayer = kits.get(randomKit);
                 kitMap.put(p,kitForPlayer);
                 verifyPlayerKit(p);
                 kits.remove(randomKit);
             }
-        //}
     }
 }
