@@ -32,38 +32,11 @@ public class Commands implements CommandExecutor {
             return executeWorldBorderCmd(p,args);
         }
         return false;
-
-//        if(command.equalsIgnoreCase("borda") && Main.playersAdmin.contains(p.getUniqueId())) {
-//            if(args.length == 0){
-//                p.sendMessage("§aDigite /borda <tamanho final em blocos, tempo em segundos> ");
-//                return true;
-//            }
-//            if((args.length >= 1) && Main.preGame || Main.finalArena){
-//                int range = Integer.parseInt(args[0]);
-//                p.chat("/worldborder set "+ range);
-//                return true;
-//            }
-//            if((args.length >= 2) && (Main.preGame || Main.finalArena)){
-//                int range = Integer.parseInt(args[0]);
-//                int time = Integer.parseInt(args[1]);
-//                p.chat("/worldborder set "+ range+" "+ time);
-//                return true;
-//            }
-//
-//        }else if(!(Main.playersAdmin.contains(p.getUniqueId()))){
-//            p.sendMessage("§cVocê não tem permissão para usar este comando!");
-//        }else{
-//            p.sendMessage("AAAAAAA");
-//        }
     }
     private boolean executeWorldBorderCmd(CommandSender player, String[] args) {
         Player p = (Player) player;
             if (args.length == 0) {
                 p.sendMessage("§aDigite /borda <tamanho final em blocos, tempo em segundos> ");
-                KitSelector.kitMap.put(p,24);
-                Scout.getItems(p);
-                Scout.getKitDescription(p);
-                return true;
             }else if (args.length == 1){
                 int value = Integer.parseInt(args[0]);
                 getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set "+value);
@@ -97,9 +70,6 @@ public class Commands implements CommandExecutor {
         if(Main.playersAdmin.contains(p.getUniqueId())){
             if(args.length == 0){
                 p.sendMessage("§aNumero em segundos para alterar o tempo da partida: ");
-                KitSelector.kitMap.put(p,25);
-                Milkman.getItems(p);
-                Milkman.getKitDescription(p);
             }
             if((args.length == 1) && Main.preGame ){
                 Main.startTime = Integer.parseInt(args[0]);
