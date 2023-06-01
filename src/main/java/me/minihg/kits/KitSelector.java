@@ -1,14 +1,13 @@
 package me.minihg.kits;
 
 import me.minihg.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.*;
 
 public class KitSelector {
     public static HashMap<Player, Integer> kitMap = new HashMap<>();
-    private static List<Integer> kits = new ArrayList<>(Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23));
+    private static final List<Integer> kits = new ArrayList<>(Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25));
     static Player[] arrayOfPlayer;
 
     private static void verifyPlayerKit(Player p){
@@ -69,6 +68,12 @@ public class KitSelector {
             Viper.getKitDescription(p);
         }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 23){
             Worm.getKitDescription(p);
+        }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 24){
+            Scout.getItems(p);
+            Scout.getKitDescription(p);
+        } else if (KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == 25) {
+            Milkman.getItems(p);
+            Milkman.getKitDescription(p);
         }
     }
     public static void kitSelectorRandom(){

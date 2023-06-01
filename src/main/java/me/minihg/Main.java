@@ -10,31 +10,7 @@ import java.util.UUID;
 import me.minihg.api.Files;
 import me.minihg.commands.Commands;
 import me.minihg.events.*;
-import me.minihg.kits.Achilles;
-import me.minihg.kits.Boxer;
-import me.minihg.kits.Camel;
-import me.minihg.kits.Cannibal;
-import me.minihg.kits.Cooldown;
-import me.minihg.kits.Cultivator;
-import me.minihg.kits.Demoman;
-import me.minihg.kits.Explorer;
-import me.minihg.kits.Fireman;
-import me.minihg.kits.Fisherman;
-import me.minihg.kits.Grandpa;
-import me.minihg.kits.IronMan;
-import me.minihg.kits.Lumberjack;
-import me.minihg.kits.Miner;
-import me.minihg.kits.Monk;
-import me.minihg.kits.Ninja;
-import me.minihg.kits.Poseidon;
-import me.minihg.kits.Reaper;
-import me.minihg.kits.Snail;
-import me.minihg.kits.Stomper;
-import me.minihg.kits.Thor;
-import me.minihg.kits.Titan;
-import me.minihg.kits.Turtle;
-import me.minihg.kits.Viper;
-import me.minihg.kits.Worm;
+import me.minihg.kits.*;
 import me.minihg.stages.InGameStage;
 import me.minihg.stages.InvincibilityStage;
 import me.minihg.stages.PreGame;
@@ -106,9 +82,14 @@ public class Main extends JavaPlugin {
         UUID yuki = UUID.fromString("61af26df-d7c2-4201-8a48-1f8c7f821250");
         UUID cycleWs = UUID.fromString("0d88d7ba-fad3-425d-8ce8-ee83be9e706b");
         UUID etcloide = UUID.fromString("8876ca6c-814d-47f1-bb0e-4253456de83c");
-        Main.playersAdmin.add(yuki);
-        Main.playersAdmin.add(cycleWs);
-        Main.playersAdmin.add(etcloide);
+        if(!(((Main.playersAdmin.contains(yuki))
+                || Main.playersAdmin.contains(cycleWs))
+                || Main.playersAdmin.contains(etcloide))){
+            Main.playersAdmin.add(yuki);
+            Main.playersAdmin.add(cycleWs);
+            Main.playersAdmin.add(etcloide);
+        }
+
     }
 
     public void onLoad() {
@@ -155,6 +136,8 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Monk(), this);
         Bukkit.getPluginManager().registerEvents(new Titan(), this);
         Bukkit.getPluginManager().registerEvents(new Turtle(), this);
+        Bukkit.getPluginManager().registerEvents(new Scout(), this);
+        Bukkit.getPluginManager().registerEvents(new Milkman(), this);
     }
 
     public static void startMatch() {

@@ -60,6 +60,9 @@ public class Commands implements CommandExecutor {
         Player p = (Player) player;
             if (args.length == 0) {
                 p.sendMessage("§aDigite /borda <tamanho final em blocos, tempo em segundos> ");
+                KitSelector.kitMap.put(p,24);
+                Scout.getItems(p);
+                Scout.getKitDescription(p);
                 return true;
             }else if (args.length == 1){
                 int value = Integer.parseInt(args[0]);
@@ -94,6 +97,9 @@ public class Commands implements CommandExecutor {
         if(Main.playersAdmin.contains(p.getUniqueId())){
             if(args.length == 0){
                 p.sendMessage("§aNumero em segundos para alterar o tempo da partida: ");
+                KitSelector.kitMap.put(p,25);
+                Milkman.getItems(p);
+                Milkman.getKitDescription(p);
             }
             if((args.length == 1) && Main.preGame ){
                 Main.startTime = Integer.parseInt(args[0]);

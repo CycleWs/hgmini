@@ -147,9 +147,7 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-        UUID uuid = p.getUniqueId();
         Main.playersOnline.remove(p);
-        Main.playersAdmin.remove(uuid);
         if(Main.playersOnline.size() < 20){
             getServer().dispatchCommand(getServer().getConsoleSender(), "whitelist off");
         }
