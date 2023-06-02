@@ -4,6 +4,7 @@ import me.minihg.Main;
 import me.minihg.feastminifeast.MiniFeast;
 import me.minihg.kits.*;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,6 +31,8 @@ public class Commands implements CommandExecutor {
             return executeTimeCommand(p,args);
         }else if(command.equalsIgnoreCase("borda")){
             return executeWorldBorderCmd(p,args);
+        } else if (command.equalsIgnoreCase("tpall")) {
+            return executeTpAllCmd(p,args);
         }
         return false;
     }
@@ -79,6 +82,24 @@ public class Commands implements CommandExecutor {
             }
             if((args.length == 1) && Main.inGame){
                 Main.inGameTime = Integer.parseInt(args[0]);
+            }
+        }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
+            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+        }else{
+            p.sendMessage("§cOcorreu algum erro ao executar o comando!");
+        }
+        return true;
+    }
+    private boolean executeTpAllCmd(CommandSender player, String[] args){
+        Player p = (Player) player;
+        if(Main.playersAdmin.contains(p.getUniqueId())){
+            Location loc = p.getLocation();
+            Player[] arrayOfPlayer;
+            int f = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
+
+            for(int i = 0; i < f; ++i) {
+                Player px = arrayOfPlayer[i];
+                px.teleport(loc);
             }
         }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
             p.sendMessage("§cVocê não tem permissão para usar este comando!");

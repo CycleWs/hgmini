@@ -5,12 +5,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class InvincibilityStage {
     private static Integer shed_id;
 
     public InvincibilityStage() {
         shed_id = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () -> {
-            if (Main.invincibilityTime > 0 && Main.invincibility) {
+            if (Main.invincibilityTime >= 0 && Main.invincibility) {
                 Player[] arrayOfPlayer;
                 int g;
                 int i;
@@ -31,9 +33,10 @@ public class InvincibilityStage {
                     }
                 }
                 if (Main.invincibilityTime == 0) {
-                    Bukkit.broadcastMessage("§A invencibilidade acabou!");
+                    getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage buffer 1");
+                    getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage amount 3");
+                    Bukkit.broadcastMessage("§aInvencibilidade acabou!");
                     g = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
-
                     for(i = 0; i < g; ++i) {
                         p = arrayOfPlayer[i];
                         p.playSound(p.getLocation(), Sound.ANVIL_LAND, 10.0F, 1.0F);

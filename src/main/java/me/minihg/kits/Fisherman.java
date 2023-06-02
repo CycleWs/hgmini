@@ -12,6 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Fisherman implements Listener {
@@ -44,6 +46,15 @@ public class Fisherman implements Listener {
     public void onDeathDrops(EntityDeathEvent e){
         if(e.getEntity() instanceof Player){
             e.getDrops().remove(fisherman);
+        }
+    }
+
+    @EventHandler
+    public void deleteItemKit(PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        Inventory invP = p.getInventory();
+        if(Main.finalArena){
+            invP.remove(fisherman);
         }
     }
 

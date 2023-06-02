@@ -43,7 +43,6 @@ public class Achilles implements Listener {
                 }
             }
         }
-
     }
 
     public static void getKitDescription(Player p) {

@@ -1,6 +1,8 @@
 package me.minihg.kits;
 
 import java.util.ArrayList;
+
+import me.minihg.Main;
 import me.minihg.events.UndroppableItens;
 import me.minihg.item.ItensConfig;
 import org.bukkit.Material;
@@ -11,6 +13,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Lumberjack implements Listener {
@@ -58,7 +62,14 @@ public class Lumberjack implements Listener {
             e.getDrops().remove(lumberjack);
         }
     }
-
+    @EventHandler
+    public void deleteItemKit(PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        Inventory invP = p.getInventory();
+        if(Main.finalArena){
+            invP.remove(lumberjack);
+        }
+    }
     public static void getKitDescription(Player p) {
         p.sendMessage("§l§6Você recebeu o kit LUMBERJACK");
         p.sendMessage("§aQuebre uma madeira e derrube a arvore INTEIRA");

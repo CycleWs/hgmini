@@ -15,6 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class InGameEvents implements Listener{
     public static boolean feastProtection;
     private Map<String, Long> timeout = new HashMap<>();
@@ -54,7 +56,14 @@ public class InGameEvents implements Listener{
         if(Main.inGame || Main.finalArena){
             Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), ()->{
                 if(Main.playersOnline.size() == 1){
-                    Bukkit.broadcastMessage("§e O jogo acabou!");
+                    getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 500 ");
+                    Player p = Main.playersOnline.get(0);
+                    String winner = p.getName();
+                    if(Main.playerKills.get(p.getUniqueId()) > 1){
+                        Bukkit.broadcastMessage("§a"+winner+" Venceu a partida com "+ Main.playerKills.get(p.getUniqueId())+" Kills!");
+                    }else {
+                        Bukkit.broadcastMessage("§a"+winner+" Venceu a partida com "+ Main.playerKills.get(p.getUniqueId())+" Kill!");
+                    }
                     cakeTeleport();
                 }
             },19L);

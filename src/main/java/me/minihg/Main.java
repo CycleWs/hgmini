@@ -2,10 +2,7 @@ package me.minihg;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import me.minihg.api.Files;
 import me.minihg.commands.Commands;
@@ -25,13 +22,16 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class Main extends JavaPlugin {
     public static Main plugin;
     public static Plugin instance;
     //----------PreGameInfos--------------------
     public static boolean preGame = true;
     public static Integer startTime = 300;
-    public static Integer minPlayers = 1 ;
+    public static Integer minPlayers = 5 ;
+    public static Integer maxPlayers = 20;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean invincibility = false;
@@ -39,9 +39,10 @@ public class Main extends JavaPlugin {
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
     public static boolean inGame = false;
-    public static Integer inGameTime = 0;
+    public static Integer inGameTime = 120;
     public static boolean finalArena = false;
     public static boolean ending = false;
+    public static HashMap<UUID, Integer> playerKills = new HashMap<>();
     public static List<Player> playersOnline = new ArrayList<>();
     public static List<UUID> playersAdmin = new ArrayList<>();
     //----------GameInfos-----------------------
@@ -68,7 +69,6 @@ public class Main extends JavaPlugin {
 
     public void onEnable() {
         Bukkit.getWorld("world").setSpawnLocation(0, 100, 0);
-        getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder center 0 0");
         Cooldown.setupCooldown();
         instance = this;
         this.Files();
@@ -79,6 +79,10 @@ public class Main extends JavaPlugin {
         this.getServer().addRecipe(this.cocoaSoup);
         this.getServer().addRecipe(this.cactusSoup);
         this.worldBorder();
+        getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder center 0 0");
+        getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage buffer 1");
+        getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage amount 3");
+        getServer().dispatchCommand(getServer().getConsoleSender(), "gamerule commandBlockOutput false");
         UUID yuki = UUID.fromString("61af26df-d7c2-4201-8a48-1f8c7f821250");
         UUID cycleWs = UUID.fromString("0d88d7ba-fad3-425d-8ce8-ee83be9e706b");
         UUID etcloide = UUID.fromString("8876ca6c-814d-47f1-bb0e-4253456de83c");
@@ -93,8 +97,8 @@ public class Main extends JavaPlugin {
     }
 
     public void onLoad() {
-//        plugin = this;
-//        deleteWorld(new File ("world"));
+        plugin = this;
+        deleteWorld(new File ("world"));
     }
 
     public void registerEvents() {
@@ -107,6 +111,7 @@ public class Main extends JavaPlugin {
 
     public void registerCommands() {
         this.getCommand("tempo").setExecutor(new Commands());
+        this.getCommand("tpall").setExecutor(new Commands());
         this.getCommand("mf").setExecutor(new Commands());
         this.getCommand("borda").setExecutor(new Commands());
     }
@@ -166,7 +171,7 @@ public class Main extends JavaPlugin {
         if (file.isDirectory()) {
             String[] list = file.list();
 
-            for(int i = 0; i < list.length; ++i) {
+            for(int i = 0; i < Objects.requireNonNull(list).length; ++i) {
                 this.deleteWorld(new File(file, list[i]));
             }
         }

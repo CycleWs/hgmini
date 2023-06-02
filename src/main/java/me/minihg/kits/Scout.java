@@ -10,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -23,7 +25,7 @@ public class Scout implements Listener {
 
     public static void getItems(Player p) {
         //TENTAR MUDAR O ITEM PARA POÇÃO DE VELOCIDADE2
-        scout = new ItensConfig(Material.FEATHER, 1, (short)0)
+        scout = new ItensConfig(Material.GHAST_TEAR, 1, (short)0)
                 .setName("§aScout")
                 .setUnbreakable()
                 .getItemStack();
@@ -39,7 +41,7 @@ public class Scout implements Listener {
             if ((e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK))
                     && KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value
                     && (Main.inGame || Main.invincibility)
-                    && itemKit == Material.FEATHER) {
+                    && itemKit == Material.GHAST_TEAR) {
                 if (Cooldown.checkCooldown(p)){
                     p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 250, 1));
                     Cooldown.setCooldown(p, 30);
@@ -54,6 +56,14 @@ public class Scout implements Listener {
     public void onDeathDrops(EntityDeathEvent e){
         if(e.getEntity() instanceof Player){
             e.getDrops().remove(scout);
+        }
+    }
+    @EventHandler
+    public void deleteItemKit(PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        Inventory invP = p.getInventory();
+        if(Main.finalArena){
+            invP.remove(scout);
         }
     }
 

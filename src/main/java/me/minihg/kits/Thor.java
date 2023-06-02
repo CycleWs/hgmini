@@ -18,6 +18,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -98,6 +100,14 @@ public class Thor implements Listener {
     public void onDeathDrops(EntityDeathEvent e){
         if(e.getEntity() instanceof Player){
             e.getDrops().remove(thor);
+        }
+    }
+    @EventHandler
+    public void deleteItemKit(PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        Inventory invP = p.getInventory();
+        if(Main.finalArena){
+            invP.remove(thor);
         }
     }
     public static void getKitDescription(Player p) {

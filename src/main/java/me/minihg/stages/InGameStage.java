@@ -31,7 +31,7 @@ public class InGameStage {
         int p = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
         shed_id = getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), () -> {
             Main.inGameTime += 1;
-            //verifyWinner();
+            verifyWinner();
             Main.updateScore();
             if (Main.finalArena) {
                 FinalArena.checkFinalArena();
@@ -43,63 +43,66 @@ public class InGameStage {
             int X;
             int Y;
             int i;
-            if (Main.inGameTime == 600) {
+            if (Main.inGameTime == 540) {
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage buffer 1");
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage amount 3");
+                Bukkit.broadcastMessage("§a§lA borda começou a diminuir! fique esperto");
                 FeastManager.feastAnnouncement(0);
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
                 Bukkit.broadcastMessage("§aO Feast irá spawnar em 3 minutos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder center "+X+" "+i);
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 450");
+            }
+            if(Main.inGameTime == 541){
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 41 179");
             }
 
-            if (Main.inGameTime == 660) {
+            if (Main.inGameTime == 600) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
                 Bukkit.broadcastMessage("§aO Feast irá spawnar em 2 minutos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
-            if (Main.inGameTime == 720) {
+            if (Main.inGameTime == 660) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
                 Bukkit.broadcastMessage("§aO Feast irá spawnar em 1 minuto em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
-            if (Main.inGameTime == 780) {
+            if (Main.inGameTime == 690) {
                 X = (int)FeastManager.mainBlock.getLocation().getX();
                 Y = (int)FeastManager.mainBlock.getLocation().getY();
                 i = (int)FeastManager.mainBlock.getLocation().getZ();
                 Bukkit.broadcastMessage("§aO Feast irá spawnar em 30 segundos em §aX:§r " + X + " §aY:§r " + Y + " §aZ:§r " + i);
             }
 
-            if (Main.inGameTime == 840) {
+            if (Main.inGameTime == 720) {
                 FeastManager.spawnFeast();
                 Bukkit.broadcastMessage("§aO Feast Spawnou!");
             }
+            if(Main.inGameTime == 959){
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 250 ");
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder center 0 0");
+            }
 
-            if (Main.inGameTime == 900) {
-                World world = Bukkit.getWorld("world");
-                List<Entity> entList = world.getEntities();
-                Iterator var8 = entList.iterator();
-
-                while(var8.hasNext()) {
-                    Entity current = (Entity)var8.next();
-                    if (current.getType() == EntityType.DROPPED_ITEM) {
-                        current.remove();
-                    }
-                }
-
+            if (Main.inGameTime == 960) {
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage buffer 1");
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage amount 4");
                 Main.finalArena = true;
                 Main.inGame = false;
                 FinalArena.finalArenaAnnouncement();
                 getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 40");
-                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 0 60");
-
                 for(i = 0; i < p; ++i) {
                     Player playersList = arrayOfPlayer[i];
                     Location arenaFinal = new Location(Bukkit.getWorld("world"), 0.0, 4.0, 0.0, 0.0F, 0.0F);
                     playersList.teleport(arenaFinal);
                 }
+                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 1 60");
+                getServer().dispatchCommand(getServer().getConsoleSender(),"execute @e[type=Item] ~ ~ ~ /kill @e[type=Item,r=1]");
             }
 
         }, 0L, 20L);

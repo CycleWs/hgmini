@@ -10,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -17,8 +19,6 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 
 public class Milkman implements Listener {
-
-    public static ArrayList<Player> milkmanList = new ArrayList<>();
 
     public static ItemStack milkman;
     int value = 25;
@@ -57,6 +57,14 @@ public class Milkman implements Listener {
     public void onDeathDrops(EntityDeathEvent e){
         if(e.getEntity() instanceof Player){
             e.getDrops().remove(milkman);
+        }
+    }
+    @EventHandler
+    public void deleteItemKit(PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        Inventory invP = p.getInventory();
+        if(Main.finalArena){
+            invP.remove(milkman);
         }
     }
 

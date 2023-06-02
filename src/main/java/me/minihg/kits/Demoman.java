@@ -16,6 +16,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -84,6 +86,15 @@ public class Demoman implements Listener {
         if(e.getEntity() instanceof Player){
             e.getDrops().remove(demoman);
             e.getDrops().remove(demomanPlates);
+        }
+    }
+    @EventHandler
+    public void deleteItemKit(PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        Inventory invP = p.getInventory();
+        if(Main.finalArena){
+            invP.remove(demoman);
+            invP.remove(demomanPlates);
         }
     }
     public static void getKitDescription(Player p){

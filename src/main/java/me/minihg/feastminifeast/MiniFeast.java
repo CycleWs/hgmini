@@ -87,9 +87,10 @@ public class MiniFeast {
         for(int i = 0; i < g; ++i) {
             Player pe = arrayOfPlayer[i];
             if (KitSelector.kitMap.containsKey(pe) && (Integer)KitSelector.kitMap.get(pe) == Explorer.explorerValue) {
+                pe.sendMessage("§adigite /mf para apontar sua bússola para o mini-feast!");
                 pe.sendMessage("§cO Mini Feast spawnou exatamente em: §fX: (" + mainBlock.getLocation().getX() + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getZ()) + ")");
             } else {
-                pe.sendMessage("§cUm mini feast nasceu entre: §fX: (" + df.format(mainBlock.getLocation().getX()) + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getX()) + ") ‚§7e ‚§fZ: (" + df.format(mainBlock.getLocation().getZ()) + " ‚§7e‚§f " + df.format(mainBlock.getLocation().getZ()) + ")");
+                pe.sendMessage("§cUm mini feast nasceu entre: §fX: (" + df.format(mainBlock.getLocation().getX() + 50.0) + " ‚§7e ‚§f" + df.format(mainBlock.getLocation().getX() - 50.0) + ") ‚§7e ‚§fZ: (" + df.format(mainBlock.getLocation().getZ() + 50.0) + " ‚§7e‚§f " + df.format(mainBlock.getLocation().getZ() - 50.0) + ")");
             }
         }
 

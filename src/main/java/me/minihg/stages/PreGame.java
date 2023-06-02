@@ -9,6 +9,8 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class PreGame {
     private static Integer shed_id = null;
 

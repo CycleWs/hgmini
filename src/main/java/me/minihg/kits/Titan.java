@@ -13,6 +13,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
@@ -48,13 +50,14 @@ public class Titan implements Listener {
         if(Cooldown.checkCooldown(p)){
             if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value)
                     && (e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)
-                    && (itemKit.getType() == Material.BEDROCK)){
+                    && (itemKit.getType() == Material.BEDROCK)
+                    && Main.inGame){
                 titanTimer.put(p, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(10));
                 Cooldown.setCooldown(p,40);
             }
         }else if(KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value
-                && itemKit.getType() == Material.BEDROCK){
-            p.sendMessage("§cVocê nao pode usar o titan por: "+Cooldown.getCooldown(p)+ "Segundos");
+                && itemKit.getType() == Material.BEDROCK && Main.inGame){
+            p.sendMessage("§cVocê está em cooldown, aguarde "+Cooldown.getCooldown(p)+ " Segundos");
         }
     }
 
@@ -98,6 +101,14 @@ public class Titan implements Listener {
     public void onDeathDrops(EntityDeathEvent e){
         if(e.getEntity() instanceof Player){
             e.getDrops().remove(titan);
+        }
+    }
+    @EventHandler
+    public void deleteItemKit(PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        Inventory invP = p.getInventory();
+        if(Main.finalArena){
+            invP.remove(titan);
         }
     }
 

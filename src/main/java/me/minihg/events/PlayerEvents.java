@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import me.minihg.Main;
+import me.minihg.feastminifeast.FeastManager;
 import me.minihg.kits.KitSelector;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -22,9 +23,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.EnchantingInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -115,8 +114,7 @@ public class PlayerEvents implements Listener {
             p.setGameMode(GameMode.SPECTATOR);
         }
         if(!(Main.playersAdmin.contains(p.getUniqueId()))){
-            p.kickPlayer("§cVocê foi eliminado");
-            Main.playersOnline.remove(p);
+            p.kickPlayer("§cVocê foi eliminado\n Você fez: "+ Main.playerKills.get(p.getUniqueId()) + " Kills");
         }
         Inventory inventory = p.getInventory();
         for (ItemStack item : UndroppableItens.undroppableItens) {
@@ -125,18 +123,40 @@ public class PlayerEvents implements Listener {
             }
         }
     }
+    @EventHandler
+    public void onVoidPlayer (PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        Location locP = e.getPlayer().getLocation();
+        Location locSpawn = new Location(Bukkit.getWorld("world"), 0.0, 80.0, 0.0, 0.0F, 0.0F);
+        if(locP.getY() < 1){
+            p.teleport(locSpawn);
+        }
+    }
+
+    @EventHandler
+    public void onLogin(PlayerLoginEvent e){
+        Player p = e.getPlayer();
+        if(!(Main.inGame || Main.finalArena || Main.invincibility)){
+            Main.playersOnline.add(p);
+        }else if(!(Main.playersAdmin.contains(p.getUniqueId()))){
+            e.disallow(PlayerLoginEvent.Result.KICK_OTHER, "§cPartida em andamento!");
+        }
+        if(Main.playersOnline.size() == Main.maxPlayers){
+            e.disallow(PlayerLoginEvent.Result.KICK_OTHER, "§cPartida está lotada!");
+        }
+    }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         Main.sendScoreboard(p);
         UUID uuid = p.getUniqueId();
-        if(!(Main.inGame || Main.finalArena)){
-            Main.playersOnline.add(p);
+        if(Main.playersAdmin.contains(uuid) && (Main.inGame || Main.finalArena || Main.invincibility)){
+            p.setGameMode(GameMode.SPECTATOR);
         }
-        if(Main.playersOnline.size() == 20){
-            getServer().dispatchCommand(getServer().getConsoleSender(), "whitelist on");
-        }
+//        if(Main.playersOnline.size() == 20){
+//            getServer().dispatchCommand(getServer().getConsoleSender(), "whitelist on");
+//        }
 //        if(uuid.toString().equals("0d88d7ba-fad3-425d-8ce8-ee83be9e706b")
 //                || uuid.toString().equals("8876ca6c-814d-47f1-bb0e-4253456de83c")
 //                || uuid.toString().equals("61af26df-d7c2-4201-8a48-1f8c7f821250")){
@@ -148,9 +168,9 @@ public class PlayerEvents implements Listener {
     public void onLeave(PlayerQuitEvent e) {
         Player p = e.getPlayer();
         Main.playersOnline.remove(p);
-        if(Main.playersOnline.size() < 20){
-            getServer().dispatchCommand(getServer().getConsoleSender(), "whitelist off");
-        }
+//        if(Main.preGame &&(Main.playersOnline.size() < 20)){
+//            getServer().dispatchCommand(getServer().getConsoleSender(), "whitelist off");
+//        }
     }
 
     @EventHandler
@@ -159,13 +179,30 @@ public class PlayerEvents implements Listener {
             Player dead = (Player) e.getEntity();
             Player killer = e.getEntity().getKiller();
             ItemStack itemHand = killer.getInventory().getItemInHand();
+            if(Main.playerKills.containsKey(killer.getUniqueId())){
+                int kills = Main.playerKills.get(killer.getUniqueId());
+                kills++;
+                Main.playerKills.put(killer.getUniqueId(),kills);
+            }else{
+                Main.playerKills.put(killer.getUniqueId(),1);
+            }
             if (e.getEntity() == dead && !(itemHand.getType().name().equals("AIR"))) {
                 Bukkit.broadcastMessage("§e" + dead.getName() + "§b foi morto por §e" + killer.getName() + "§b utilizando " + itemHand.getType().name().replace("_", " ").toLowerCase());
-                Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogadores restantes");
+                Main.playersOnline.remove(dead);
+                if(Main.playersOnline.size() > 1){
+                    Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogadores restantes");
+                }else{
+                    Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogador restantes");
+                }
             } else if (e.getEntity() == dead && itemHand.getType().name().equals("AIR")) {
                 Bukkit.broadcastMessage("§e" + dead.getName() + "§b foi morto por §e" + killer.getName() + "§b utilizando" + itemHand.getType().name().replace("AIR", " o soco ").toLowerCase());
-                Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogadores restantes");
+                Main.playersOnline.remove(dead);if(Main.playersOnline.size() > 1){
+                    Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogadores restantes");
+                }else{
+                    Bukkit.broadcastMessage("§b" + Main.playersOnline.size() + " Jogador restantes");
+                }
             }
+            killer.sendMessage("§aSuas kills: "+Main.playerKills.get(killer.getUniqueId()));
         }
     }
 
