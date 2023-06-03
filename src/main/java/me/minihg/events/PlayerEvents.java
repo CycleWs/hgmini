@@ -104,6 +104,20 @@ public class PlayerEvents implements Listener {
         }
 
     }
+    @EventHandler
+    public void onChat(AsyncPlayerChatEvent e) {
+        Player p = e.getPlayer();
+        if(Main.playersAdmin.contains(p.getUniqueId())){
+            e.setFormat("§4"+ p.getDisplayName() + " §7» §f" + e.getMessage());
+        }else{
+            e.setFormat(p.getDisplayName() + " §7» §f" + e.getMessage());
+        }
+//        if(!(Main.playersAdmin.contains(p.getUniqueId())) && !Main.toggleChat){
+//            e.setCancelled(true);
+//        }else if(!Main.toggleChat && Main.playersAdmin.contains(p.getUniqueId())){
+//            e.setFormat("§4"+ p.getDisplayName() + " §7» §f" + e.getMessage());
+//        }
+    }
 
     @EventHandler
     public void onDeathPlayer(PlayerDeathEvent e){

@@ -1,16 +1,11 @@
 package me.minihg.stages;
 
-import java.util.Iterator;
-import java.util.List;
 import me.minihg.Main;
 import me.minihg.events.InGameEvents;
 import me.minihg.feastminifeast.FeastManager;
 import me.minihg.feastminifeast.MiniFeast;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import static org.bukkit.Bukkit.getServer;

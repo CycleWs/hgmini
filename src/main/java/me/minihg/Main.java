@@ -30,7 +30,7 @@ public class Main extends JavaPlugin {
     //----------PreGameInfos--------------------
     public static boolean preGame = true;
     public static Integer startTime = 300;
-    public static Integer minPlayers = 5 ;
+    public static Integer minPlayers = 4 ;
     public static Integer maxPlayers = 20;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
@@ -38,6 +38,7 @@ public class Main extends JavaPlugin {
     public static Integer invincibilityTime = 120;
     //----------InvincibilityInfo---------------
     //----------GameInfos-----------------------
+    public static boolean toggleChat = true;
     public static boolean inGame = false;
     public static Integer inGameTime = 120;
     public static boolean finalArena = false;
@@ -114,6 +115,7 @@ public class Main extends JavaPlugin {
         this.getCommand("tpall").setExecutor(new Commands());
         this.getCommand("mf").setExecutor(new Commands());
         this.getCommand("borda").setExecutor(new Commands());
+        this.getCommand("cc").setExecutor(new Commands());
     }
 
     public void registerKitEvents() {

@@ -33,11 +33,14 @@ public class Commands implements CommandExecutor {
             return executeWorldBorderCmd(p,args);
         } else if (command.equalsIgnoreCase("tpall")) {
             return executeTpAllCmd(p,args);
+        }else if (command.equalsIgnoreCase("cc")){
+            return executeClearChatCMD(p,args);
         }
         return false;
     }
     private boolean executeWorldBorderCmd(CommandSender player, String[] args) {
         Player p = (Player) player;
+        if(Main.playersAdmin.contains(p.getUniqueId())){
             if (args.length == 0) {
                 p.sendMessage("§aDigite /borda <tamanho final em blocos, tempo em segundos> ");
             }else if (args.length == 1){
@@ -50,6 +53,10 @@ public class Commands implements CommandExecutor {
                 getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set "+firstValue+" "+secondValue);
                 return true;
             }
+        }else{
+            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+        }
+
             return false;
         }
     private boolean executeMfCommand(CommandSender explorer, String[] args){
@@ -100,6 +107,19 @@ public class Commands implements CommandExecutor {
             for(int i = 0; i < f; ++i) {
                 Player px = arrayOfPlayer[i];
                 px.teleport(loc);
+            }
+        }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
+            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+        }else{
+            p.sendMessage("§cOcorreu algum erro ao executar o comando!");
+        }
+        return true;
+    }
+    private boolean executeClearChatCMD(CommandSender player, String[] args){
+        Player p = (Player) player;
+        if(Main.playersAdmin.contains(p.getUniqueId())){
+            for(int i = 0; i < 100; ++i) {
+                Bukkit.broadcastMessage(" ");
             }
         }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
             p.sendMessage("§cVocê não tem permissão para usar este comando!");
