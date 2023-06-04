@@ -30,7 +30,7 @@ public class PreGame {
                             p.setHealth(20.0);
                             p.setFoodLevel(20);
                             p.setExp(0.0F);
-                            p.setRemainingAir(20);
+                            p.setRemainingAir(0);
                         }
 
                         if (Main.preGame && Main.startTime == 300) {
@@ -79,7 +79,8 @@ public class PreGame {
                         }
                     }
 
-                    Main.startTime = Main.startTime - 1;
+                    Main.startTime--;
+                    Bukkit.getWorld("world").setTime(1000L);
                     Main.updateScore();
                 } else if (Main.preGame && Main.playersOnline.size() < Main.minPlayers) {
                     Bukkit.broadcastMessage("§cJogadores insuficientes!");

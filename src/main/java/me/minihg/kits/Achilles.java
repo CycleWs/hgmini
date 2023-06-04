@@ -30,10 +30,10 @@ public class Achilles implements Listener {
                         && damager.getInventory().getItemInHand().getType() != Material.WOOD_PICKAXE
                         && damager.getInventory().getItemInHand().getType() != Material.WOOD_SPADE) {
                     e.setDamage(anySword);
-                    damager.sendMessage("§cO jogador que você está lutando é §aACHILLES §cuse algum item de madeira para ser mais efetivo");
+                    damager.sendMessage("§cO jogador que você está lutando é §6ACHILLES §cuse algum item de madeira para ser mais efetivo");
                     if (this.isCritical(damager)) {
                         e.setDamage(anySword + 1.0);
-                        damager.sendMessage("§cO jogador que você está lutando é §aACHILLES §cuse algum item de madeira para ser mais efetivo");
+                        damager.sendMessage("§cO jogador que você está lutando é §6ACHILLES §cuse algum item de madeira para ser mais efetivo");
                     }
                 } else {
                     e.setDamage(woodSword);

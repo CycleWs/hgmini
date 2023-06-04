@@ -7,3 +7,6 @@ commands:
   borda:
   tpall:
   cc:
+  start:
+  toggle:
+  spawn:

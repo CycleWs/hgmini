@@ -32,7 +32,6 @@ public class InGameEvents implements Listener{
         for(int i = 0; i < p; ++i) {
             player = arrayOfPlayer[i];
         }
-        InGameStage.cancel();
         ItemStack MLG = new ItemStack(Material.WATER_BUCKET);
         Location winnerLoc = new Location(player.getWorld(), 0.0D, 170.0, 0.0D);
         Main.ending = true;
@@ -59,12 +58,15 @@ public class InGameEvents implements Listener{
                     getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 500 ");
                     Player p = Main.playersOnline.get(0);
                     String winner = p.getName();
-                    if(Main.playerKills.get(p.getUniqueId()) > 1){
-                        Bukkit.broadcastMessage("§a"+winner+" Venceu a partida com "+ Main.playerKills.get(p.getUniqueId())+" Kills!");
-                    }else {
-                        Bukkit.broadcastMessage("§a"+winner+" Venceu a partida com "+ Main.playerKills.get(p.getUniqueId())+" Kill!");
+                    if(!(Main.playerKills.containsKey(p.getUniqueId()))){
+                        Bukkit.broadcastMessage("§a"+winner+" venceu a partida com nenhuma kill!");
+                    }else if(Main.playerKills.get(p.getUniqueId()) > 1){
+                        Bukkit.broadcastMessage("§a"+winner+" venceu a partida com "+ Main.playerKills.get(p.getUniqueId())+" Kills!");
+                    }else if(Main.playerKills.get(p.getUniqueId()) < 1){
+                        Bukkit.broadcastMessage("§a"+winner+" venceu a partida com "+ Main.playerKills.get(p.getUniqueId())+" Kill!");
                     }
                     cakeTeleport();
+                    InGameStage.cancel();
                 }
             },19L);
         }

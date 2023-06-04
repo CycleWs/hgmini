@@ -93,8 +93,7 @@ public class InGameStage {
                 getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 40");
                 for(i = 0; i < p; ++i) {
                     Player playersList = arrayOfPlayer[i];
-                    Location arenaFinal = new Location(Bukkit.getWorld("world"), 0.0, 4.0, 0.0, 0.0F, 0.0F);
-                    playersList.teleport(arenaFinal);
+                    playersList.teleport(Main.spawnWorld);
                 }
                 getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set 1 60");
                 getServer().dispatchCommand(getServer().getConsoleSender(),"execute @e[type=Item] ~ ~ ~ /kill @e[type=Item,r=1]");

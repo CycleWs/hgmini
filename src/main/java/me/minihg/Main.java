@@ -32,6 +32,7 @@ public class Main extends JavaPlugin {
     public static Integer startTime = 300;
     public static Integer minPlayers = 4 ;
     public static Integer maxPlayers = 20;
+    public static Location spawnWorld;
     //----------PreGameInfos--------------------
     //----------InvincibilityInfo---------------
     public static boolean invincibility = false;
@@ -70,6 +71,7 @@ public class Main extends JavaPlugin {
 
     public void onEnable() {
         Bukkit.getWorld("world").setSpawnLocation(0, 100, 0);
+        spawnWorld = Bukkit.getWorld("world").getSpawnLocation();
         Cooldown.setupCooldown();
         instance = this;
         this.Files();
@@ -116,6 +118,9 @@ public class Main extends JavaPlugin {
         this.getCommand("mf").setExecutor(new Commands());
         this.getCommand("borda").setExecutor(new Commands());
         this.getCommand("cc").setExecutor(new Commands());
+        this.getCommand("spawn").setExecutor(new Commands());
+        this.getCommand("start").setExecutor(new Commands());
+        this.getCommand("toggle").setExecutor(new Commands());
     }
 
     public void registerKitEvents() {

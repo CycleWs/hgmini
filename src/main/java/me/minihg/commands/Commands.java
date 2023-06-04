@@ -8,7 +8,6 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -26,40 +25,51 @@ public class Commands implements CommandExecutor {
         Player p = (Player) player;
         String command = cmd.getName();
         if(command.equalsIgnoreCase("mf")){
-            return executeMfCommand(p,args);
-        }else if(command.equalsIgnoreCase("tempo")){
-            return executeTimeCommand(p,args);
-        }else if(command.equalsIgnoreCase("borda")){
-            return executeWorldBorderCmd(p,args);
-        } else if (command.equalsIgnoreCase("tpall")) {
-            return executeTpAllCmd(p,args);
-        }else if (command.equalsIgnoreCase("cc")){
-            return executeClearChatCMD(p,args);
+            return executeMfCmd(p);
+        } else if (command.equalsIgnoreCase("spawn")) {
+            return executeSpawnCmd(p,args);
         }
+
+        //Admin Commands VV
+        if(Main.playersAdmin.contains(((Player) player).getUniqueId())){
+           if(command.equalsIgnoreCase("tempo")){
+                return executeTimeCmd(p,args);
+            }else if(command.equalsIgnoreCase("borda")){
+                return executeWorldBorderCmd(p,args);
+            } else if (command.equalsIgnoreCase("tpall")) {
+                return executeTpAllCmd(p);
+            }else if (command.equalsIgnoreCase("cc")){
+                return executeClearChatCmd();
+            }else if(command.equalsIgnoreCase("start")){
+               return executeStartCmd(p);
+           }else if(command.equalsIgnoreCase("toggle")){
+               return excuteToggleChatCmd(args);
+           }
+        }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
+            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+        }else{
+            p.sendMessage("§cOcorreu algum erro ao executar o comando!");
+        }
+
         return false;
     }
     private boolean executeWorldBorderCmd(CommandSender player, String[] args) {
         Player p = (Player) player;
-        if(Main.playersAdmin.contains(p.getUniqueId())){
-            if (args.length == 0) {
-                p.sendMessage("§aDigite /borda <tamanho final em blocos, tempo em segundos> ");
-            }else if (args.length == 1){
-                int value = Integer.parseInt(args[0]);
-                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set "+value);
-                return true;
-            }else if(args.length == 2){
-                int firstValue = Integer.parseInt(args[0]);
-                int secondValue = Integer.parseInt(args[1]);
-                getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set "+firstValue+" "+secondValue);
-                return true;
-            }
-        }else{
-            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+        if (args.length == 0) {
+            p.sendMessage("§aDigite /borda <tamanho final em blocos, tempo em segundos> ");
+        }else if (args.length == 1){
+            int value = Integer.parseInt(args[0]);
+            getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set "+value);
+            return true;
+        }else if(args.length == 2){
+            int firstValue = Integer.parseInt(args[0]);
+            int secondValue = Integer.parseInt(args[1]);
+            getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder set "+firstValue+" "+secondValue);
+            return true;
         }
-
-            return false;
+        return true;
         }
-    private boolean executeMfCommand(CommandSender explorer, String[] args){
+    private boolean executeMfCmd(CommandSender explorer){
             Player p = (Player) explorer;
             if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == Explorer.explorerValue)
                     && MiniFeast.spawned && Main.inGame){
@@ -75,9 +85,8 @@ public class Commands implements CommandExecutor {
             return true;
         }
 
-    private boolean executeTimeCommand(CommandSender player, String[] args){
+    private boolean executeTimeCmd(CommandSender player, String[] args){
         Player p = (Player) player;
-        if(Main.playersAdmin.contains(p.getUniqueId())){
             if(args.length == 0){
                 p.sendMessage("§aNumero em segundos para alterar o tempo da partida: ");
             }
@@ -90,44 +99,75 @@ public class Commands implements CommandExecutor {
             if((args.length == 1) && Main.inGame){
                 Main.inGameTime = Integer.parseInt(args[0]);
             }
-        }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
-            p.sendMessage("§cVocê não tem permissão para usar este comando!");
-        }else{
-            p.sendMessage("§cOcorreu algum erro ao executar o comando!");
-        }
         return true;
     }
-    private boolean executeTpAllCmd(CommandSender player, String[] args){
+    private boolean executeTpAllCmd(CommandSender player){
         Player p = (Player) player;
-        if(Main.playersAdmin.contains(p.getUniqueId())){
             Location loc = p.getLocation();
             Player[] arrayOfPlayer;
-            int f = (arrayOfPlayer = (Player[])Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
-
+            int f = (arrayOfPlayer = Bukkit.getOnlinePlayers().toArray(new Player[0])).length;
             for(int i = 0; i < f; ++i) {
                 Player px = arrayOfPlayer[i];
                 px.teleport(loc);
             }
-        }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
-            p.sendMessage("§cVocê não tem permissão para usar este comando!");
-        }else{
-            p.sendMessage("§cOcorreu algum erro ao executar o comando!");
-        }
         return true;
     }
-    private boolean executeClearChatCMD(CommandSender player, String[] args){
+    private boolean executeClearChatCmd(){
+        for(int i = 0; i < 50; ++i) {
+            Bukkit.broadcastMessage(" ");
+            Bukkit.broadcastMessage("");
+        }
+        Bukkit.broadcastMessage("§aChat limpo");
+        return true;
+    }
+
+    private boolean executeStartCmd(CommandSender player){
         Player p = (Player) player;
-        if(Main.playersAdmin.contains(p.getUniqueId())){
-            for(int i = 0; i < 100; ++i) {
-                Bukkit.broadcastMessage(" ");
-            }
-        }else if (!(Main.playersAdmin.contains(p.getUniqueId()))) {
-            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+        if(!(Main.inGame) || !(Main.finalArena) || !(Main.invincibility)){
+            Main.startMatch();
+            Bukkit.broadcastMessage("§aA partida iniciou!");
+            KitSelector.kitSelectorRandom();
         }else{
-            p.sendMessage("§cOcorreu algum erro ao executar o comando!");
+            p.sendMessage("§ca partida já iniciou!");
         }
         return true;
     }
+
+    private boolean excuteToggleChatCmd(String[] args){
+        if(args.length == 1){
+            if(args[0].equalsIgnoreCase("chat")){
+                if(!Main.toggleChat){
+                    Main.toggleChat = true;
+                    Bukkit.broadcastMessage("§aO chat foi ativado!");
+                }else{
+                    Main.toggleChat = false;
+                    Bukkit.broadcastMessage("§cO chat foi desativado!");
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean executeSpawnCmd(CommandSender player,String[] args){
+        Player p = (Player) player;
+        if((args.length == 1) && Main.playersAdmin.contains(p.getUniqueId())){
+            if(args[0].equalsIgnoreCase("set")){
+                double locX = p.getLocation().getX();
+                double locY = p.getLocation().getY();
+                double locZ = p.getLocation().getZ();
+                Bukkit.getWorld("world").setSpawnLocation((int) locX, (int) locY, (int) locZ);
+                Main.spawnWorld = Bukkit.getWorld("world").getSpawnLocation();
+                p.sendMessage("§aSpawn foi atualizado");
+            }
+        }else if(args.length == 0){
+            p.teleport(Main.spawnWorld);
+        }else if((args.length == 1) && !(Main.playersAdmin.contains(p.getUniqueId()))){
+            p.sendMessage("§cVocê não tem permissão para usar este comando!");
+        }
+        return true;
+    }
+
+
 //        if(cmd.getName().equalsIgnoreCase("kit")){
 //            if(commandCooldown.containsKey(p) && !(System.currentTimeMillis() >= commandCooldown.get(p))){
 //                p.sendMessage("§cAguarde para usar o comando novamente! "+convert(p)+" Segundos");
