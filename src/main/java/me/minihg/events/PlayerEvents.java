@@ -175,12 +175,15 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onLogin(PlayerLoginEvent e){
         Player p = e.getPlayer();
-        if(!(Main.inGame || Main.finalArena || Main.invincibility)){
+        if((!(Main.inGame || Main.finalArena || Main.invincibility)) && Main.playersOnline.size() <= 20){
             Main.playersOnline.add(p);
         }else if(!(Main.playersAdmin.contains(p.getUniqueId()))){
             e.disallow(PlayerLoginEvent.Result.KICK_OTHER, "§cPartida em andamento!");
+        }else if(Main.playersOnline.size() == Main.maxPlayers){
+            e.disallow(PlayerLoginEvent.Result.KICK_OTHER, "§cPartida está lotada!");
         }
         if(Main.playersOnline.size() == Main.maxPlayers){
+            Bukkit.setWhitelist(true);
             e.disallow(PlayerLoginEvent.Result.KICK_OTHER, "§cPartida está lotada!");
         }
     }

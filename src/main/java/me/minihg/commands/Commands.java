@@ -123,11 +123,11 @@ public class Commands implements CommandExecutor {
 
     private boolean executeStartCmd(CommandSender player){
         Player p = (Player) player;
-        if(!(Main.inGame) || !(Main.finalArena) || !(Main.invincibility)){
+        if(!Main.invincibility && !Main.inGame && !Main.finalArena){
             Main.startMatch();
             Bukkit.broadcastMessage("§aA partida iniciou!");
             KitSelector.kitSelectorRandom();
-        }else{
+        }else {
             p.sendMessage("§ca partida já iniciou!");
         }
         return true;

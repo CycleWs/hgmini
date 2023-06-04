@@ -30,7 +30,7 @@ public class Main extends JavaPlugin {
     //----------PreGameInfos--------------------
     public static boolean preGame = true;
     public static Integer startTime = 300;
-    public static Integer minPlayers = 4 ;
+    public static Integer minPlayers = 5 ;
     public static Integer maxPlayers = 20;
     public static Location spawnWorld;
     //----------PreGameInfos--------------------
@@ -82,10 +82,6 @@ public class Main extends JavaPlugin {
         this.getServer().addRecipe(this.cocoaSoup);
         this.getServer().addRecipe(this.cactusSoup);
         this.worldBorder();
-        getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder center 0 0");
-        getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage buffer 1");
-        getServer().dispatchCommand(getServer().getConsoleSender(), "worldborder damage amount 3");
-        getServer().dispatchCommand(getServer().getConsoleSender(), "gamerule commandBlockOutput false");
         UUID yuki = UUID.fromString("61af26df-d7c2-4201-8a48-1f8c7f821250");
         UUID cycleWs = UUID.fromString("0d88d7ba-fad3-425d-8ce8-ee83be9e706b");
         UUID etcloide = UUID.fromString("8876ca6c-814d-47f1-bb0e-4253456de83c");
@@ -96,7 +92,6 @@ public class Main extends JavaPlugin {
             Main.playersAdmin.add(cycleWs);
             Main.playersAdmin.add(etcloide);
         }
-
     }
 
     public void onLoad() {
@@ -172,6 +167,8 @@ public class Main extends JavaPlugin {
         world.setDifficulty(Difficulty.NORMAL);
         border.setCenter(0.0, 0.0);
         border.setSize(400.0);
+        border.setDamageAmount(3);
+        border.setDamageBuffer(1);
     }
 
     private void deleteWorld(File file) {

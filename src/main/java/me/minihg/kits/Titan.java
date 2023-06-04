@@ -49,7 +49,7 @@ public class Titan implements Listener {
         ItemStack itemKit = p.getInventory().getItemInHand();
         if(Cooldown.checkCooldown(p)){
             if((KitSelector.kitMap.containsKey(p) && KitSelector.kitMap.get(p) == value)
-                    && (e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)
+                    && ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK))
                     && (itemKit.getType() == Material.BEDROCK)
                     && Main.inGame){
                 titanTimer.put(p, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(10));
